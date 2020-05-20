@@ -12,7 +12,6 @@ module.exports = function (sequelize, DataTypes) {
         }
     })
 
-
     Session.associate = function (models) {
         models.Session.belongsTo(models.User, { as: "host" })
         models.Session.hasMany(models.UserSession, { onDelete: 'cascade' })
