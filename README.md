@@ -1,2 +1,1 @@
-# P3-Study-Budy
-
+# P3-Study-Buddy
