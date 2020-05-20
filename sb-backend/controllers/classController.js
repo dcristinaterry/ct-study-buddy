@@ -3,7 +3,7 @@ const db = require("../models")
 module.exports = {
 
     // Find All the classes for one User
-    findAll: function (req, res) {
+    findAllClasses: function (req, res) {
         db.UserClass.findAll({
             where: {
                 userId: req.params.userid

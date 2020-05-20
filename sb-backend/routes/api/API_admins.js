@@ -45,13 +45,13 @@ router
   .put(locationController.update)
   .delete(locationController.remove);
 
- // Matches with "/api/location"
+ // Matches with "/api/class"
 router
 .route("/")
 .get(classController.findAll)
 .post(classController.create);
 
-// Matches with "/api/location/:id"
+// Matches with "/api/class/:id"
 router
 .route("/:id")
 .get(classController.findById)
