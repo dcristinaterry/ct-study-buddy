@@ -9,9 +9,6 @@ module.exports = function (sequelize, DataTypes) {
         location: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        participants: {
-            type: DataTypes.STRING
         }
     })
 
@@ -20,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
         models.Session.belongsTo(models.User, { as: "host" })
         models.Session.hasMany(models.UserSession, { onDelete: 'cascade' })
         models.Session.belongsTo(models.Class, { as : "studygroup"});
-        models.Session.belongsTo(models.Locations, { as : "studysesion" });
+        models.Session.belongsTo(models.Location, { as : "studysesion" });
     }
     return Session;
 }
