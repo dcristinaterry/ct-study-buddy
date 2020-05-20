@@ -21,6 +21,7 @@ module.exports = function (sequelize, DataTypes) {
         models.Session.hasMany(models.UserSession, { onDelete: 'cascade' })
         models.Session.belongsTo(models.Class, { as : "studygroup"});
         models.Session.belongsTo(models.Locations, { as : "studysesion" });
+        models.Session.hasMany(models.Comments, { as: "comment" });
     }
     return Session;
 }

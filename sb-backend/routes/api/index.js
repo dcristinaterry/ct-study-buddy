@@ -1,13 +1,9 @@
 const router = require("express").Router();
-const classRoutes = require("./class");
-const locationRoutes = require("./location");
-const sessionRoutes = require("./session");
-const userRoutes = require("./user");
+const usersRoutes = require("./users");
+const adminsRoutes = require("./admins");
 
 // Post routes
-router.use("/class", classRoutes);
-router.use("/location", locationRoutes);
-router.use("/session", sessionRoutes);
-router.use("/user", userRoutes);
+router.use("/users", usersRoutes);
+router.use("/admin", adminsRoutes)
 
 module.exports = router;

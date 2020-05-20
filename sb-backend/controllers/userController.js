@@ -2,8 +2,11 @@ const db = require("../models")
 
 module.exports = {
     findAll: function(req,res) {
-        db.User.find(req.query)
-        .then(dbModel => res.json(dbModel))
+        db.User.find( {
+            where:{
+                classId: req.params.classid
+            }
+        }).then(dbModelUser => res.json(dbModelUser))
         .catch(err => res.status(422).json(err));
     },
     findById: function(req,res) {
