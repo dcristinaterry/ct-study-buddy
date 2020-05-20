@@ -1,15 +1,22 @@
 const db = require("../models")
 
 module.exports = {
+    // find all users for a class
     findAll: function(req, res) {
-        db.Class.findAll( {
+        db.UserClass.findAll( {
             where:{
                 userId: req.params.userid
+            },
+        include:{
+            model: db.Class,
+            include : {
+                model: db.User,
+                as: "userid"
             }
+        }
         }).then(dbModelClass => res.json(dbModelClass))
           .catch(err => res.status(422).json(err));
       },
-      
       findOneClassForUser: function(req, res) {
         db.Class.findById({
             where:{

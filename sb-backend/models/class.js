@@ -25,8 +25,8 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Class.associate = function (models) {
-        models.Class.hasMany(models.Sessions, { onDelete: 'cascade' });
-        models.Class.hasMany(models.UserClass, { onDelete: 'cascade' })
+        models.class.hasMany(models.Sessions, { onDelete: 'cascade' });
+        models.class.hasMany(models.UserClass, { onDelete: 'cascade' })
     };
     return Class;
 }  

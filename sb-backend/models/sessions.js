@@ -17,11 +17,11 @@ module.exports = function (sequelize, DataTypes) {
 
 
     Session.associate = function (models) {
-        models.Session.belongsTo(models.User, { as: "host" })
-        models.Session.hasMany(models.UserSession, { onDelete: 'cascade' })
-        models.Session.belongsTo(models.Class, { as : "studygroup"});
-        models.Session.belongsTo(models.Locations, { as : "studysesion" });
-        models.Session.hasMany(models.Comments, { as: "comment" });
+        models.session.belongsTo(models.User, { as: "host" })
+        models.session.hasMany(models.UserSession, { onDelete: 'cascade' })
+        models.session.belongsTo(models.Class, { as : "studygroup"});
+        models.session.belongsTo(models.Locations, { as : "studysesion" });
+        models.session.hasMany(models.Comments, { as: "comment" });
     }
     return Session;
 }

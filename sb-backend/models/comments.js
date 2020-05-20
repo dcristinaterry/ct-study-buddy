@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Comment.associate = function(models) {
-        models.Comment.belongsTo(models.Session);
+        models.comment.belongsTo(models.Session);
     }
 
     return Comment;
