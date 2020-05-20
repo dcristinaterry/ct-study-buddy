@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Location.associate = function(models) {
-        models.Location.hasMany(models.Sessions)
+        models.Location.hasMany(models.Session)
     }
     return Location;
 }
