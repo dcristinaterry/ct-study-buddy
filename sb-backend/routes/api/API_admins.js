@@ -1,61 +1,45 @@
+
 // should have access to ALL features to CRUD any element
 
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
-const sessionController = require("../../controllers/sessionController");
+// const sessionController = require("../../controllers/sessionController");
 const locationController = require("../../controllers/locationController");
 const classController = require("../../controllers/classController");
 
 // Matches with "/api/users"
 router
-  .route("/")
-  .get(userController.findAll)
-  .post(userController.create);
+  .route("/user")
+  .get(userController.findAllUsers)
+  .post(userController.create)
 
-// Matches with "/api/users/:id"
 router
-  .route("/:id")
-  .get(userController.findById)
+  .route("/user/:id")  
+  .get(userController.findUser)
   .put(userController.update)
-  .delete(userController.remove);
+  .delete(userController.remove)
 
-// Matches with "/api/session"
 router
-  .route("/")
-  .get(sessionController.findAll)
-  .post(sessionController.create);
+  .route("/class")
+  .get(classController.findAllClass)
+  .post(classController.create)
 
-// Matches with "/api/session/:id"
 router
-  .route("/:id")
-  .get(sessionController.findById)
-  .put(sessionController.update)
-  .delete(sessionController.remove);
+  .route("/class/:id")  
+  .get(classController.findClass)
+  .put(classController.update)
+  .delete(classController.remove)
 
 // Matches with "/api/location"
 router
-  .route("/")
-  .get(locationController.findAll)
-  .post(locationController.create);
+  .route("/location")
+  .get(locationController.findAllLocation)
+  .post(locationController.create)
 
-// Matches with "/api/location/:id"
 router
-  .route("/:id")
-  .get(locationController.findById)
+  .route("/location/:id")  
+  .get(locationController.findLocation)
   .put(locationController.update)
-  .delete(locationController.remove);
-
- // Matches with "/api/class"
-router
-.route("/")
-.get(classController.findAll)
-.post(classController.create);
-
-// Matches with "/api/class/:id"
-router
-.route("/:id")
-.get(classController.findById)
-.put(classController.update)
-.delete(classController.remove);
+  .delete(locationController.remove)
 
 module.exports = router;

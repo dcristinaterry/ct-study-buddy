@@ -25,7 +25,7 @@ router
 
 router
   .route("/:userid/session/:sessionid")
-  .put(sesssionController.joinSession)
+  .put(sessionController.joinSession)
 
 router
   .router("/:userid/session/hosting")
@@ -52,25 +52,25 @@ router
 
     
 
-// router
-//   .router()
-// // Matches with "/api/session/:id"
+//   app.put("/api/user", passport.authenticate("local"), function (req, res) {
+//     db.User.findOne({
+//         where: {
+//             username: req.body.username,
+//             password: req.body.password
+//         }
 
-// router
-//   .route("/:id")
-//   .get(sessionController.findById)
-//   .put(sessionController.update)
-//   .delete(sessionController.remove);
-
-// // Matches with "/api/location"
-//   .post(locationController.create);
-
-// // Matches with "/api/location/:id"
-// router
-//   .route("/:id")
-//   .get(locationController.findById)
-//   .put(locationController.update)
-//   .delete(locationController.remove);
+//     }).then(function (dbUser) {
+//         console.log("passport checking user...")
+//         // console.log(req.user);
+//         // Added Passport logic for validating user
+//         if (req.user) {
+//             console.log("true");
+//             // console.log(dbUser);
+//             res.json(dbUser);
+//         }
+//         else { res.sendFile("/html/login.html", { root: path.join(__dirname, "../public") }) };
+//     });
+// })
 
 
 module.exports = router;
