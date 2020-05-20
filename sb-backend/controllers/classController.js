@@ -9,6 +9,7 @@ module.exports = {
         }).then(dbModelClass => res.json(dbModelClass))
           .catch(err => res.status(422).json(err));
       },
+      
       findOneClassForUser: function(req, res) {
         db.Class.findById({
             where:{
@@ -25,10 +26,10 @@ module.exports = {
           .catch(err => res.status(422).json(err));
       },
       update: function(req, res) {
-        db.Class.update(req.body,
+        db.Class.update(req.body, 
             { where :
-                {
-                    id: req.params.classid
+                { 
+                    id: req.params.classid 
                 }
             }, )
           .then(dbModel => res.json(dbModel))
@@ -39,5 +40,4 @@ module.exports = {
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
       }
-    
 }
