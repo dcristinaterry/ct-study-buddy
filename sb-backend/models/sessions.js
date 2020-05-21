@@ -15,8 +15,8 @@ module.exports = function (sequelize, DataTypes) {
     Session.associate = function (models) {
         models.Session.belongsTo(models.User, { as: "host" })
         models.Session.hasMany(models.UserSession, { onDelete: 'cascade' })
-        models.Session.belongsTo(models.Class, { as : "studygroup"});
-        models.Session.belongsTo(models.Location, { as : "studysesion" });
+        models.Session.belongsTo(models.Class);
+        models.Session.belongsTo(models.Location);
     }
     return Session;
 }

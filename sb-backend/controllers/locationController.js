@@ -1,13 +1,15 @@
 const db = require("../models")
 
 module.exports = {
-    findAll: function(req,res) {
-        db.Location.find(req.query)
+    findAllLocations: function(req,res) {
+        db.Location.find({})
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-    findById: function(req,res) {
-        db.Location.findById(req.params.id)
+    findLocationById: function(req, res) {
+        db.Location.findById({
+            where: {id: req.params.locationId}
+        })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
@@ -17,12 +19,15 @@ module.exports = {
           .catch(err => res.status(422).json(err));
     },
     update: function(req, res) {
-        db.Location.findOneAndUpdate({ _id: req.params.id }, req.body)
+        db.Location.updat({
+            where: {id: req.params.locationId}}, 
+            req.body)
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
     },
     remove: function(req, res) {
-        db.Location.findById({ _id: req.params.id })
+        db.Location.findById({
+            where: {id: req.params.locationId}})
           .then(dbModel => dbModel.remove())
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));

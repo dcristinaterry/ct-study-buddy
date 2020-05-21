@@ -18,10 +18,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        ta: {
-            type: DataTypes.STRING,
-            allowNull: true
-        }
     });
 
     Class.associate = function (models) {
