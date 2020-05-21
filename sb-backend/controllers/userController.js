@@ -1,13 +1,32 @@
 const db = require("../models")
 
 module.exports = {
-    findUser: function (req,res) {
+    authenticateUser: function (req, res) {
+        db.User.findOne({
+            where: {
+                email: req.body.email,
+                password: req.body.password
+            }
+        }).then(function (dbUser) {
+            console.log("passport checking user...")
+            // console.log(req.user);
+            // Added Passport logic for validating user
+            if (req.user) {
+                console.log(req.user)
+                console.log("true");
+                // console.log(dbUser);
+                res.json(dbUser);
+            }
+            else { res.sendFile("/html/login.html", { root: path.join(__dirname, "../public") }) };
+        });
+    },
+    findUser: function (req, res) {
         db.User.findOne({
             where: {
                 id: req.params.id
             }
         }).then(dbModelUser => res.json(dbModelUser))
-        .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err));
     },
     // find all users for a class
     findAllClassForUser: function (req, res) {
@@ -15,9 +34,9 @@ module.exports = {
             where: {
                 classId: req.params.classid
             },
-            include:{
+            include: {
                 model: db.User,
-                include : {
+                include: {
                     model: db.Class,
                     as: "classid"
                 }
@@ -32,8 +51,8 @@ module.exports = {
                 classId: req.params.classid,
                 userId: req.params.userid,
             },
-            include:{
-                model:db.User,
+            include: {
+                model: db.User,
                 include: {
                     model: db.Class,
                     as: "classid"
@@ -51,17 +70,18 @@ module.exports = {
     // should allow information for the user to be updated
     update: function (req, res) {
         db.User.update(req.body,
-            { where:
-                { 
+            {
+                where:
+                {
                     id: req.params.userid
                 }
-            }, )
+            })
             .then(dbModelUser => res.json(dbModelUser))
             .catch(err => res.status(422).json(err));
     },
     // should allow a user to be deleted
     remove: function (req, res) {
-        db.User.destroy({ where: {id: req.params.userid }})
+        db.User.destroy({ where: { id: req.params.userid } })
             .then(dbModelUser => res.json(dbModelUser))
             .catch(err => res.status(422).json(err));
     }

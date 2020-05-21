@@ -50,7 +50,9 @@ router
   .route("/session/:id")
   .get(locationController.findSessionById)
 
-    
+router
+  .route("/api/user", passport.authenticate("local"))
+  .put(userController.authenticateUser)    
 
 //   app.put("/api/user", passport.authenticate("local"), function (req, res) {
 //     db.User.findOne({
