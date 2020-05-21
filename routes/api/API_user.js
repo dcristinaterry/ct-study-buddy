@@ -6,7 +6,7 @@ const userController = require("../../controllers/userController");
 const sessionController = require("../../controllers/sessionController");
 const locationController = require("../../controllers/locationController");
 const classController = require("../../controllers/classController");
-
+const passport = require("../../config/passport")
 // Matches with "/api/users/:id"
 router
   .route("/:id")
@@ -21,36 +21,38 @@ router
 // Matches with "/api/session"
 router
   .route("/:userid/session")
-  .get(sessionController.findAllSessions)
+  // .get(sessionController.findAllSessions)
 
 router
   .route("/:userid/session/:sessionid")
-  .put(sessionController.joinSession)
+  // .put(sessionController.joinSession)
 
 router
-  .router("/:userid/session/hosting")
-  .get(sessionController.findAllAsHost)
+  .route("/:userid/session/hosting")
+  // .get(sessionController.findAllAsHost)
   .post(sessionController.create)
   .delete(sessionController.remove)
   .put(sessionController.update)
 
 router
-  .router("/:classid/session")
-  .get(sessionController.findAllForClass)
+  .route("/:classid/session")
+  // .get(sessionController.findAllForClass)
 
 router
   .route("/locations")
-  .get(locationController.findAll)
+  // .get(locationController.findAll)
  
 router
   .route("/location/:sessionid") 
-  .get(locationController.findOne)
+  // .get(locationController.findOne)
 
 router
   .route("/session/:id")
-  .get(locationController.findSessionById)
+  // .get(locationController.findSessionById)
 
-    
+router
+  .route("/api/user",passport.authenticate("local"))
+  // .put(userController.authenticateUser)    
 
 //   app.put("/api/user", passport.authenticate("local"), function (req, res) {
 //     db.User.findOne({

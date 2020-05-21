@@ -1,26 +1,3 @@
-const express = require("express");
-const session = require("express-session")
-// const routes = require("./routes");
-const moment = require("moment")
-// const passport = require("./config/passport");
-const app = express();
-const PORT = process.env.PORT || 3001;
-const db = require("./models")
-
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "development") {
-//   app.use(express.static("client/build"));
-// }
-// Add routes, both API and view
-// app.use(routes);
-
-
-db.sequelize.sync().then(function () {
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
     let usertable = [
       { email: 'test@test.com', password: 'testing', firstName: 'test', lastName: 'test', role: 'admin' },
       { email: 'cristina@cristina.com', password: 'testing', firstName: 'Cristina', lastName: 'Terry', role: 'admin', image: 'https://media-exp1.licdn.com/dms/image/C4D03AQFaxqj0rTBR-Q/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=fgQsiqeK6w_r2ltU-SizUL8F4p59vE5pNpxqIyFWxTQ' },
@@ -57,7 +34,7 @@ db.sequelize.sync().then(function () {
         .then(() =>
           console.log("user table seeded"))
         .catch(error => console.log(error));
-    })
+    });
     let classtable = [
       { Subject: 'Accounting', Class: '101', Instructor: 'Leilani Macfarlane', TA: 'Samuel Sharma' },
       { Subject: 'Accounting', Class: '201', Instructor: 'Amos Maguire', TA: 'Leja Cardenas' },
@@ -142,7 +119,7 @@ db.sequelize.sync().then(function () {
       { Subject: 'Spanish', Class: '402', Instructor: 'Shona Good', TA: 'Kajol Page' }
     ]
     classtable.forEach(item => {
-      db.User.create(item)
+      db.Class.create(item)
         .then(() =>
           console.log("class table seeded"))
         .catch(error => console.log(error));
@@ -163,9 +140,8 @@ db.sequelize.sync().then(function () {
         { building: 'Engineering', room: 316, maxOccupancy: 10, utilities: 'Yes'}
       ]
       locationtable.forEach(item => {
-        db.User.create(item)
+        db.Location.create(item)
           .then(() =>
             console.log("locations table seeded"))
           .catch(error => console.log(error));
       });
-  });

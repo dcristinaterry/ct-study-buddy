@@ -10,35 +10,35 @@ const classController = require("../../controllers/classController");
 // Matches with "/api/users"
 router
   .route("/user")
-  .get(userController.findAllUsers)
-  .post(userController.create)
+  // .get(userController.findAllUsers)
+  // .post(userController.create)
 
 router
   .route("/user/:id")  
-  .get(userController.findUser)
+  // .get(userController.findUser)
   .put(userController.update)
   .delete(userController.remove)
 
 router
   .route("/class")
-  .get(classController.findAllClass)
+  // .get(classController.findAllClass)
   .post(classController.create)
 
 router
   .route("/class/:id")  
-  .get(classController.findClass)
+  // .get(classController.findClass)
   .put(classController.update)
   .delete(classController.remove)
 
 // Matches with "/api/location"
 router
   .route("/location")
-  .get(locationController.findAllLocation)
+  // .get(locationController.findAllLocation)
   .post(locationController.create)
 
 router
   .route("/location/:id")  
-  .get(locationController.findLocation)
+  // .get(locationController.findLocation)
   .put(locationController.update)
   .delete(locationController.remove)
 
