@@ -8,6 +8,10 @@ module.exports = {
             where: {
                 userId: req.params.userid
             },
+            include:{
+                model: Class,
+                attributes:["subject", "class", "section"]
+            }
         }
         ).then(dbModelClass => res.json(dbModelClass))
             .catch(err => res.status(422).json(err));
