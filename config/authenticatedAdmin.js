@@ -13,11 +13,14 @@ module.exports = function (req, res, next) {
   
     // If the user is logged in, continue with the request to the restricted route
     if (req.user) {
+
+      if(req.user.role==="admin"){
+        return next();
+      }
       // we have user login
       // if (req.user.role === roles.Administrator) {
       //   return res.redirect("/admin")
       // } else {
-      return next();
       // }
     }
   
