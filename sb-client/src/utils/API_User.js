@@ -1,6 +1,7 @@
 import axios from 'axios'
 export default {
     authenticate: function (loginData) {
-        return axios.get("/api/user", loginData)
+        console.log(loginData)
+        return axios.put("/api/user", loginData)
     }
 }

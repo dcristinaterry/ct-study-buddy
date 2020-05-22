@@ -3,21 +3,20 @@ import API_User from "../utils/API_User.js"
 const LoginUser = () => {
 
     const [loginForm, setLoginForm] = useState({})
-    
-   
 
-    const authenticateUser = () =>{
-        const response = API_User.authenticate(loginForm);
-        console.log(response)
+    const authenticateUser = (event) => {
+        event.preventDefault()
+        API_User.authenticate(loginForm)
+        .then(response => {
+            console.log(response)
+            console.log(loginForm)
+        });
     }
-
-    const setvalues= (event) =>{
+    const setvalues = (event) => {
         const {name, value} = event.target
-        setLoginForm({[name]:value})
+        setLoginForm({...loginForm,[name]:value})
     }
-
     return (
-
         <div>
             <form>
                 <div>
@@ -27,7 +26,7 @@ const LoginUser = () => {
                 <div>
 
                     <label htmlFor="inputStudenPass">password</label><br />
-                    <input type="password" id="pass"  onChange={setvalues} name="password"></input>
+                    <input type="password" id="pass" onChange={setvalues} name="password"></input>
                 </div>
                 <div>
                     <input type="submit" value="Submit" onClick={authenticateUser} />

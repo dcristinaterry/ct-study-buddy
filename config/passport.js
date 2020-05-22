@@ -2,29 +2,32 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var db = require("../models");
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password  
-  passport.use(new LocalStrategy(
-    {
-      usernameField: "email",
-      passwordField: "password"
-    },
-    // passReqToCallback: true
-    // Our user will sign in using an email
-  function(email, password, done) {
+passport.use(new LocalStrategy(
+  {
+    usernameField: "email",
+    passwordField: "password"
+  },
+  // passReqToCallback: true
+  // Our user will sign in using an email
+  function (email, password, done) {
     // When a user tries to sign in this code runs
+    console.log(email)
+    console.log(password)
     db.User.findOne({
       where: {
-        email: email,
-        password: password
+        email: email
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       // If there's no user with the given email
       if (!dbUser) {
+        console.log("Incorrect email")
         return done(null, false, {
           message: "Incorrect email."
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.verifyPassword(password)) {
+      else if (!dbUser.validPassword(password)) {
+        console.log("Incorrect pass")
         return done(null, false, {
           message: "Incorrect password."
         });
@@ -39,14 +42,11 @@ var db = require("../models");
 // Sequelize needs to serialize and deserialize the user
 // Just consider this part boilerplate needed to make it all work
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
 });
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
 });
 
 // Exporting our configured passport
