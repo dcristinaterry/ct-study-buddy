@@ -13,7 +13,7 @@ router
   .route("/")
   .put(passport.authenticate("local"), function (req, res) {
 
-    let user = { ...req.user.dataValues, password: "" }
+    let user = { ...req.user.dataValues, password: "youWish" }
     res.json(user)
     console.log("login successful!")
   })
