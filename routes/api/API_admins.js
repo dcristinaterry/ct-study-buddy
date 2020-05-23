@@ -6,6 +6,7 @@ const userController = require("../../controllers/userController");
 // const sessionController = require("../../controllers/sessionController");
 const locationController = require("../../controllers/locationController");
 const classController = require("../../controllers/classController");
+const authenticatedAdmin = require("../../config/authenticatedAdmin")
 
 // Matches with "/api/users"
 router
@@ -14,7 +15,7 @@ router
   // .post(userController.create)
 
 router
-  .route("/user/:id")  
+  .route("/user/:id", authenticatedAdmin)  
   // .get(userController.findUser)
   .put(userController.update)
   .delete(userController.remove)

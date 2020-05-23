@@ -1,5 +1,6 @@
-import React, { useState} from "react"
+import React, { useState, useEffect } from "react"
 import API_User from "../../utils/API_User.js"
+import {Redirect} from "react-router-dom"
 
 
 
@@ -7,27 +8,53 @@ const LoginUser = () => {
 
     const [loginForm, setLoginForm] = useState({})
     const [landingPage, setLandingPage] = useState()
+    const [find , setFind] = useState(false);
 
     const authenticateUser = (event) => {
         event.preventDefault()
-        API_User.authenticate(loginForm)
-        .then(response => {
-            console.log(response)
-            console.log(loginForm)
-            if(response.data.role ==="admin"){
-                setLandingPage("landingPageAdmin")
-            }else(
-                setLandingPage("userDashboard")
-            )
-           
-        });
+
+        setFind(true);
+        // API_User.authenticate(loginForm)
+        //     .then(response => {
+        //         console.log(response.data.role)
+        //         // console.log(response)
+        //         console.log(loginForm)
+        //         if (response.data.role === "admin") {
+
+        //             setLandingPage("/landingPageAdmin")
+        //         } else (
+        //            Redirect("/userDashboard")
+        //             // setLandingPage("/userDashboard")
+        //         )
+
+        //     });
     }
 
+    useEffect(()=>{
+
+        if(find){
+            API_User.authenticate(loginForm)
+            .then(response => {
+                console.log(response.data.role)
+                // console.log(response)
+                console.log(loginForm)
+                if (response.data.role === "admin") {
+                    window.location.href="/adminDashboard"
+                    setLandingPage("/landingPageAdmin")
+                } else (
+                 window.location.href="/userDashboard"
+                    // setLandingPage("/userDashboard")
+                )
+
+            });
+        }
+
+    }, [find, landingPage])
 
 
     const setValues = (event) => {
-        const {name, value} = event.target
-        setLoginForm({...loginForm,[name]:value})
+        const { name, value } = event.target
+        setLoginForm({ ...loginForm, [name]: value })
     }
     return (
         <div>
