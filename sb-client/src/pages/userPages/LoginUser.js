@@ -19,11 +19,8 @@ const LoginUser = () => {
             }else(
                 setLandingPage("userDashboard")
             )
-           
         });
     }
-
-
 
     const setValues = (event) => {
         const {name, value} = event.target
