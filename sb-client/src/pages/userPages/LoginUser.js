@@ -1,33 +1,18 @@
 import React, { useState, useEffect } from "react"
 import API_User from "../../utils/API_User.js"
-import {Redirect} from "react-router-dom"
+import { useStoreContext } from "../../utils/GlobalState";
+
 
 
 
 const LoginUser = () => {
-
+    const [state, dispatch] = useStoreContext();
     const [loginForm, setLoginForm] = useState({})
-    const [landingPage, setLandingPage] = useState()
     const [find , setFind] = useState(false);
 
     const authenticateUser = (event) => {
         event.preventDefault()
-
         setFind(true);
-        // API_User.authenticate(loginForm)
-        //     .then(response => {
-        //         console.log(response.data.role)
-        //         // console.log(response)
-        //         console.log(loginForm)
-        //         if (response.data.role === "admin") {
-
-        //             setLandingPage("/landingPageAdmin")
-        //         } else (
-        //            Redirect("/userDashboard")
-        //             // setLandingPage("/userDashboard")
-        //         )
-
-        //     });
     }
 
     useEffect(()=>{
@@ -35,21 +20,22 @@ const LoginUser = () => {
         if(find){
             API_User.authenticate(loginForm)
             .then(response => {
-                console.log(response.data.role)
-                // console.log(response)
+                // console.log(response.data.role)
+                console.log(response)
+                dispatch({ type: "setUser", user: response.data })
                 console.log(loginForm)
                 if (response.data.role === "admin") {
                     window.location.href="/adminDashboard"
-                    setLandingPage("/landingPageAdmin")
+                    
                 } else (
                  window.location.href="/userDashboard"
-                    // setLandingPage("/userDashboard")
+                  
                 )
 
             });
         }
 
-    }, [find, landingPage])
+    }, [find, loginForm, state, dispatch])
 
 
     const setValues = (event) => {
@@ -69,7 +55,7 @@ const LoginUser = () => {
                     <input type="password" id="pass" onChange={setValues} name="password"></input>
                 </div>
                 <div>
-                    <input type="submit" href={landingPage} value="Submit" onClick={authenticateUser} />
+                    <input type="submit"  value="Submit" onClick={authenticateUser} />
                 </div>
 
             </form>
