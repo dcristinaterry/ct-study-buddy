@@ -20,7 +20,7 @@ router
 
 // Matches with "/api/user/:id"
 router
-  .route("/:id", authenticatedUser)
+  .route("/info/:id", authenticatedUser)
   .get(userController.findUser)
   .put(userController.update)
 
@@ -31,7 +31,7 @@ router
 
 
 
-// ============= SESSION =========
+// ============= SESSIONS API=========
 // Matches with "/api/session"
 // find all sessions where user is participating
 router
@@ -60,19 +60,22 @@ router
 
 router
   .route("/:classid/:userid/session")
-.get(sessionController.findAllSessionsOneClass)
+.get(sessionController.findAllSessionsOneClasses)
+
+
+// =====================================================
+// =====================LOCATIONS API ==================
+
 
 router
-  .route("/locations")
-// .get(locationController.findAll)
+.route("/locations")
+.get(locationController.findAllLocations)
 
 router
   .route("/location/:sessionid")
 // .get(locationController.findOne)
 
-router
-  .route("/session/:id")
-// .get(locationController.findSessionById)
+
 
 
 //   app.put("/api/user", passport.authenticate("local"), function (req, res) {

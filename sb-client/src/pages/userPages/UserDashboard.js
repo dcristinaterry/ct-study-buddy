@@ -1,10 +1,26 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { useStoreContext } from "../../utils/GlobalState"
+import API_User from "../../utils/API_User.js"
+
+function UserDashboard() {
+    // const [state, dispatch] = useStoreContext()
+    // const [sessions, setSession] = useState();
 
 
-function UserDashboard(){
 
-    return(
-        <h1>hello user</h1>
+
+
+    useEffect(() => {
+   
+        API_User.getAllLocations().then(qresponse =>{
+            console.log(qresponse)
+        })
+
+    }, [])
+
+
+    return (
+        <h1>hello user id:</h1>
     )
 }
 

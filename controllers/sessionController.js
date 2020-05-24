@@ -67,11 +67,11 @@ module.exports = {
             .then(findAllSessionsResponse => res.json(findAllSessionsResponse))
     },
 
-    findAllSessionsOneClass: function (req, res) {
+    findAllSessionsOneClasses: function (req, res) {
 
         db.UserClass.findAll({
-            where: { userId: req.params.userid,
-                    classId: req.params.classid },
+            where: { userId: req.params.id,
+                    classId: req.params.id },
             include: {
                 model: db.Class,
                 include: {
