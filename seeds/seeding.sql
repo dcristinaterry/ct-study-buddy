@@ -1,3 +1,42 @@
+
+
+    let userclass = [
+
+      {role:"student", classId:1, userId:2},
+      {role:"student", classId:2, userId:2},
+      {role:"student", classId:3, userId:2},
+      {role:"student", classId:4, userId:2},
+    ]
+    classtable.forEach(item => {
+      db.UserClass.create(item)
+        .then(() =>{
+          console.log("userclass table seeded")
+      })
+      
+    })    
+        let sessiondata = [
+      { subject: 'bioExam1', location: 'virtual', locationId:3, classId:1, hostId:2},
+      { subject: 'midterm', location: 'virtual', locationId:3, classId:1, hostId:2},
+      { subject: 'midterm1', location: 'virtual', locationId:3, classId:1, hostId:5},
+      { subject: 'midterm2', location: 'virtual', locationId:3, classId:1, hostId:7},
+      { subject: 'midterm3', location: 'virtual', locationId:3, classId:1, hostId:7},
+    ]
+    locationtable.forEach(item => {
+      db.Session.create(item)
+        .then(() =>
+          console.log("locations table seeded"))
+        .catch(error => console.log(error));
+    });
+
+
+
+    
+    
+    
+    
+    
+    
+    
     let usertable = [
       { email: 'test@test.com', password: 'testing', firstName: 'test', lastName: 'test', role: 'admin' },
       { email: 'cristina@cristina.com', password: 'testing', firstName: 'Cristina', lastName: 'Terry', role: 'admin', image: 'https://media-exp1.licdn.com/dms/image/C4D03AQFaxqj0rTBR-Q/profile-displayphoto-shrink_200_200/0?e=1595462400&v=beta&t=fgQsiqeK6w_r2ltU-SizUL8F4p59vE5pNpxqIyFWxTQ' },
@@ -120,9 +159,10 @@
     ]
     classtable.forEach(item => {
       db.Class.create(item)
-        .then(() =>
+        .then(() =>{
           console.log("class table seeded"))
-        .catch(error => console.log(error));
+        .catch(error => console.log(error))};
+      })
       })
       let locationtable = [
         { building: 'Virtual', utilities: 'No'},

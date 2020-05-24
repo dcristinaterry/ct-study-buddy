@@ -16,6 +16,7 @@ const { Provider } = StoreContext;
 const reducer = (state, action) => {
   switch (action.type) {
   case "setUser":
+    console.log("setting user" , state)
     return {
       ...state,
       currentUser: action.user,
@@ -79,7 +80,7 @@ const reducer = (state, action) => {
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-    user:{
+    currentUser:{
       id: "",
       firstName: "",
       lastName:"",
