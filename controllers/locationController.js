@@ -2,9 +2,14 @@ const db = require("../models")
 
 module.exports = {
     findAllLocations: function(req,res) {
-        db.Location.find({})
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
+        console.log("getting all locations  before query")
+        db.Location.findAll({})
+        .then(dbModel => {
+            res.json(dbModel)
+        console.log("getting all locations")
+        })
+        .catch(err => res.status(422).json(err)
+        );
     },
     findLocationById: function(req, res) {
         db.Location.findById({
