@@ -51,20 +51,51 @@ module.exports = {
 
     // // selec * from table a a join table b b where a.id = b.id
     findAllSessionsAllClasses: function (req, res) {
-
+        // console.log("got called ", req.params.userid)
         db.UserClass.findAll({
-            where: { userId: req.params.id },
+            where: { userId: req.params.userid },
             include: {
                 model: db.Class,
-                include: {
-                    model: db.ClassSession,
                     include: {
                         model: db.Session
                     }
-                }
+                
             }
         })
-            .then(findAllSessionsResponse => res.json(findAllSessionsResponse))
+            .then(findAllSR=> {
+
+                const obj ={
+                    classId:"",
+                    classSubjec:"",
+                    userId:"",
+                    userName:"",
+                    sessions:[]
+                    
+                }
+                let sessions = []
+
+                // console.log("printing 1", findAllSR)
+                for(let i = 0; i<findAllSR.length; i++ ){
+                    // obj.classId= findAllSR[i].id;
+
+              
+                    let tempSessions = [];
+
+                    if(findAllSR[i].Class.Sessions !== undefined){
+                        tempSessions = [...findAllSR[i].Class.Sessions]
+                    }
+                    // console.log("printing 1", findAllSR[i])
+                    console.log("printing 1", findAllSR[i].Class.dataValues)
+                    
+                    // console.log("printing sessions",tempSessions)
+                    // for(let j = 0 ; j<tempSessions.length ; j++){
+                    //     console.log("printing 2", tempSessions[j].Session.dataValues)
+                    
+                    // }
+                }
+
+                // console.log(findAllSR.UserClass)
+                res.json(findAllSR)})
     },
 
     findAllSessionsOneClasses: function (req, res) {

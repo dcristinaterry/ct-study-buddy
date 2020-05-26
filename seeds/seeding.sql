@@ -2,7 +2,7 @@
 
     let userclass = [
 
-      {role:"student", classId:1, userId:2},
+      {role:"student", ClassId:"1", userId:"2"},
       {role:"student", classId:2, userId:2},
       {role:"student", classId:3, userId:2},
       {role:"student", classId:4, userId:2},
