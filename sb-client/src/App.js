@@ -15,11 +15,7 @@ function App() {
     <Router>
       <StoreProvider>
         <div className="App">
-
-
-
           <Switch>
-
             <Route path="/userDashboard" component={UserDashboard} />
             <Route path="/adminDashboard" component={AdminDashboard} />
             <Route exact path="/" component={LoginUser} />

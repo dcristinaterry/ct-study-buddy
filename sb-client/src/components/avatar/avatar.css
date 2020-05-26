@@ -1,0 +1,14 @@
+img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    /* padding: 2px; */
+    /* box-shadow: 0 4px 8px rgb(97, 95, 95), 0 4px 8px rgb(97, 95, 95); */
+}
+
+/* .card {
+    background-color:rgb(226, 226, 226);
+    background: none;
+    border: none;
+    padding: 0px 10px 15px;
+} */

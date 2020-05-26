@@ -26,7 +26,7 @@ router
 
 // Matches with "/api/class"
 router
-  .route("/all/:id/classes")
+  .route("/allclasses/:id/classes")
   .get(classController.findAllClasses)
 
 

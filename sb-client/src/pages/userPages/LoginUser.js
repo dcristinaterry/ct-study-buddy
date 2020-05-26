@@ -3,8 +3,6 @@ import API_User from "../../utils/API_User.js"
 import { useStoreContext } from "../../utils/GlobalState";
 
 
-
-
 const LoginUser = () => {
     const [state, dispatch] = useStoreContext();
     const [loginForm, setLoginForm] = useState({})
@@ -16,13 +14,11 @@ const LoginUser = () => {
     }
 
     useEffect(() => {
-
         if (find) {
             API_User.authenticate(loginForm)
                 .then(response => {
                     // console.log(response.data.role)
                     console.log(response)
-
                     let userObj = {
                         id: response.data.id,
                         firstName: response.data.firstName,
@@ -33,15 +29,12 @@ const LoginUser = () => {
                     console.log(loginForm)
                     // if (response.data.role === "admin") {
                     //     window.location.href="/adminDashboard"
-
                     // } else (
                     //  window.location.href="/userDashboard"
-
                     // )
                     setFind(false);
                 });
         }
-
     }, [find, loginForm, state, dispatch])
 
 

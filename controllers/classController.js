@@ -13,7 +13,8 @@ module.exports = {
                 attributes:["subject", "class", "section"]
             }
         }
-        ).then(dbModelClass => res.json(dbModelClass))
+        ).then(dbModelClass => {res.json(dbModelClass)})
+            console.log(dbModelClass)
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {

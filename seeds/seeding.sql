@@ -1,25 +1,25 @@
 
 
-    let userclass = [
+let userclass = [
 
-      {role:"student", classId:1, userId:2},
-      {role:"student", classId:2, userId:2},
-      {role:"student", classId:3, userId:2},
-      {role:"student", classId:4, userId:2},
-    ]
-    classtable.forEach(item => {
-      db.UserClass.create(item)
-        .then(() =>{
-          console.log("userclass table seeded")
-      })
-      
-    })    
+  {role:"student", ClassId:1, UserId:8},
+  {role:"student", ClassId:9, UserId:8},
+  {role:"student", ClassId:15, UserId:8},
+  {role:"student", ClassId:29, UserId:8},
+]
+userclass.forEach(item => {
+  db.UserClass.create(item)
+    .then(() => {
+      console.log("userclass table seeded")
+    })
+  })
+   
         let sessiondata = [
-      { subject: 'bioExam1', location: 'virtual', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm', location: 'virtual', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm1', location: 'virtual', locationId:3, classId:1, hostId:5},
-      { subject: 'midterm2', location: 'virtual', locationId:3, classId:1, hostId:7},
-      { subject: 'midterm3', location: 'virtual', locationId:3, classId:1, hostId:7},
+      { subject: 'bioExam1', location: 'virtual', LocationId:3, ClassId:1, HostId:2},
+      { subject: 'midterm', location: 'virtual', LocationId:3, ClassId:1, HostId:2},
+      { subject: 'midterm1', location: 'virtual', LocationId:3, ClassId:1, HostId:5},
+      { subject: 'midterm2', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
+      { subject: 'midterm3', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
     ]
     locationtable.forEach(item => {
       db.Session.create(item)
@@ -28,14 +28,6 @@
         .catch(error => console.log(error));
     });
 
-
-
-    
-    
-    
-    
-    
-    
     
     let usertable = [
       { email: 'test@test.com', password: 'testing', firstName: 'test', lastName: 'test', role: 'admin' },
