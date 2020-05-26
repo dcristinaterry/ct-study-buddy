@@ -4,18 +4,25 @@ const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const sessionController = require("../../controllers/sessionController");
 const locationController = require("../../controllers/locationController");
-const authenticatedUser = require("../../config/authenticatedUser")
+const authenticatedUser = require("../../config/authenticatedUser.js");
 const classController = require("../../controllers/classController");
-const passport = require("../../config/passport")
+const passport = require("../../config/passport");
 
 // matches with "/api/user/"
 router
   .route("/")
   .put(passport.authenticate("local"), function (req, res) {
-
+    console.log({user:req.user})
     let user = { ...req.user.dataValues, password: "youWish" }
     res.json(user)
     console.log("login successful!")
+  })
+
+router
+  .route("/verifyUser")
+  .get(authenticatedUser, function (req, res) {
+    console.log(req)
+    res.json(req.user)
   })
 
 // Matches with "/api/user/:id"
@@ -44,7 +51,7 @@ router
 
 // find all sessions for all classes
 router
-  .route("/:userid/allsessions")
+  .route("/info-session/:userid/allsessions")
   .get(sessionController.findAllSessionsAllClasses)
 
 // find sessions where user is the host
@@ -60,7 +67,7 @@ router
 
 router
   .route("/:classid/:userid/session")
-.get(sessionController.findAllSessionsOneClasses)
+  .get(sessionController.findAllSessionsOneClasses)
 
 
 // =====================================================
@@ -68,8 +75,8 @@ router
 
 
 router
-.route("/locations")
-.get(locationController.findAllLocations)
+  .route("/locations")
+  .get(locationController.findAllLocations)
 
 router
   .route("/location/:sessionid")

@@ -5,7 +5,7 @@ import { useStoreContext } from "../../utils/GlobalState";
 
 
 
-const LoginUser = () => {
+const LoginUser = props => {
     const [state, dispatch] = useStoreContext();
     const [loginForm, setLoginForm] = useState({})
     const [find, setFind] = useState(false);
@@ -18,6 +18,7 @@ const LoginUser = () => {
     useEffect(() => {
 
         if (find) {
+            setFind(false);
             API_User.authenticate(loginForm)
                 .then(response => {
                     // console.log(response.data.role)
@@ -29,20 +30,25 @@ const LoginUser = () => {
                         lastName: response.data.lastName,
                         image: response.data.image
                     }
+                 
                     dispatch({ type: "setUser", user: userObj })
                     console.log(loginForm)
-                    // if (response.data.role === "admin") {
-                    //     window.location.href="/adminDashboard"
+                    console.log(state)
+                    if (response.data.role === "admin") {
+                      
+                        props.history.push("/adminDashboard")
+                        
 
-                    // } else (
-                    //  window.location.href="/userDashboard"
-
-                    // )
-                    setFind(false);
+                    } else {
+                     
+                        props.history.push("/userDashboard")
+                        
+                    }
+                   
                 });
         }
 
-    }, [find, loginForm, state, dispatch])
+    }, [find,dispatch,state])
 
 
     const setValues = (event) => {
