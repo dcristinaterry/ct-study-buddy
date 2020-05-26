@@ -85,7 +85,7 @@ module.exports = {
                         tempSessions = [...findAllSR[i].Class.Sessions]
                     }
                     // console.log("printing 1", findAllSR[i])
-                    console.log("printing 1", findAllSR[i].Class.dataValues)
+                    // console.log("printing 1", findAllSR[i].Class.dataValues)
                     
                     // console.log("printing sessions",tempSessions)
                     // for(let j = 0 ; j<tempSessions.length ; j++){

@@ -10,11 +10,15 @@ module.exports = function (req, res, next) {
     //   const hasRole = (req.user.role === roles)
     //   return hasRole
     // }
-  
+    console.log("authenticated user:", req.user)
     // If the user is logged in, continue with the request to the restricted route
+    
     if (req.user) {            
+      console.log("checking user authenticated")
 
       if(req.user.role !== "admin"){
+
+        console.log("user exists")
         return next();
       }
       // we have user login
@@ -22,7 +26,10 @@ module.exports = function (req, res, next) {
       //   return res.redirect("/admin")
       // } else {
       // }
+    }else{
+      console.log("user doesn't exists")
+      return res.redirect("/");
     }
     // If the user isn't logged in, redirect them to the login page
-    return res.redirect("/");
+    
   };

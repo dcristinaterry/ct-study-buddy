@@ -4,6 +4,7 @@ const cors = require("cors")
 const routes = require("./routes");
 const moment = require("moment")
 const cookieSession =  require("cookie-session")
+const cookieParser = require("cookie-parser")
 const MySQLStore = require("express-mysql-session")(session);
 
 const app = express();
@@ -24,19 +25,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('./sb-client/public'));
 
+// setting up cookies
+// app.use(cookieSession({
+//   maxAge: 24*6060*60*1000,
+//   keys: [keys.session.cookieKey]
+// }))
 
 // let sessionStore = new MySQLStore(db);
-
-
 // initializing passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(session({  secret:[keys.session.cookieKey], resave: false, saveUninitialized: false
-  // , store:sessionStore 
+app.use(session({  secret:[keys.session.cookieKey], resave: false, saveUninitialized: false,
+  // , store:sessionStore ,
+  cookie: { maxAge: 24*6060*60*1000 }
 }));
 
-// app.use(express.cookieParser());
+app.use(cookieParser());
 // app.use(express.bodyParser());
 // app.use(cors({origin:[url], credentials: true}))
 // app.use(session({ secret: "buddy", resave: true, saveUninitialized: true , cookie:{maxAge:7200000}}));
