@@ -42,10 +42,16 @@ passport.use(new LocalStrategy(
 ));
 
 // passport.use(new CookieStrategy(
+ 
 //   function(token, done) {
 //     User.findByToken({ token: token }, function(err, user) {
 //       if (err) { return done(err); }
-//       if (!user) { return done(null, false); }
+//       if (!user) { 
+        
+        
+//         return done(null, false); 
+      
+//       }
 //       return done(null, user);
 //     });
 //   }

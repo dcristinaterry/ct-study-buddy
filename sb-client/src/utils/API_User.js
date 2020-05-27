@@ -4,7 +4,8 @@ export default {
         
         return axios.put("/api/user", loginData)
     }, 
-    verifyUser: function(){
+    verifyUser: function(sessionId){
+        console.log("requesting verify")
         return axios.get("/api/user/verifyUser")
     },
 
