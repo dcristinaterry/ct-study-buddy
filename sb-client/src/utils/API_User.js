@@ -7,7 +7,6 @@ export default {
         console.log("requesting verify")
         return axios.get("/api/user/verifyUser")
     },
-
     getAllUserSessions: function(userid){
         return axios.get(`/api/user/info-session/${userid}/allsessions`)
     },

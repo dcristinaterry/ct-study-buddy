@@ -33,7 +33,7 @@ const LoginUser = props => {
                     if (response.data.role === "admin") {
                         props.history.push("/adminDashboard")
                     } else {
-                     
+
                         props.history.push("/userDashboard")
                         
                     }
@@ -41,7 +41,7 @@ const LoginUser = props => {
                 });
         }
 
-    }, [find,dispatch,state])
+    }, [find,dispatch,state,loginForm,props.history])
 
 
     const setValues = (event) => {

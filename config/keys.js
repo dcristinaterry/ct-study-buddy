@@ -1,5 +1,5 @@
 module.exports={
     session:{
-        cookieKey: "boddy"
+        cookieKey: "felafelkefirbacon"
     }
 }

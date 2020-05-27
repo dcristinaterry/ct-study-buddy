@@ -16,10 +16,10 @@ const reducer = (state, action) => {
   case "setClasses":
     return {
       ...state,
-      classes: action.classes
+      classes: action.classes,
+      loading: false
     }
   
- 
   case "LOADING":
     return {
       ...state,

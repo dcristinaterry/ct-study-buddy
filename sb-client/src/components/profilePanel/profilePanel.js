@@ -1,9 +1,10 @@
-import React from "react";
+import React from "react"
+import { useStoreContext } from "../../utils/GlobalState"
 import Avatar from "../avatar/avatar"
 
 function Profile() {
-    const [state, dispatch] = useStoreContext()
-
+    const [state] = useStoreContext()
+    console.log(state.classes)
     return (
         <div className="col-sm-2">
             <div className="row">
@@ -11,14 +12,17 @@ function Profile() {
             </div>
             <div className="row">
                 {state.classes.map((item, index) => (
-                    <div>
-                    <button className="btn btn-light ml-3 border-dark" onClick={() => AllSessions(classid)}>
-                        {state.classid, state.name, state.age}
+                    
+                    <div key={item.id}>
+                    <button className="btn btn-light ml-3 border-dark" 
+                    // onClick={() => AllSessions(state.classid)}
+                    >
+                        {item.Class.subject}
                     </button>
                     </div>
                 ))}
                 
-                <button className="btn btn-light ml-3 border-dark" onClick={props.class2}>
+                {/* <button className="btn btn-light ml-3 border-dark" onClick={props.class2}>
                     Class 2
                 </button>
                 <br />
@@ -28,7 +32,7 @@ function Profile() {
                 <br />
                 <button className="btn btn-light ml-3 border-dark" onClick={props.class4}>
                     Class 4
-                </button>
+                </button> */}
             </div>
         </div>
     )

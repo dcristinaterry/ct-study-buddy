@@ -1,6 +1,5 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
-var CookieStrategy = require("passport-cookie");
 
 var db = require("../models");
 
@@ -40,23 +39,6 @@ passport.use(new LocalStrategy(
     });
   }
 ));
-
-// passport.use(new CookieStrategy(
- 
-//   function(token, done) {
-//     User.findByToken({ token: token }, function(err, user) {
-//       if (err) { return done(err); }
-//       if (!user) { 
-        
-        
-//         return done(null, false); 
-      
-//       }
-//       return done(null, user);
-//     });
-//   }
-// ));
-
 
 // In order to help keep authentication state across HTTP requests,
 // Sequelize needs to serialize and deserialize the user
