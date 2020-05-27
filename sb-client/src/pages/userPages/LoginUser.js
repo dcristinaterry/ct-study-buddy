@@ -3,8 +3,6 @@ import API_User from "../../utils/API_User.js"
 import { useStoreContext } from "../../utils/GlobalState";
 
 
-
-
 const LoginUser = props => {
     const [state, dispatch] = useStoreContext();
     const [loginForm, setLoginForm] = useState({})
@@ -64,7 +62,7 @@ const LoginUser = props => {
                 </div>
                 <div>
 
-                    <label htmlFor="inputStudenPass">password</label><br />
+                    <label htmlFor="inputStudenPass">Password</label><br />
                     <input type="password" id="pass" onChange={setValues} name="password"></input>
                 </div>
                 <div>
