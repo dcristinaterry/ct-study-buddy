@@ -6,9 +6,8 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        location: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        sessionDate:{
+            type: DataTypes.DATE
         }
     })
 

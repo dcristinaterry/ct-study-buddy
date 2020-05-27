@@ -15,11 +15,11 @@
       
     })    
         let sessiondata = [
-      { subject: 'bioExam1', location: 'virtual', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm', location: 'virtual', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm1', location: 'virtual', locationId:3, classId:1, hostId:5},
-      { subject: 'midterm2', location: 'virtual', locationId:3, classId:1, hostId:7},
-      { subject: 'midterm3', location: 'virtual', locationId:3, classId:1, hostId:7},
+      { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34', locationId:3, classId:1, hostId:2},
+      { subject: 'midterm', sessionDate: '2020-05-30 05:39:34', locationId:3, classId:1, hostId:2},
+      { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:5},
+      { subject: 'midterm2', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
+      { subject: 'midterm3', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
     ]
     sessiondata.forEach(item => {
       db.Session.create(item)

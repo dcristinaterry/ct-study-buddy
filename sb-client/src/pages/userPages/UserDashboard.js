@@ -7,10 +7,6 @@ const UserDashboard = props => {
     // const [sessions, setSession] = useState();
     // const [loading, setLoading] = useState(true);
 
-
-
-
-
     useEffect(() => {
         // if (loading) {
         //     dispatch({ type: "setUser", user: state.currentUser })
@@ -43,10 +39,10 @@ const UserDashboard = props => {
         // API_User.getAllLocations().then(qresponse =>{
         //     console.log(qresponse)
         // })
-        // const currentid = "4"
-        // API_User.getAllUserSessions(state.currentUser.id).then(sessionres => {
-        //     console.log(sessionres)
-        // })
+        const currentid = "4"
+        API_User.getAllUserSessions(state.currentUser.id).then(sessionres => {
+            console.log(sessionres)
+        })
 
     }, [state,dispatch])
     console.log(state)
