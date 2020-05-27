@@ -5,7 +5,7 @@ import Profile from "../../components/profilePanel/profilePanel"
 import Jumbotron from "../../components/jumbotron/jumbotron"
 import Main from "../../components/mainPanel/mainPanel"
 
-function UserDashboard() {
+const UserDashboard = props => {
     const [state, dispatch] = useStoreContext()
     // const [sessions, setSession] = useState();
 
