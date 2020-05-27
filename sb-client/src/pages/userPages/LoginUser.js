@@ -31,10 +31,7 @@ const LoginUser = props => {
                     console.log(loginForm)
                     console.log(state)
                     if (response.data.role === "admin") {
-                      
                         props.history.push("/adminDashboard")
-                        
-
                     } else {
                      
                         props.history.push("/userDashboard")

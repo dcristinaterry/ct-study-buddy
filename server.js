@@ -4,6 +4,7 @@ const cors = require("cors")
 const routes = require("./routes");
 const moment = require("moment")
 const cookieSession =  require("cookie-session")
+const cookieParser = require("cookie-parser")
 const MySQLStore = require("express-mysql-session")(session);
 
 const app = express();
@@ -36,7 +37,7 @@ app.use(session({  secret:[keys.session.cookieKey], resave: false, saveUninitial
   // , store:sessionStore 
 }));
 
-// app.use(express.cookieParser());
+app.use(cookieParser());
 // app.use(express.bodyParser());
 // app.use(cors({origin:[url], credentials: true}))
 // app.use(session({ secret: "buddy", resave: true, saveUninitialized: true , cookie:{maxAge:7200000}}));
