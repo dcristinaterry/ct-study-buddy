@@ -4,8 +4,8 @@ import API_User from "../../utils/API_User.js"
 
 const UserDashboard = props => {
     const [state, dispatch] = useStoreContext()
-    const [sessions, setSession] = useState();
-    const [loading, setLoading] = useState(true);
+    // const [sessions, setSession] = useState();
+    // const [loading, setLoading] = useState(true);
 
 
 
@@ -29,16 +29,22 @@ const UserDashboard = props => {
                     lastName: response.data.lastName,
                     image: response.data.image
                 }
-             
+                
                 dispatch({ type: "setUser", user: userObj })
+                console.log(response)
             });
+
+        }
+
+        if(state.sessions.length ===0){
+
 
         }
         // API_User.getAllLocations().then(qresponse =>{
         //     console.log(qresponse)
         // })
-        // const currentid = "2"
-        // API_User.getAllUserSessions(currentid).then(sessionres => {
+        // const currentid = "4"
+        // API_User.getAllUserSessions(state.currentUser.id).then(sessionres => {
         //     console.log(sessionres)
         // })
 
