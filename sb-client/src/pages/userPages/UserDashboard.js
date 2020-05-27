@@ -10,6 +10,7 @@ function UserDashboard() {
     // const [sessions, setSession] = useState();
 
     useEffect(() => {
+        let mounted = true;
         // if (loading) {
         //     dispatch({ type: "setUser", user: state.currentUser })
         //     console.log("id current user   ", state)
@@ -27,17 +28,21 @@ function UserDashboard() {
                     lastName: response.data.lastName,
                     image: response.data.image
                 }
+                if (mounted) {
                 dispatch({ type: "setUser", user: userObj })
+                } 
             });
         }
 
         if (state.classes.length === 0) {
             API_User.getAllClasses(currentid).then(classres => {
                 console.log("coming from userdashboard - ", classres)
+                if (mounted) {
                 dispatch({
                     type: "setClasses",
                     classes: classres.data
                 })
+            }
                 console.log(classres.data)
             })
         } 
@@ -48,8 +53,8 @@ function UserDashboard() {
             //     console.log(sessionres)
         //     })
         // })
-
-}, [state, dispatch])
+        return () => mounted = false;
+}, [state])
 console.log(state)
 
 return (

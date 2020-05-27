@@ -13,7 +13,12 @@ const reducer = (state, action) => {
       currentUser: action.user,
       loading: false
     };
-
+  case "setClasses":
+    return {
+      ...state,
+      classes: action.classes,
+      loading: false
+    };
   
  
   case "LOADING":
