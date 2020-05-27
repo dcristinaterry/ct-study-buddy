@@ -1,7 +1,7 @@
-import React from "./node_modules/react";
-import SearchDate from "../search/SearchDate"
-import SearchClass from "../search/SearchClass"
-import SearchTopic from "../search/SearchTopic"
+import React from "react";
+import SearchDate from "../searchFields/searchDate"
+import SearchClass from "../searchFields/searchClass"
+import SearchTopic from "../searchFields/searchTopic"
 
 function Jumbotron() {
     return (
