@@ -2,7 +2,7 @@ const db = require("../models")
 
 module.exports = {
 
-    // // all the sessions for a user
+    // // all the sessions for a user where the user is a participant
     findAllUserSessions: function (req, res) {
         db.UserSession.findAll({
             where: {
@@ -11,14 +11,10 @@ module.exports = {
             // join session table
             include: {
                 model: db.Session,
-                attributes: ["subject", "location", "createdAt", "hostId", ""],
+                attributes: ["subject", "location", "createdAt", "hostId"],
                 include: {
                     model: db.Class,
                     attributes: ["subject", "class"]
-                },
-                include: {
-                    model: db.Location,
-                    attributes: ["building", "room"]
                 }
             }
         }
@@ -60,8 +56,9 @@ module.exports = {
                         model: db.Session,
                         include:{
                             model: db.User, as: 'host',
-                            attributes:["firstName", "lastName", "email"]
+                            attributes:["firstName", "lastName", "image"]
                         }
+                    
                     }
                    
                 
@@ -69,51 +66,47 @@ module.exports = {
         })
             .then(findAllSR=> {
 
-                const obj ={
-                    classId:"",
-                    classSubjec:"",
-                    userId:"",
-                    userName:"",
-                    sessions:[]
-                    
-                }
-                let sessions = []
+    
+                let allSessions = []
 
                 // console.log("printing 1", findAllSR)
                 for(let i = 0; i<findAllSR.length; i++ ){
                     // obj.classId= findAllSR[i].id;
 
-                    console.log("printing 1", findAllSR[i].Class.dataValues)
+                    //  console.log("printing 1", findAllSR[i].Class.dataValues)
                     let tempSessions = [...[]];
 
-                    console.log("length sessions: ", findAllSR[i].Class.Sessions.length )
+                    // console.log("length sessions: ", findAllSR[i].Class.Sessions.length )
 
                     if(findAllSR[i].Class.Sessions.length > 0){
-                        console.log("Greather than 0")
+                        // console.log("Greather than 0")
                         tempSessions = [...findAllSR[i].Class.Sessions]
                         // console.log(tempSessions)
                         for(let j = 0 ; j<tempSessions.length ; j++){
                             
-                                console.log("printing 2", tempSessions[j].dataValues)
+                                sessiontempObj = tempSessions[j].dataValues
+                                const sessionObject ={}
+                                sessionObject.sessionId=sessiontempObj.id
+                                sessionObject.hostid=sessiontempObj.hostId
+                                sessionObject.userImage=sessiontempObj.host.dataValues.image
+                                sessionObject.userName=sessiontempObj.host.dataValues.firstName + " " + sessiontempObj.host.dataValues.lastName
+                                sessionObject.classId=findAllSR[i].Class.dataValues.id
+                                sessionObject.className=findAllSR[i].Class.dataValues.subject + " " + findAllSR[i].Class.dataValues.class 
+                                sessionObject.sessionSubject=tempSessions[j].dataValues.subject
+                                sessionObject.sessionDate=tempSessions[j].dataValues.sessionDate
 
-                            
-                       
-                    
+                                // console.log("created object", sessionObject)
+
+                                allSessions.push(sessionObject)
+            
                     }
 
                     }
-                    // console.log("printing 1", findAllSR[i])
-                    
-                    
-                    // console.log("printing sessions",tempSessions)
-                    // for(let j = 0 ; j<tempSessions.length ; j++){
-                    //     console.log("printing 2", tempSessions[j].Session.dataValues)
-                    
-                    // }
                 }
 
-                // console.log(findAllSR.UserClass)
-                res.json(findAllSR)})
+                console.log(allSessions)
+                res.json(allSessions)
+            })
     },
 
     findAllSessionsOneClasses: function (req, res) {
