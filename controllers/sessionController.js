@@ -57,8 +57,13 @@ module.exports = {
             include: {
                 model: db.Class,
                     include: {
-                        model: db.Session
+                        model: db.Session,
+                        include:{
+                            model: db.User, as: 'host',
+                            attributes:["firstName", "lastName", "email"]
+                        }
                     }
+                   
                 
             }
         })
@@ -78,14 +83,27 @@ module.exports = {
                 for(let i = 0; i<findAllSR.length; i++ ){
                     // obj.classId= findAllSR[i].id;
 
-              
-                    let tempSessions = [];
+                    console.log("printing 1", findAllSR[i].Class.dataValues)
+                    let tempSessions = [...[]];
 
-                    if(findAllSR[i].Class.Sessions !== undefined){
+                    console.log("length sessions: ", findAllSR[i].Class.Sessions.length )
+
+                    if(findAllSR[i].Class.Sessions.length > 0){
+                        console.log("Greather than 0")
                         tempSessions = [...findAllSR[i].Class.Sessions]
+                        // console.log(tempSessions)
+                        for(let j = 0 ; j<tempSessions.length ; j++){
+                            
+                                console.log("printing 2", tempSessions[j].dataValues)
+
+                            
+                       
+                    
+                    }
+
                     }
                     // console.log("printing 1", findAllSR[i])
-                    // console.log("printing 1", findAllSR[i].Class.dataValues)
+                    
                     
                     // console.log("printing sessions",tempSessions)
                     // for(let j = 0 ; j<tempSessions.length ; j++){

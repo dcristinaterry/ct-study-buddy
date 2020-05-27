@@ -2,12 +2,12 @@
 
     let userclass = [
 
-      {role:"student", ClassId:"1", userId:"2"},
-      {role:"student", classId:2, userId:2},
-      {role:"student", classId:3, userId:2},
-      {role:"student", classId:4, userId:2},
+      {role:"student", ClassId:"1", UserId:"2"},
+      {role:"student", ClassId:2, UserId:2},
+      {role:"student", ClassId:3, UserId:2},
+      {role:"student", ClassId:4, UserId:2},
     ]
-    classtable.forEach(item => {
+    userclass.forEach(item => {
       db.UserClass.create(item)
         .then(() =>{
           console.log("userclass table seeded")
@@ -21,7 +21,7 @@
       { subject: 'midterm2', location: 'virtual', locationId:3, classId:1, hostId:7},
       { subject: 'midterm3', location: 'virtual', locationId:3, classId:1, hostId:7},
     ]
-    locationtable.forEach(item => {
+    sessiondata.forEach(item => {
       db.Session.create(item)
         .then(() =>
           console.log("locations table seeded"))
@@ -30,10 +30,6 @@
 
 
 
-    
-    
-    
-    
     
     
     
