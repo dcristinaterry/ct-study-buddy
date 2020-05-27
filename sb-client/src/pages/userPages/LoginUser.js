@@ -14,14 +14,12 @@ const LoginUser = props => {
     }
 
     useEffect(() => {
-
         if (find) {
             setFind(false);
             API_User.authenticate(loginForm)
                 .then(response => {
                     // console.log(response.data.role)
                     console.log(response)
-
                     let userObj = {
                         id: response.data.id,
                         firstName: response.data.firstName,
@@ -33,12 +31,9 @@ const LoginUser = props => {
                     console.log(loginForm)
                     console.log(state)
                     if (response.data.role === "admin") {
-                      
                         props.history.push("/adminDashboard")
-                        
-
                     } else {
-                     
+
                         props.history.push("/userDashboard")
                         
                     }
@@ -46,7 +41,7 @@ const LoginUser = props => {
                 });
         }
 
-    }, [find,dispatch,state])
+    }, [find,dispatch,state,loginForm,props.history])
 
 
     const setValues = (event) => {

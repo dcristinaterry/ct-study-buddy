@@ -1,6 +1,5 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
-var CookieStrategy = require("passport-cookie");
 
 var db = require("../models");
 

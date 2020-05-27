@@ -30,7 +30,6 @@ function UserDashboard() {
                 dispatch({ type: "setUser", user: userObj })
             });
         }
-
         if (state.classes.length === 0) {
             API_User.getAllClasses(currentid).then(classres => {
                 console.log("coming from userdashboard - ", classres)

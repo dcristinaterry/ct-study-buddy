@@ -22,7 +22,6 @@ router
   .route("/verifyUser")
   .get(authenticatedUser,function (req, res) {
     console.log("verifying user")
-    // res.json(req.user)
     res.json(req.user)
   })
 
@@ -32,7 +31,7 @@ router
   .get(userController.findUser)
   .put(userController.update)
 
-// Matches with "/api/class"
+// Matches with "/api/user"
 router
   .route("/allclasses/:id/classes")
   .get(classController.findAllClasses)
