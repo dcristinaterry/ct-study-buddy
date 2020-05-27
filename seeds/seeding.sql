@@ -1,5 +1,28 @@
 let userclass = [
 
+<<<<<<< HEAD
+
+    let userclass = [
+
+      {role:"student", ClassId:"1", UserId:"2"},
+      {role:"student", ClassId:2, UserId:2},
+      {role:"student", ClassId:3, UserId:2},
+      {role:"student", ClassId:4, UserId:2},
+    ]
+    userclass.forEach(item => {
+      db.UserClass.create(item)
+        .then(() =>{
+          console.log("userclass table seeded")
+      })
+      
+    })    
+        let sessiondata = [
+      { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34', locationId:3, classId:1, hostId:2},
+      { subject: 'midterm', sessionDate: '2020-05-30 05:39:34', locationId:3, classId:1, hostId:2},
+      { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:5},
+      { subject: 'midterm2', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
+      { subject: 'midterm3', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
+=======
   {role:"student", ClassId:1, UserId:8},
   {role:"student", ClassId:9, UserId:8},
   {role:"student", ClassId:15, UserId:8},
@@ -18,6 +41,7 @@ let sessiondata = [
       { subject: 'midterm1', location: 'virtual', LocationId:3, ClassId:1, HostId:5},
       { subject: 'midterm2', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
       { subject: 'midterm3', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
+>>>>>>> 2a3b62736d3392283b1bc413e53a5f378e1fd921
     ]
     locationtable.forEach(item => {
       db.Session.create(item)
