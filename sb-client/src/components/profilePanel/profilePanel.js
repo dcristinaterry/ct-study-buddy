@@ -16,8 +16,13 @@ function Profile() {
                     <button className="btn btn-light ml-3 border-dark" 
                     // onClick={() => AllSessions(state.classid)}
                     >
-                        {item.Class.subject}
+                        {item.Class.subject} {item.Class.class}
                     </button>
+                    
+                    {/* <button className="btn btn-light ml-3 border-dark" onClick={findAllSessionsAllClasses}> */}
+
+                    {/* </button> */}
+
                     </div>
                 ))}
             </div>
