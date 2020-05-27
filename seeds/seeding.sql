@@ -1,37 +1,31 @@
+let userclass = [
 
-
-    let userclass = [
-
-      {role:"student", ClassId:"1", UserId:"2"},
-      {role:"student", ClassId:2, UserId:2},
-      {role:"student", ClassId:3, UserId:2},
-      {role:"student", ClassId:4, UserId:2},
+  {role:"student", ClassId:1, UserId:8},
+  {role:"student", ClassId:9, UserId:8},
+  {role:"student", ClassId:15, UserId:8},
+  {role:"student", ClassId:29, UserId:8},
+]
+userclass.forEach(item => {
+  db.UserClass.create(item)
+    .then(() => {
+      console.log("userclass table seeded")
+    })
+  })
+   
+let sessiondata = [
+      { subject: 'bioExam1', location: 'virtual', LocationId:3, ClassId:1, HostId:2},
+      { subject: 'midterm', location: 'virtual', LocationId:3, ClassId:1, HostId:2},
+      { subject: 'midterm1', location: 'virtual', LocationId:3, ClassId:1, HostId:5},
+      { subject: 'midterm2', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
+      { subject: 'midterm3', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
     ]
-    userclass.forEach(item => {
-      db.UserClass.create(item)
-        .then(() =>{
-          console.log("userclass table seeded")
-      })
-      
-    })    
-        let sessiondata = [
-      { subject: 'bioExam1', location: 'virtual', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm', location: 'virtual', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm1', location: 'virtual', locationId:3, classId:1, hostId:5},
-      { subject: 'midterm2', location: 'virtual', locationId:3, classId:1, hostId:7},
-      { subject: 'midterm3', location: 'virtual', locationId:3, classId:1, hostId:7},
-    ]
-    sessiondata.forEach(item => {
+    locationtable.forEach(item => {
       db.Session.create(item)
         .then(() =>
           console.log("locations table seeded"))
         .catch(error => console.log(error));
     });
 
-
-
-    
-    
     
     let usertable = [
       { email: 'test@test.com', password: 'testing', firstName: 'test', lastName: 'test', role: 'admin' },
@@ -71,87 +65,87 @@
         .catch(error => console.log(error));
     });
     let classtable = [
-      { Subject: 'Accounting', Class: '101', Instructor: 'Leilani Macfarlane', TA: 'Samuel Sharma' },
-      { Subject: 'Accounting', Class: '201', Instructor: 'Amos Maguire', TA: 'Leja Cardenas' },
-      { Subject: 'Accounting', Class: '302', Instructor: 'Leilani Macfarlane', TA: 'Liam French' },
-      { Subject: 'Accounting', Class: '402', Instructor: 'Amos Maguire', TA: 'Tania Huynh' },
-      { Subject: 'Art History', Class: '101', Instructor: 'Kris Cantu', TA: 'Aj Truong' },
-      { Subject: 'Art History', Class: '201', Instructor: 'Sonia Miranda', TA: 'Alayna Davey' },
-      { Subject: 'Art History', Class: '302', Instructor: 'Kris Cantu', TA: 'Lawson Carver' },
-      { Subject: 'Art History', Class: '402', Instructor: 'Sonia Miranda', TA: 'Sonya Daniels' },
-      { Subject: 'Biology', Class: '101', Instructor: 'Alexia Butler', TA: 'Erika Ewing' },
-      { Subject: 'Biology', Class: '201', Instructor: 'Adaline Quinn', TA: 'Macauley Calderon' },
-      { Subject: 'Biology', Class: '302', Instructor: 'Alexia Butler', TA: 'Kit Parrish' },
-      { Subject: 'Biology', Class: '402', Instructor: 'Adaline Quinn', TA: 'Phoenix Fleming' },
-      { Subject: 'Chemistry', Class: '101', Instructor: 'Roksana Rutledge', TA: 'Mekhi Strong' },
-      { Subject: 'Chemistry', Class: '201', Instructor: 'Trent Adams', TA: 'Stefania Romero' },
-      { Subject: 'Chemistry', Class: '302', Instructor: 'Roksana Rutledge', TA: 'Aarron Huber' },
-      { Subject: 'Chemistry', Class: '402', Instructor: 'Trent Adams', TA: 'Rudi Irwin' },
-      { Subject: 'Computer Science', Class: '101', Instructor: 'Macauley Kim', TA: 'Rima Hull' },
-      { Subject: 'Computer Science', Class: '201', Instructor: 'Haley Hussain', TA: 'Derren Beattie' },
-      { Subject: 'Computer Science', Class: '302', Instructor: 'Macauley Kim', TA: 'Nawal Emerson' },
-      { Subject: 'Computer Science', Class: '402', Instructor: 'Haley Hussain', TA: 'Chantelle Glass' },
-      { Subject: 'Economics', Class: '101', Instructor: 'Susannah Owens', TA: 'Melissa Downes' },
-      { Subject: 'Economics', Class: '201', Instructor: 'Pascal Kelly', TA: 'Taine Soto' },
-      { Subject: 'Economics', Class: '302', Instructor: 'Susannah Owens', TA: 'Mali Mcguire' },
-      { Subject: 'Economics', Class: '402', Instructor: 'Pascal Kelly', TA: 'Cade Forbes' },
-      { Subject: 'Electrical Engineering', Class: '101', Instructor: 'Frances Glover', TA: 'Blythe Vo' },
-      { Subject: 'Electrical Engineering', Class: '201', Instructor: 'Kyal Woodley', TA: 'Adina Sanders' },
-      { Subject: 'Electrical Engineering', Class: '302', Instructor: 'Frances Glover', TA: 'Marisa Mason' },
-      { Subject: 'Electrical Engineering', Class: '402', Instructor: 'Kyal Woodley', TA: 'Humera Broughton' },
-      { Subject: 'English', Class: '101', Instructor: 'Charley Bautista', TA: 'Avleen Hansen' },
-      { Subject: 'English', Class: '201', Instructor: 'Aarron Petty', TA: 'Ava-May Edwards' },
-      { Subject: 'English', Class: '302', Instructor: 'Charley Bautista', TA: 'Hakeem Dickerson' },
-      { Subject: 'English', Class: '402', Instructor: 'Aarron Petty', TA: 'Jamelia Garrett' },
-      { Subject: 'Finance', Class: '101', Instructor: 'Dalton Trejo', TA: 'Aahil Larsen' },
-      { Subject: 'Finance', Class: '201', Instructor: 'Elinor Daugherty', TA: 'Haleema Nash' },
-      { Subject: 'Finance', Class: '302', Instructor: 'Dalton Trejo', TA: 'Desiree Holloway' },
-      { Subject: 'Finance', Class: '402', Instructor: 'Elinor Daugherty', TA: 'Kane Conway' },
-      { Subject: 'French', Class: '101', Instructor: 'Marguerite Zamora', TA: 'Mathias Boone' },
-      { Subject: 'French', Class: '201', Instructor: 'Timur Hackett', TA: 'Khushi Handley' },
-      { Subject: 'French', Class: '302', Instructor: 'Marguerite Zamora', TA: 'Bryony Vargas' },
-      { Subject: 'French', Class: '402', Instructor: 'Timur Hackett', TA: 'Darren Archer' },
-      { Subject: 'Full Stack', Class: '101', Instructor: 'Jerome Chenette', TA: 'Kerwin Hy, Mahi Gunasekaran' },
-      { Subject: 'History', Class: '101', Instructor: 'Brielle Willis', TA: 'Eduardo Rodriguez' },
-      { Subject: 'History', Class: '201', Instructor: 'Nabeel Handley', TA: 'Michalina Olson' },
-      { Subject: 'History', Class: '302', Instructor: 'Brielle Willis', TA: 'Tyler-James Sanchez' },
-      { Subject: 'History', Class: '402', Instructor: 'Nabeel Handley', TA: 'Malikah Mckenna' },
-      { Subject: 'Italian', Class: '101', Instructor: 'Keith Pruitt', TA: 'Markus Whitehouse' },
-      { Subject: 'Italian', Class: '201', Instructor: 'Leland Cummings', TA: 'Harriette Mayo' },
-      { Subject: 'Italian', Class: '302', Instructor: 'Keith Pruitt', TA: 'Macie Kaye' },
-      { Subject: 'Italian', Class: '402', Instructor: 'Leland Cummings', TA: 'Mabel Moody' },
-      { Subject: 'Management', Class: '101', Instructor: 'Kester Chen', TA: 'Cecilia Randall' },
-      { Subject: 'Management', Class: '201', Instructor: 'Awais Amin', TA: 'Nel Wright' },
-      { Subject: 'Management', Class: '302', Instructor: 'Kester Chen', TA: 'Caris Palmer' },
-      { Subject: 'Management', Class: '402', Instructor: 'Awais Amin', TA: 'Sila Velez' },
-      { Subject: 'Mathematics', Class: '101', Instructor: 'Jade Hussain', TA: 'Daisy-Mae Piper' },
-      { Subject: 'Mathematics', Class: '201', Instructor: 'Jay-Jay Weber', TA: 'Asif Jordan' },
-      { Subject: 'Mathematics', Class: '302', Instructor: 'Jade Hussain', TA: 'Cienna Rahman' },
-      { Subject: 'Mathematics', Class: '402', Instructor: 'Jay-Jay Weber', TA: 'Sayed Franklin' },
-      { Subject: 'Music', Class: '101', Instructor: 'Kristina Lovell', TA: 'Kirstie Shields' },
-      { Subject: 'Music', Class: '201', Instructor: 'Tadhg Barclay', TA: 'Kobi Hensley' },
-      { Subject: 'Music', Class: '302', Instructor: 'Kristina Lovell', TA: 'Cally Perez' },
-      { Subject: 'Music', Class: '402', Instructor: 'Tadhg Barclay', TA: 'Dagwood Holland' },
-      { Subject: 'Philosophy', Class: '101', Instructor: 'Rosalie Mccaffrey', TA: 'Adele Elliott' },
-      { Subject: 'Philosophy', Class: '201', Instructor: 'Aliyah Small', TA: 'Cloe Allman' },
-      { Subject: 'Philosophy', Class: '302', Instructor: 'Rosalie Mccaffrey', TA: 'Amelie Dunne' },
-      { Subject: 'Philosophy', Class: '402', Instructor: 'Aliyah Small', TA: 'Sultan Owen' },
-      { Subject: 'Physics', Class: '101', Instructor: 'Mahdi Buckner', TA: 'Amit Naylor' },
-      { Subject: 'Physics', Class: '201', Instructor: 'Maia Waters', TA: 'Freddie Stephenson' },
-      { Subject: 'Physics', Class: '302', Instructor: 'Mahdi Buckner', TA: 'Havin Davie' },
-      { Subject: 'Physics', Class: '402', Instructor: 'Maia Waters', TA: 'Jordan Brown' },
-      { Subject: 'Political Science', Class: '101', Instructor: 'Malakai Connor', TA: 'Jaylan Hirst' },
-      { Subject: 'Political Science', Class: '201', Instructor: 'Molly Whitaker', TA: 'Arfa Plummer' },
-      { Subject: 'Political Science', Class: '302', Instructor: 'Malakai Connor', TA: 'Milla Hale' },
-      { Subject: 'Political Science', Class: '402', Instructor: 'Molly Whitaker', TA: 'Aronas Castaneda' },
-      { Subject: 'Psychology', Class: '101', Instructor: 'Anthony Colon', TA: 'Eliana Vickers' },
-      { Subject: 'Psychology', Class: '201', Instructor: 'Merlin Robson', TA: 'Daniaal Molloy' },
-      { Subject: 'Psychology', Class: '302', Instructor: 'Anthony Colon', TA: 'Jess Warner' },
-      { Subject: 'Psychology', Class: '402', Instructor: 'Merlin Robson', TA: 'Ela Prentice' },
-      { Subject: 'Spanish', Class: '101', Instructor: 'Vera Hastings', TA: 'Connar Shannon' },
-      { Subject: 'Spanish', Class: '201', Instructor: 'Shona Good', TA: 'Ricky Sanford' },
-      { Subject: 'Spanish', Class: '302', Instructor: 'Vera Hastings', TA: 'Dustin Reyes' },
-      { Subject: 'Spanish', Class: '402', Instructor: 'Shona Good', TA: 'Kajol Page' }
+      { subject: 'Accounting', class: '101', instructor: 'Leilani Macfarlane', ta: 'Samuel Sharma' },
+      { subject: 'Accounting', class: '201', instructor: 'Amos Maguire', ta: 'Leja Cardenas' },
+      { subject: 'Accounting', class: '302', instructor: 'Leilani Macfarlane', ta: 'Liam French' },
+      { subject: 'Accounting', class: '402', instructor: 'Amos Maguire', ta: 'Tania Huynh' },
+      { subject: 'Art History', class: '101', instructor: 'Kris Cantu', ta: 'Aj Truong' },
+      { subject: 'Art History', class: '201', instructor: 'Sonia Miranda', ta: 'Alayna Davey' },
+      { subject: 'Art History', class: '302', instructor: 'Kris Cantu', ta: 'Lawson Carver' },
+      { subject: 'Art History', class: '402', instructor: 'Sonia Miranda', ta: 'Sonya Daniels' },
+      { subject: 'Biology', class: '101', instructor: 'Alexia Butler', ta: 'Erika Ewing' },
+      { subject: 'Biology', class: '201', instructor: 'Adaline Quinn', ta: 'Macauley Calderon' },
+      { subject: 'Biology', class: '302', instructor: 'Alexia Butler', ta: 'Kit Parrish' },
+      { subject: 'Biology', class: '402', instructor: 'Adaline Quinn', ta: 'Phoenix Fleming' },
+      { subject: 'Chemistry', class: '101', instructor: 'Roksana Rutledge', ta: 'Mekhi Strong' },
+      { subject: 'Chemistry', class: '201', instructor: 'Trent Adams', ta: 'Stefania Romero' },
+      { subject: 'Chemistry', class: '302', instructor: 'Roksana Rutledge', ta: 'Aarron Huber' },
+      { subject: 'Chemistry', class: '402', instructor: 'Trent Adams', ta: 'Rudi Irwin' },
+      { subject: 'Computer Science', class: '101', instructor: 'Macauley Kim', ta: 'Rima Hull' },
+      { subject: 'Computer Science', class: '201', instructor: 'Haley Hussain', ta: 'Derren Beattie' },
+      { subject: 'Computer Science', class: '302', instructor: 'Macauley Kim', ta: 'Nawal Emerson' },
+      { subject: 'Computer Science', class: '402', instructor: 'Haley Hussain', ta: 'Chantelle Glass' },
+      { subject: 'Economics', class: '101', instructor: 'Susannah Owens', ta: 'Melissa Downes' },
+      { subject: 'Economics', class: '201', instructor: 'Pascal Kelly', ta: 'Taine Soto' },
+      { subject: 'Economics', class: '302', instructor: 'Susannah Owens', ta: 'Mali Mcguire' },
+      { subject: 'Economics', class: '402', instructor: 'Pascal Kelly', ta: 'Cade Forbes' },
+      { subject: 'Electrical Engineering', class: '101', instructor: 'Frances Glover', ta: 'Blythe Vo' },
+      { subject: 'Electrical Engineering', class: '201', instructor: 'Kyal Woodley', ta: 'Adina Sanders' },
+      { subject: 'Electrical Engineering', class: '302', instructor: 'Frances Glover', ta: 'Marisa Mason' },
+      { subject: 'Electrical Engineering', class: '402', instructor: 'Kyal Woodley', ta: 'Humera Broughton' },
+      { subject: 'English', class: '101', instructor: 'Charley Bautista', ta: 'Avleen Hansen' },
+      { subject: 'English', class: '201', instructor: 'Aarron Petty', ta: 'Ava-May Edwards' },
+      { subject: 'English', class: '302', instructor: 'Charley Bautista', ta: 'Hakeem Dickerson' },
+      { subject: 'English', class: '402', instructor: 'Aarron Petty', ta: 'Jamelia Garrett' },
+      { subject: 'Finance', class: '101', instructor: 'Dalton Trejo', ta: 'Aahil Larsen' },
+      { subject: 'Finance', class: '201', instructor: 'Elinor Daugherty', ta: 'Haleema Nash' },
+      { subject: 'Finance', class: '302', instructor: 'Dalton Trejo', ta: 'Desiree Holloway' },
+      { subject: 'Finance', class: '402', instructor: 'Elinor Daugherty', ta: 'Kane Conway' },
+      { subject: 'French', class: '101', instructor: 'Marguerite Zamora', ta: 'Mathias Boone' },
+      { subject: 'French', class: '201', instructor: 'Timur Hackett', ta: 'Khushi Handley' },
+      { subject: 'French', class: '302', instructor: 'Marguerite Zamora', ta: 'Bryony Vargas' },
+      { subject: 'French', class: '402', instructor: 'Timur Hackett', ta: 'Darren Archer' },
+      { subject: 'Full Stack', class: '101', instructor: 'Jerome Chenette', ta: 'Kerwin Hy, Mahi Gunasekaran' },
+      { subject: 'History', class: '101', instructor: 'Brielle Willis', ta: 'Eduardo Rodriguez' },
+      { subject: 'History', class: '201', instructor: 'Nabeel Handley', ta: 'Michalina Olson' },
+      { subject: 'History', class: '302', instructor: 'Brielle Willis', ta: 'Tyler-James Sanchez' },
+      { subject: 'History', class: '402', instructor: 'Nabeel Handley', ta: 'Malikah Mckenna' },
+      { subject: 'Italian', class: '101', instructor: 'Keith Pruitt', ta: 'Markus Whitehouse' },
+      { subject: 'Italian', class: '201', instructor: 'Leland Cummings', ta: 'Harriette Mayo' },
+      { subject: 'Italian', class: '302', instructor: 'Keith Pruitt', ta: 'Macie Kaye' },
+      { subject: 'Italian', class: '402', instructor: 'Leland Cummings', ta: 'Mabel Moody' },
+      { subject: 'Management', class: '101', instructor: 'Kester Chen', ta: 'Cecilia Randall' },
+      { subject: 'Management', class: '201', instructor: 'Awais Amin', ta: 'Nel Wright' },
+      { subject: 'Management', class: '302', instructor: 'Kester Chen', ta: 'Caris Palmer' },
+      { subject: 'Management', class: '402', instructor: 'Awais Amin', ta: 'Sila Velez' },
+      { subject: 'Mathematics', class: '101', instructor: 'Jade Hussain', ta: 'Daisy-Mae Piper' },
+      { subject: 'Mathematics', class: '201', instructor: 'Jay-Jay Weber', ta: 'Asif Jordan' },
+      { subject: 'Mathematics', class: '302', instructor: 'Jade Hussain', ta: 'Cienna Rahman' },
+      { subject: 'Mathematics', class: '402', instructor: 'Jay-Jay Weber', ta: 'Sayed Franklin' },
+      { subject: 'Music', class: '101', instructor: 'Kristina Lovell', ta: 'Kirstie Shields' },
+      { subject: 'Music', class: '201', instructor: 'Tadhg Barclay', ta: 'Kobi Hensley' },
+      { subject: 'Music', class: '302', instructor: 'Kristina Lovell', ta: 'Cally Perez' },
+      { subject: 'Music', class: '402', instructor: 'Tadhg Barclay', ta: 'Dagwood Holland' },
+      { subject: 'Philosophy', class: '101', instructor: 'Rosalie Mccaffrey', ta: 'Adele Elliott' },
+      { subject: 'Philosophy', class: '201', instructor: 'Aliyah Small', ta: 'Cloe Allman' },
+      { subject: 'Philosophy', class: '302', instructor: 'Rosalie Mccaffrey', ta: 'Amelie Dunne' },
+      { subject: 'Philosophy', class: '402', instructor: 'Aliyah Small', ta: 'Sultan Owen' },
+      { subject: 'Physics', class: '101', instructor: 'Mahdi Buckner', ta: 'Amit Naylor' },
+      { subject: 'Physics', class: '201', instructor: 'Maia Waters', ta: 'Freddie Stephenson' },
+      { subject: 'Physics', class: '302', instructor: 'Mahdi Buckner', ta: 'Havin Davie' },
+      { subject: 'Physics', class: '402', instructor: 'Maia Waters', ta: 'Jordan Brown' },
+      { subject: 'Political Science', class: '101', instructor: 'Malakai Connor', ta: 'Jaylan Hirst' },
+      { subject: 'Political Science', class: '201', instructor: 'Molly Whitaker', ta: 'Arfa Plummer' },
+      { subject: 'Political Science', class: '302', instructor: 'Malakai Connor', ta: 'Milla Hale' },
+      { subject: 'Political Science', class: '402', instructor: 'Molly Whitaker', ta: 'Aronas Castaneda' },
+      { subject: 'Psychology', class: '101', instructor: 'Anthony Colon', ta: 'Eliana Vickers' },
+      { subject: 'Psychology', class: '201', instructor: 'Merlin Robson', ta: 'Daniaal Molloy' },
+      { subject: 'Psychology', class: '302', instructor: 'Anthony Colon', ta: 'Jess Warner' },
+      { subject: 'Psychology', class: '402', instructor: 'Merlin Robson', ta: 'Ela Prentice' },
+      { subject: 'Spanish', class: '101', instructor: 'Vera Hastings', ta: 'Connar Shannon' },
+      { subject: 'Spanish', class: '201', instructor: 'Shona Good', ta: 'Ricky Sanford' },
+      { subject: 'Spanish', class: '302', instructor: 'Vera Hastings', ta: 'Dustin Reyes' },
+      { subject: 'Spanish', class: '402', instructor: 'Shona Good', ta: 'Kajol Page' }
     ]
     classtable.forEach(item => {
       db.Class.create(item)

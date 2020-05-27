@@ -19,21 +19,12 @@ router
   })
 
 router
-  // .route("/verifyUser")
-  // .get(passport.authenticate("cookie", {session:true}),function (req, res) {
-  //   console.log("verifying user")
-  //   // res.json(req.user)
-  //   res.json("verifyingUser")
-  // })
-
   .route("/verifyUser")
   .get(authenticatedUser,function (req, res) {
-
     console.log("verifying user")
     // res.json(req.user)
     res.json(req.user)
   })
-
 
 // Matches with "/api/user/:id"
 router
@@ -43,10 +34,8 @@ router
 
 // Matches with "/api/class"
 router
-  .route("/all/:id/classes")
+  .route("/allclasses/:id/classes")
   .get(classController.findAllClasses)
-
-
 
 // ============= SESSIONS API=========
 // Matches with "/api/session"
@@ -91,9 +80,6 @@ router
 router
   .route("/location/:sessionid")
 // .get(locationController.findOne)
-
-
-
 
 //   app.put("/api/user", passport.authenticate("local"), function (req, res) {
 //     db.User.findOne({
