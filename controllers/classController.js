@@ -4,17 +4,20 @@ module.exports = {
 
     // Find All the classes for one User
     findAllClasses: function (req, res) {
+        console.log("all classes route hit")
         db.UserClass.findAll({
             where: {
-                userId: req.params.userid
+                userid: req.params.id
             },
             include:{
-                model: Class,
+                model: db.Class,
                 attributes:["subject", "class", "section"]
             }
         }
-        ).then(dbModelClass => res.json(dbModelClass))
-            .catch(err => res.status(422).json(err));
+        ).then(dbModelClass => {res.json(dbModelClass)
+            console.log(dbModelClass)})
+            .catch(err => {res.status(422).json(err)
+            console.log(err)});
     },
     create: function (req, res) {
         db.Class.create(req.body)

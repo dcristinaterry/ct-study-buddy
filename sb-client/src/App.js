@@ -9,26 +9,16 @@ import { StoreProvider } from "./utils/GlobalState"
 
 function App() {
   return (
-
-
-
     <Router>
       <StoreProvider>
         <div className="App">
-
-
-
           <Switch>
-
             <Route path="/userDashboard" component={UserDashboard} />
             <Route path="/adminDashboard" component={AdminDashboard} />
             <Route exact path="/" component={LoginUser} />
           </Switch>
-
         </div>
-
       </StoreProvider>
-
     </Router>
 
   );
