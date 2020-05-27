@@ -17,10 +17,20 @@ function UserDashboard() {
         //     setLoading(false)
 
         // }
-    
-            API_User.verifyUser().then(function(res){
-                console.log(res.user)
+        if(state.currentUser.id===""){
+            console.log("state is null")
+
+            API_User.verifyUser().then(function(response){
+                let userObj = {
+                    id: response.data.id,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    image: response.data.image
+                }
+             
+                dispatch({ type: "setUser", user: userObj })
             });
+        }
 
         
         API_User.getAllLocations().then(qresponse =>{

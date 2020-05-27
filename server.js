@@ -25,16 +25,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('./sb-client/public'));
 
+// setting up cookies
+// app.use(cookieSession({
+//   maxAge: 24*6060*60*1000,
+//   keys: [keys.session.cookieKey]
+// }))
 
 // let sessionStore = new MySQLStore(db);
-
-
 // initializing passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(session({  secret:[keys.session.cookieKey], resave: false, saveUninitialized: false
-  // , store:sessionStore 
+app.use(session({  secret:[keys.session.cookieKey], resave: false, saveUninitialized: false,
+  // , store:sessionStore ,
+  cookie: { maxAge: 24*6060*60*1000 }
 }));
 
 app.use(cookieParser());

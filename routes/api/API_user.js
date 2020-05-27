@@ -12,18 +12,28 @@ const passport = require("../../config/passport");
 router
   .route("/")
   .put(passport.authenticate("local"), function (req, res) {
-    console.log({user:req.user})
+    // console.log({user:req.user})
     let user = { ...req.user.dataValues, password: "youWish" }
     res.json(user)
     console.log("login successful!")
   })
 
 router
+  // .route("/verifyUser")
+  // .get(passport.authenticate("cookie", {session:true}),function (req, res) {
+  //   console.log("verifying user")
+  //   // res.json(req.user)
+  //   res.json("verifyingUser")
+  // })
+
   .route("/verifyUser")
-  .get(authenticatedUser, function (req, res) {
-    console.log(req)
+  .get(authenticatedUser,function (req, res) {
+
+    console.log("verifying user")
+    // res.json(req.user)
     res.json(req.user)
   })
+
 
 // Matches with "/api/user/:id"
 router

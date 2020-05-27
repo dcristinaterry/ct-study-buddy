@@ -41,15 +41,21 @@ passport.use(new LocalStrategy(
   }
 ));
 
-passport.use(new CookieStrategy(
-  function(token, done) {
-    User.findByToken({ token: token }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      return done(null, user);
-    });
-  }
-));
+// passport.use(new CookieStrategy(
+ 
+//   function(token, done) {
+//     User.findByToken({ token: token }, function(err, user) {
+//       if (err) { return done(err); }
+//       if (!user) { 
+        
+        
+//         return done(null, false); 
+      
+//       }
+//       return done(null, user);
+//     });
+//   }
+// ));
 
 
 // In order to help keep authentication state across HTTP requests,
