@@ -7,10 +7,12 @@ function HostSessions() {
     return (
         <div className="row">
             <div className="col">
+                <div className="card">
                 {state.sessions.map((item, index) => (  
                     <div key={item.id}>
                     </div>
                     ))}
+                </div>    
             </div>
         </div>
     )

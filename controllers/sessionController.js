@@ -219,7 +219,7 @@ module.exports = {
 
 
                     if (sessionsClass.length > 0) {
-                        console.log("Greather than 0")
+                        // console.log("Greather than 0")
                         sessiontempObj = sessionsClass[i].dataValues
                         const sessionObject = {}
                         sessionObject.sessionId = sessiontempObj.id

@@ -41,7 +41,7 @@ router
 // Matches with "/api/session"
 // find all sessions where user is participating
 router
-  .route("/info-session/:userid/session")
+  .route("/info-session/:userid/partcipant-session")
   .get(sessionController.findAllUserSessions)
 
 router

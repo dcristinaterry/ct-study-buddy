@@ -7,10 +7,12 @@ function ParticipantSessions() {
     return (
         <div className="row">
             <div className="col">
-            {state.sessions.map((item, index) => (  
+            <div className="card"></div>
+                {state.sessions.map((item, index) => (  
                     <div key={item.id}>
                     </div>
                     ))}
+                </div> 
             </div>
         </div>
     )

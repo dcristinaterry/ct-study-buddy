@@ -4,14 +4,29 @@ import Avatar from "../avatar/avatar"
 import API_User from "../../utils/API_User"
 
 const Profile = props => {
-    const [state] = useStoreContext()
+    const [state,dispatch] = useStoreContext()
     
-    console.log(state)
+    console.log(state.sessions)
 
     const allClassSessions = () => {
-        console.log("button clicked")
-        API_User.getAllUserSessions().then(sessionResp => {
+        console.log("session button clicked")
+        API_User.getAllUserSessions(state.class.id).then(sessionResp => {
             console.log("get allclass allsessions", sessionResp)
+            dispatch({
+                type: "setAllSessions",
+                sessions: sessionResp.data
+            })
+        })        
+    } 
+
+    const oneClassSessions = (item) => {
+        console.log("class button clicked")
+        API_User.getSessionsForOneClass(item).then(classSess => {
+            console.log("get all sessions for one class", classSess)
+            dispatch({
+                type: "setAllSessions",
+                sessions: classSess.data
+            })
         })        
     } 
 
@@ -27,7 +42,7 @@ const Profile = props => {
                 {state.classes.map((item, index) => (  
                     <div key={item.id}>
                     <button className="btn btn-light mx-auto mb-3 border-dark" 
-                    // onClick={() => AllSessions(state.classid)}
+                    onClick={() => oneClassSessions(item.ClassId)}
                     >
                         {item.Class.subject} {item.Class.class}
                     </button>

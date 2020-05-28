@@ -68,16 +68,3 @@ db.sequelize.sync().then(function () {
   })
 })
 
-let sessiondata = [
-  { subject: 'bioExam1', sessionDate: '2020-06-27 05:30:34', location: 'virtual', LocationId:3, ClassId:1, hostId:2},
-  { subject: 'midterm', sessionDate: '2020-06-01 05:30:34', location: 'virtual', LocationId:3, ClassId:1, hostId:2},
-  { subject: 'midterm1', sessionDate: '2020-06-02 05:30:34', location: 'virtual', LocationId:3, ClassId:1, hostId:5},
-  { subject: 'midterm2', sessionDate: '2020-06-02 05:30:34', location: 'virtual', LocationId:3, ClassId:1, hostId:7},
-  { subject: 'midterm3', sessionDate: '2020-06-02 05:30:34', location: 'virtual', LocationId:3, ClassId:1, hostId:7}
-]
-sessiondata.forEach(item => {
-  db.Session.create(item)
-    .then(() =>
-      console.log("locations table seeded"))
-    .catch(error => console.log(error));
-});
