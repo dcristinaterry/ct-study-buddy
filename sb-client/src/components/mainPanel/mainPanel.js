@@ -8,7 +8,7 @@ function Main() {
     const [state] = useStoreContext()
     console.log(state.sessions)
     return (
-        <div className="col-md-4">
+        <div className="container" style={ { background: 'url("./Berkeley_campus.jpg") no-repeat center center fixed 0.5' } }>
 
             < HostSessions>
 

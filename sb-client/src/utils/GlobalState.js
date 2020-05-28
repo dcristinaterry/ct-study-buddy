@@ -26,7 +26,7 @@ const reducer = (state, action) => {
       sessions: action.sessions,
       loading: false
     };
- 
+
   case "LOADING":
     return {
       ...state,

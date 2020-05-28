@@ -10,7 +10,7 @@ const Profile = props => {
 
     const allClassSessions = () => {
         console.log("session button clicked")
-        API_User.getAllUserSessions(state.class.id).then(sessionResp => {
+        API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
             console.log("get allclass allsessions", sessionResp)
             dispatch({
                 type: "setAllSessions",
@@ -41,14 +41,14 @@ const Profile = props => {
                 <div className="col-md-12">
                 {state.classes.map((item, index) => (  
                     <div key={item.id}>
-                    <button className="btn btn-light mx-auto mb-3 border-dark" 
+                    <button className="btn btn-block btn-light mx-auto mb-3 border-dark" 
                     onClick={() => oneClassSessions(item.ClassId)}
                     >
                         {item.Class.subject} {item.Class.class}
                     </button>
                     </div>
                 ))}                    
-                    <button className="btn btn-light mx-auto border-dark" onClick={allClassSessions}> 
+                    <button className="btn btn-block btn-light mx-auto border-dark" onClick={allClassSessions}> 
                     Sessions
                      </button>
             </div>
