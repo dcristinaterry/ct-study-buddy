@@ -8,17 +8,7 @@ const Profile = props => {
     
     console.log(state.sessions)
 
-    const allClassSessions = () => {
-        console.log("session button clicked")
-        API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
-            console.log("get allclass allsessions", sessionResp)
-            dispatch({
-                type: "setAllSessions",
-                sessions: sessionResp.data
-            })
-        })        
-    } 
-
+    
     const oneClassSessions = (item) => {
         console.log("class button clicked")
         API_User.getSessionsForOneClass(item).then(classSess => {
@@ -26,6 +16,17 @@ const Profile = props => {
             dispatch({
                 type: "setAllSessions",
                 sessions: classSess.data
+            })
+        })        
+    } 
+    
+    const allClassSessions = () => {
+        console.log("session button clicked")
+        API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
+            console.log("get allclass allsessions", sessionResp)
+            dispatch({
+                type: "setAllSessions",
+                sessions: sessionResp.data
             })
         })        
     } 

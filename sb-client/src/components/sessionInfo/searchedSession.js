@@ -9,12 +9,22 @@ function SearchedSessions() {
         <div className="row">
             <div className="col">
                 <div className="card">
-                {state.sessions.map((item, index) => (
-                    <div key={item.id}>
-                    </div>
-                ))}
+                    {state.sessions.map((item, index) => (
+                        <div key={item.sessionId}>
+                            <div className="card" >
+                               
+                                Class - {item.className},
+                                
+                                Date - {item.sessionDate},
+                                Topic - {item.sessionSubject},
+                                
+                                Host - {item.userName}
+                                
+                            </div> 
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
         </div >
     )
 }

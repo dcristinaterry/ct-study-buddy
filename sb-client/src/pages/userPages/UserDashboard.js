@@ -80,7 +80,7 @@ const UserDashboard = props => {
                     <Profile classid={state.classid} />
                 </div>
              <div className="col-md-9 mt-5 pt-5">
-                {/* <Main /> */}
+                <Main />
                 </div>
         </div>
         </div>
