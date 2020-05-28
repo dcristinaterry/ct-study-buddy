@@ -1,17 +1,18 @@
-let userclass = [
 
+ let userclass = [
+ 
   {role:"student", ClassId:1, UserId:8},
   {role:"student", ClassId:9, UserId:8},
   {role:"student", ClassId:15, UserId:8},
   {role:"student", ClassId:29, UserId:8},
-    ]
-    userclass.forEach(item => {
-      db.UserClass.create(item)
-        .then(() =>{
-          console.log("userclass table seeded")
-      })
-    })    
-
+]
+userclass.forEach(item => {
+  db.UserClass.create(item)
+    .then(() => {
+      console.log("userclass table seeded")
+    })
+  })
+   
 let sessiondata = [
       { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34',location: 'virtual', LocationId:3, ClassId:1, hostId:2},
       { subject: 'midterm', sessionDate: '2020-05-30 05:39:34', location: 'virtual', LocationId:3, ClassId:1, hostId:2},

@@ -11,6 +11,11 @@ export default {
 
     // ****************** SESSIONS **************************************
     // Gets ALL Sessions for ALL the Classes
+    
+    getAllParticipatingSessions: function(userid){
+        return axios.get(`/api/user/info-session/${userid}/session`)
+    },
+    
     getAllUserSessions: function (userid) {
         return axios.get(`/api/user/info-session/${userid}/allsessions`)
     },
@@ -18,6 +23,11 @@ export default {
     getSessionsForOneClass: function (classId){
         console.log("calling info-session all one class")
         return axios.get(`/api/user/info-session/${classId}/session`)
+    },
+
+    getHostedSessions: function(userid){
+        console.log("get hosting")
+        return axios.get(`/api/user/info-session/${userid}/hosting`)
     },
 
     // ****************** SESSIONS **************************************
