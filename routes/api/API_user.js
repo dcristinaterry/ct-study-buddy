@@ -41,7 +41,7 @@ router
 // Matches with "/api/session"
 // find all sessions where user is participating
 router
-  .route("/:userid/session")
+  .route("/info-session/:userid/session")
   .get(sessionController.findAllUserSessions)
 
 router
@@ -55,7 +55,7 @@ router
 
 // find sessions where user is the host
 router
-  .route("/:userid/session/hosting")
+  .route("/info-session/:userid/hosting")
   .get(sessionController.findAllSessionsAsHost)
   .post(sessionController.create)
   .delete(sessionController.remove)

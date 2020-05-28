@@ -1,4 +1,24 @@
-let userclass = [
+
+    let sessionUser = [
+
+      {SessionId:"24", UserId:"4"},
+      {SessionId:"25", UserId:"4"},
+      {SessionId:"22", UserId:"4"},
+      {SessionId:"20", UserId:"4"},
+      {SessionId:"19", UserId:"4"},
+    
+    ]
+    sessionUser.forEach(item => {
+      db.UserSession.create(item)
+        .then(() =>{
+          console.log("userclass table seeded")
+      })
+      
+    }) 
+
+
+
+
 
 
     let userclass = [
@@ -21,6 +41,9 @@ let userclass = [
       { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:5},
       { subject: 'midterm2', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
       { subject: 'midterm3', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
+ 
+ let userclass = [
+ 
   {role:"student", ClassId:1, UserId:8},
   {role:"student", ClassId:9, UserId:8},
   {role:"student", ClassId:15, UserId:8},
