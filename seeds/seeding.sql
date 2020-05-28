@@ -1,5 +1,4 @@
-
-    let sessionUser = [
+let sessionUser = [
 
       {SessionId:"24", UserId:"4"},
       {SessionId:"25", UserId:"4"},
@@ -15,32 +14,8 @@
       })
       
     }) 
-
-
-
-
-
-
-    let userclass = [
-
-      {role:"student", ClassId:"1", UserId:"2"},
-      {role:"student", ClassId:2, UserId:2},
-      {role:"student", ClassId:3, UserId:2},
-      {role:"student", ClassId:4, UserId:2},
-    ]
-    userclass.forEach(item => {
-      db.UserClass.create(item)
-        .then(() =>{
-          console.log("userclass table seeded")
-      })
-      
     })    
-        let sessiondata = [
-      { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm', sessionDate: '2020-05-30 05:39:34', locationId:3, classId:1, hostId:2},
-      { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:5},
-      { subject: 'midterm2', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
-      { subject: 'midterm3', sessionDate: '2020-06-02 05:39:34', locationId:3, classId:1, hostId:7},
+
  
  let userclass = [
  
@@ -55,18 +30,18 @@ userclass.forEach(item => {
       console.log("userclass table seeded")
     })
   })
-   
+
 let sessiondata = [
-      { subject: 'bioExam1', location: 'virtual', LocationId:3, ClassId:1, HostId:2},
-      { subject: 'midterm', location: 'virtual', LocationId:3, ClassId:1, HostId:2},
-      { subject: 'midterm1', location: 'virtual', LocationId:3, ClassId:1, HostId:5},
-      { subject: 'midterm2', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
-      { subject: 'midterm3', location: 'virtual', LocationId:3, ClassId:1, HostId:7},
+      { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34', LocationId:3, ClassId:1, hostId:2},
+      { subject: 'midterm', sessionDate: '2020-05-30 05:39:34', LocationId:3, ClassId:1, hostId:2},
+      { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', LocationId:3, ClassId:1, hostId:5},
+      { subject: 'midterm2', sessionDate: '2020-06-02 05:39:34', LocationId:3, ClassId:1, hostId:7},
+      { subject: 'midterm3', sessionDate: '2020-06-02 05:39:34', LocationId:3, ClassId:1, hostId:7}   
     ]
-    locationtable.forEach(item => {
+    sessiondata.forEach(item => {
       db.Session.create(item)
         .then(() =>
-          console.log("locations table seeded"))
+          console.log("session table seeded"))
         .catch(error => console.log(error));
     });
 
@@ -219,3 +194,4 @@ let sessiondata = [
             console.log("locations table seeded"))
           .catch(error => console.log(error));
       });
+

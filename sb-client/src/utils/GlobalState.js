@@ -19,7 +19,13 @@ const reducer = (state, action) => {
       classes: action.classes,
       loading: false
     };
-  
+  case "setAllSessions":
+    console.log("setting sessions state ",action.sessions)
+    return {
+      ...state,
+      sessions: action.sessions,
+      loading: false
+    };
  
   case "LOADING":
     return {

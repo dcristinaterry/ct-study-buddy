@@ -135,10 +135,7 @@ module.exports = {
                         model: db.User, as: 'host',
                         attributes: ["firstName", "lastName", "image"]
                     }
-
                 }
-
-
             }
         })
             .then(findAllSR => {
@@ -180,8 +177,8 @@ module.exports = {
 
                     }
                 }
-
                 console.log(allSessions)
+                // can this be an array of objects?
                 res.json(allSessions)
             })
     },
@@ -222,7 +219,7 @@ module.exports = {
 
 
                     if (sessionsClass.length > 0) {
-                        console.log("Greather than 0")
+                        // console.log("Greather than 0")
                         sessiontempObj = sessionsClass[i].dataValues
                         const sessionObject = {}
                         sessionObject.sessionId = sessiontempObj.id

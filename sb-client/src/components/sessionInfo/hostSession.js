@@ -1,0 +1,21 @@
+import React from "react"
+import { useStoreContext } from "../../utils/GlobalState"
+
+function HostSessions() {
+    const [state] = useStoreContext()
+    console.log(state.sessions)
+    return (
+        <div className="row">
+            <div className="col">
+                <div className="card">
+                {state.sessions.map((item, index) => (  
+                    <div key={item.id}>
+                    </div>
+                    ))}
+                </div>    
+            </div>
+        </div>
+    )
+}
+
+export default HostSessions

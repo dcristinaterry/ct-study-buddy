@@ -13,7 +13,7 @@ export default {
     // Gets ALL Sessions for ALL the Classes
     
     getAllParticipatingSessions: function(userid){
-        return axios.get(`/api/user/info-session/${userid}/session`)
+        return axios.get(`/api/user/info-session/${userid}/participant-session`)
     },
     
     getAllUserSessions: function (userid) {
@@ -40,4 +40,5 @@ export default {
         console.log("get all classes for a user")
         return axios.get(`/api/user/allclasses/${userId}/classes`)
     }
+    
 }
