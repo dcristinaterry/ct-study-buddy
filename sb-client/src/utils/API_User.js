@@ -13,7 +13,7 @@ export default {
     // Gets ALL Sessions for ALL the Classes
     
     getAllParticipatingSessions: function(userid){
-        return axios.get(`/api/user/info-session/${userid}/participant-session`)
+        return axios.get(`/api/user/info-session/${userid}/participant-sessions`)
     },
     
     getAllUserSessions: function (userid) {
@@ -22,7 +22,7 @@ export default {
 
     getSessionsForOneClass: function (classId){
         console.log("calling info-session all one class")
-        return axios.get(`/api/user/info-session/${classId}/session`)
+        return axios.get(`/api/user/info-session/${classId}/class-sessions`)
     },
 
     getHostedSessions: function(userid){

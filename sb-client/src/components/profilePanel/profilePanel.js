@@ -8,7 +8,6 @@ const Profile = props => {
     
     console.log(state.sessions)
 
-    
     const oneClassSessions = (item) => {
         console.log("class button clicked")
         API_User.getSessionsForOneClass(item).then(classSess => {
@@ -19,8 +18,10 @@ const Profile = props => {
             })
         })        
     } 
-    
+
+
     const allClassSessions = () => {
+        
         console.log("session button clicked")
         API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
             console.log("get allclass allsessions", sessionResp)
@@ -30,7 +31,7 @@ const Profile = props => {
             })
         })        
     } 
-
+    
     return (
         <div className="col-md-12">
             <div className="row">
@@ -49,7 +50,7 @@ const Profile = props => {
                     </button>
                     </div>
                 ))}                    
-                    <button className="btn btn-block btn-light mx-auto border-dark" onClick={allClassSessions}> 
+                    <button className="btn btn-block btn-light mx-auto border-dark" onClick={()=>allClassSessions()}> 
                     Sessions
                      </button>
             </div>

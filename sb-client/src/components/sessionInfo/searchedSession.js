@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 
 function SearchedSessions() {
-    const [state] = useStoreContext()
+    const [state, dispacher] = useStoreContext()
+
+  
     // needs useEffect to alter state
     console.log(state.sessions)
     return (
@@ -25,7 +27,8 @@ function SearchedSessions() {
                     ))}
                 </div>
             </div>
-        </div >
+        </div>
+       
     )
 }
 
