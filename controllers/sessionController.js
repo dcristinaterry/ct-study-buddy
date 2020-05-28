@@ -2,7 +2,9 @@ const db = require("../models")
 
 module.exports = {
 
-    // // all the sessions for a user where the user is a participant
+    //========================================================================
+    // find all sessions where the user is a Participant
+
     findAllUserSessions: function (req, res) {
         db.UserSession.findAll({
             where: {
@@ -11,22 +13,61 @@ module.exports = {
             // join session table
             include: {
                 model: db.Session,
-                attributes: ["subject", "location", "createdAt", "hostId"],
-                include: {
+                include: [{
                     model: db.Class,
                     attributes: ["subject", "class"]
-                }
+                },
+                {
+                    model: db.User, as: "host",
+                    attributes: ["firstName", "lastName", "image"]
+                },
+                ]
             }
         }
-        ).then(dbModelSession => res.json(dbModelSession))
+        ).then(participatingSessions => {
+
+            // console.log(participatingSessions)
+            let allSessions = [];
+
+            for (let i = 0; i < participatingSessions.length; i++) {
+
+                // console.log(participatingSessions[i].dataValues.Session)
+
+                let sessionInfo = participatingSessions[i].dataValues.Session.dataValues
+                let classInfo = participatingSessions[i].dataValues.Session.Class.dataValues
+                let hostInfo = participatingSessions[i].dataValues.Session.host.dataValues
+
+                // console.log("session Info:  ", sessionInfo);
+                // console.log("classInfo", classInfo)
+                // console.log("hostInfo", hostInfo)
+
+                const sessionObject = {}
+                sessionObject.sessionId = sessionInfo.id
+                sessionObject.hostid = sessionInfo.hostId
+                sessionObject.hostImage = hostInfo.image
+                sessionObject.hostName = hostInfo.firstName + " " + hostInfo.lastName
+                sessionObject.classId = sessionInfo.ClassId
+                sessionObject.className = sessionInfo.subject + " " + sessionInfo.class
+                sessionObject.sessionSubject = sessionInfo.subject
+                sessionObject.sessionDate = sessionInfo.sessionDate
+
+                //     // console.log("created object", sessionObject)
+                allSessions.push(sessionObject)
+            }
+            res.json(allSessions)
+
+        })
             .catch(err => res.status(422).json(err));
     },
 
+    //========================================================================
     // find all sessions where the user is a HOST
+
     findAllSessionsAsHost: function (req, res) {
+        
         db.Session.findAll({
             where: {
-                host: req.params.userid
+                hostId: req.params.userid
             },
             // join session table
             include: [{
@@ -35,17 +76,53 @@ module.exports = {
             },
 
             {
-                model: db.Location,
-                attributes: ["building", "room"]
-            }]
+                model: db.User, as: "host",
+                attributes: ["firstName", "lastName", "image"]
+            }
+            ]
 
         }
-        ).then(dbModelSession => res.json(dbModelSession))
+        ).then(hostsessions => {
+
+            let allSessions = []
+            // console.log("alt hosted sessions:  ",hostsessions)
+
+            for (let i = 0; i < hostsessions.length; i++) {
+
+                // console.log(participatingSessions[i].dataValues.Session)
+                let sessionInfo = hostsessions[i].dataValues
+                let classInfo = hostsessions[i].dataValues.Class.dataValues
+                let hostInfo = hostsessions[i].dataValues.host.dataValues
+
+                // console.log("session Info:  ", sessionInfo);
+                // console.log("classInfo", classInfo)
+                // console.log("hostInfo", hostInfo)
+
+                const sessionObject = {}
+                sessionObject.sessionId = sessionInfo.id
+                sessionObject.hostid = sessionInfo.hostId
+                sessionObject.hostImage = hostInfo.image
+                sessionObject.hostName = hostInfo.firstName + " " + hostInfo.lastName
+                sessionObject.classId = sessionInfo.ClassId
+                sessionObject.className = sessionInfo.subject + " " + sessionInfo.class
+                sessionObject.sessionSubject = sessionInfo.subject
+                sessionObject.sessionDate = sessionInfo.sessionDate
+
+                //     // console.log("created object", sessionObject)
+                allSessions.push(sessionObject)
+            }
+
+            console.log(allSessions)
+            res.json(allSessions)
+
+        })
             .catch(err => res.status(422).json(err));
     },
 
 
-    // // selec * from table a a join table b b where a.id = b.id
+    //========================================================================
+    // find all sessions for all the classes of a user
+
     findAllSessionsAllClasses: function (req, res) {
         // console.log("got called ", req.params.userid)
         db.UserClass.findAll({
@@ -109,6 +186,10 @@ module.exports = {
             })
     },
 
+
+    //========================================================================
+    // find all sessions for one of the user's class
+
     findAllSessionsOneClasses: function (req, res) {
 
         db.Session.findAll({
@@ -160,11 +241,12 @@ module.exports = {
                 }
 
                 console.log(allSessions);
-
                 res.json(allSessions)
             })
     },
 
+    //========================================================================
+    // find one session
 
     findOneSessionForUser: function (req, res) {
         db.Session.findById({

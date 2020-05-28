@@ -37,10 +37,20 @@ const UserDashboard = props => {
                     console.log("class array",classres.data)
                 })
 
-                API_User.getSessionsForOneClass("3").then(sessionClassResp =>{
-                    console.log("getting all sessions for one class")
-                    console.log(sessionClassResp)
-                })
+                // API_User.getSessionsForOneClass("3").then(sessionClassResp =>{
+                //     console.log("getting all sessions for one class")
+                //     console.log(sessionClassResp)
+                // })
+
+                // API_User.getAllParticipatingSessions("4").then(res => {
+                //     console.log("getting participating sessions")
+                //     console.log(res)
+                // })
+
+                // API_User.getHostedSessions("4").then(res => {
+                //     console.log("getting hosted sessions")
+                //     console.log(res)
+                // })
 
 
             });
