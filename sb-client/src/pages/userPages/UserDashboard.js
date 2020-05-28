@@ -32,7 +32,6 @@ const UserDashboard = props => {
                             type: "setClasses",
                             classes: classres.data
                         })
-                    
                     console.log("class array",classres.data)
                 })
 

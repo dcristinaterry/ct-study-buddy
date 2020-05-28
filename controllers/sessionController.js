@@ -98,13 +98,11 @@ module.exports = {
                                 // console.log("created object", sessionObject)
 
                                 allSessions.push(sessionObject)
-            
-                    }
-
+                        }
                     }
                 }
-
                 console.log(allSessions)
+                // can this be an array of objects?
                 res.json(allSessions)
             })
     },

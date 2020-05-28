@@ -2,9 +2,13 @@ import React from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import Avatar from "../avatar/avatar"
 
-function Profile() {
+const Profile = props => {
     const [state] = useStoreContext()
     console.log(state)
+    const findAllSessionsAllClasses = () => {
+        //api call
+        //
+    } 
     return (
         <div className="col-md-2">
             <div className="row">
