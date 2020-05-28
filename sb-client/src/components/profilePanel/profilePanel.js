@@ -4,6 +4,7 @@ import Avatar from "../avatar/avatar"
 
 const Profile = props => {
     const [state] = useStoreContext()
+    
     console.log(state)
     const findAllSessionsAllClasses = () => {
         //api call

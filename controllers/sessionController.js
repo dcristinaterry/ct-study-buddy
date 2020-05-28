@@ -52,25 +52,25 @@ module.exports = {
             where: { userId: req.params.userid },
             include: {
                 model: db.Class,
+                include: {
+                    model: db.Session,
                     include: {
-                        model: db.Session,
-                        include:{
-                            model: db.User, as: 'host',
-                            attributes:["firstName", "lastName", "image"]
-                        }
-                    
+                        model: db.User, as: 'host',
+                        attributes: ["firstName", "lastName", "image"]
                     }
-                   
-                
+
+                }
+
+
             }
         })
-            .then(findAllSR=> {
+            .then(findAllSR => {
 
-    
+
                 let allSessions = []
 
                 // console.log("printing 1", findAllSR)
-                for(let i = 0; i<findAllSR.length; i++ ){
+                for (let i = 0; i < findAllSR.length; i++) {
                     // obj.classId= findAllSR[i].id;
 
                     //  console.log("printing 1", findAllSR[i].Class.dataValues)
@@ -78,27 +78,29 @@ module.exports = {
 
                     // console.log("length sessions: ", findAllSR[i].Class.Sessions.length )
 
-                    if(findAllSR[i].Class.Sessions.length > 0){
+                    if (findAllSR[i].Class.Sessions.length > 0) {
                         // console.log("Greather than 0")
                         tempSessions = [...findAllSR[i].Class.Sessions]
                         // console.log(tempSessions)
-                        for(let j = 0 ; j<tempSessions.length ; j++){
-                            
-                                sessiontempObj = tempSessions[j].dataValues
-                                const sessionObject ={}
-                                sessionObject.sessionId=sessiontempObj.id
-                                sessionObject.hostid=sessiontempObj.hostId
-                                sessionObject.userImage=sessiontempObj.host.dataValues.image
-                                sessionObject.userName=sessiontempObj.host.dataValues.firstName + " " + sessiontempObj.host.dataValues.lastName
-                                sessionObject.classId=findAllSR[i].Class.dataValues.id
-                                sessionObject.className=findAllSR[i].Class.dataValues.subject + " " + findAllSR[i].Class.dataValues.class 
-                                sessionObject.sessionSubject=tempSessions[j].dataValues.subject
-                                sessionObject.sessionDate=tempSessions[j].dataValues.sessionDate
+                        for (let j = 0; j < tempSessions.length; j++) {
 
-                                // console.log("created object", sessionObject)
+                            sessiontempObj = tempSessions[j].dataValues
+                            const sessionObject = {}
+                            sessionObject.sessionId = sessiontempObj.id
+                            sessionObject.hostid = sessiontempObj.hostId
+                            sessionObject.userImage = sessiontempObj.host.dataValues.image
+                            sessionObject.userName = sessiontempObj.host.dataValues.firstName + " " + sessiontempObj.host.dataValues.lastName
+                            sessionObject.classId = findAllSR[i].Class.dataValues.id
+                            sessionObject.className = findAllSR[i].Class.dataValues.subject + " " + findAllSR[i].Class.dataValues.class
+                            sessionObject.sessionSubject = tempSessions[j].dataValues.subject
+                            sessionObject.sessionDate = tempSessions[j].dataValues.sessionDate
 
-                                allSessions.push(sessionObject)
+                            // console.log("created object", sessionObject)
+
+                            allSessions.push(sessionObject)
+
                         }
+
                     }
                 }
                 console.log(allSessions)
@@ -109,20 +111,58 @@ module.exports = {
 
     findAllSessionsOneClasses: function (req, res) {
 
-        db.UserClass.findAll({
-            where: { userId: req.params.id,
-                    classId: req.params.id },
-            include: {
-                model: db.Class,
-                include: {
-                    model: db.ClassSession,
-                    include: {
-                        model: db.Session
+        db.Session.findAll({
+            where: {
+                classId: req.params.classid,
+
+            },
+            include: [
+                {
+                    model: db.User, as: 'host',
+                    attributes: ["firstName", "lastName", "image"]
+                },
+                {
+                    model: db.Class,
+                    attributes: ["subject", "class"]
+                }
+            ]
+
+        })
+            .then(sessionsClass => {
+
+                let allSessions = []
+
+                //  console.log("printing 1", findAllSR)
+                for (let i = 0; i < sessionsClass.length; i++) {
+
+
+                    //    console.log("printing 1", sessionsClass[i])
+                    // let tempSessions = sessionsClass[i].dataValues;
+
+
+                    if (sessionsClass.length > 0) {
+                        console.log("Greather than 0")
+                        sessiontempObj = sessionsClass[i].dataValues
+                        const sessionObject = {}
+                        sessionObject.sessionId = sessiontempObj.id
+                        sessionObject.hostid = sessiontempObj.hostId
+                        sessionObject.userImage = sessiontempObj.host.dataValues.image
+                        sessionObject.userName = sessiontempObj.host.dataValues.firstName + " " + sessiontempObj.host.dataValues.lastName
+                        sessionObject.classId = sessiontempObj.ClassId
+                        sessionObject.className = sessiontempObj.Class.dataValues.subject + " " + sessionsClass[i].Class.dataValues.class
+                        sessionObject.sessionSubject = sessiontempObj.subject
+                        sessionObject.sessionDate = sessiontempObj.sessionDate
+
+                        //  console.log("created object", sessionObject)
+
+                        allSessions.push(sessionObject)
                     }
                 }
-            }
-        })
-            .then(findAllSessionsResponse => res.json(findAllSessionsResponse))
+
+                console.log(allSessions);
+
+                res.json(allSessions)
+            })
     },
 
 
