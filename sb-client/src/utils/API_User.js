@@ -30,4 +30,5 @@ export default {
         console.log("get all classes for a user")
         return axios.get(`/api/user/allclasses/${userId}/classes`)
     }
+    
 }

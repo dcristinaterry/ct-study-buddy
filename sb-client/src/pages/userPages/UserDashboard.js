@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User.js"
 import Profile from "../../components/profilePanel/profilePanel"
+import Jumbotron from "../../components/jumbotron/jumbotron"
+
 
 const UserDashboard = props => {
     const [state, dispatch] = useStoreContext();
@@ -59,14 +61,18 @@ const UserDashboard = props => {
 
     return (
         <div>
-        {/* <Jumbotron /> */}
-        <h1>Hello {state.currentUser.firstName}! </h1>
-        <Profile classid={state.classid} />
-        <p></p>
-        {/* <Main /> */}
-    </div>
-
-
+            <div className="col-12 mb-5 pb-5">
+                <Jumbotron />
+            </div>
+            <div className="row mt-5 pt-5">
+                <div className="col-md-3 mt-5 pt-5 pr-5 text-center">
+                    <Profile classid={state.classid} />
+                </div>
+             <div className="col-md-9 mt-5 pt-5">
+                {/* <Main /> */}
+                </div>
+        </div>
+        </div>
     )
 }
 

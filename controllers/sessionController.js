@@ -58,10 +58,7 @@ module.exports = {
                         model: db.User, as: 'host',
                         attributes: ["firstName", "lastName", "image"]
                     }
-
                 }
-
-
             }
         })
             .then(findAllSR => {
