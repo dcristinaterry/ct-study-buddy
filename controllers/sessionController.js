@@ -47,7 +47,7 @@ module.exports = {
                 sessionObject.hostImage = hostInfo.image
                 sessionObject.hostName = hostInfo.firstName + " " + hostInfo.lastName
                 sessionObject.classId = sessionInfo.ClassId
-                sessionObject.className = sessionInfo.subject + " " + sessionInfo.class
+                sessionObject.className = classInfo.subject + " " + classInfo.class
                 sessionObject.sessionSubject = sessionInfo.subject
                 sessionObject.sessionDate = sessionInfo.sessionDate
 
@@ -104,7 +104,7 @@ module.exports = {
                 sessionObject.hostImage = hostInfo.image
                 sessionObject.hostName = hostInfo.firstName + " " + hostInfo.lastName
                 sessionObject.classId = sessionInfo.ClassId
-                sessionObject.className = sessionInfo.subject + " " + sessionInfo.class
+                sessionObject.className = classInfo.subject + " " + classInfo.class
                 sessionObject.sessionSubject = sessionInfo.subject
                 sessionObject.sessionDate = sessionInfo.sessionDate
 
