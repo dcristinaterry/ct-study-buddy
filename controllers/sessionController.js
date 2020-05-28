@@ -5,7 +5,8 @@ module.exports = {
     //========================================================================
     // find all sessions where the user is a Participant
 
-    findAllUserSessions: function (req, res) {
+    findAllParticipatinSessions: function (req, res) {
+        // console.log("getting all participating sessions")
         db.UserSession.findAll({
             where: {
                 userId: req.params.userid
@@ -51,13 +52,13 @@ module.exports = {
                 sessionObject.sessionSubject = sessionInfo.subject
                 sessionObject.sessionDate = sessionInfo.sessionDate
 
-                //     // console.log("created object", sessionObject)
+                // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
             }
             res.json(allSessions)
 
         })
-            .catch(err => res.status(422).json(err));
+         .catch(err => res.status(422).json(err));
     },
 
     //========================================================================
@@ -112,7 +113,7 @@ module.exports = {
                 allSessions.push(sessionObject)
             }
 
-            console.log(allSessions)
+            // console.log(allSessions)
             res.json(allSessions)
 
         })
@@ -124,7 +125,8 @@ module.exports = {
     // find all sessions for all the classes of a user
 
     findAllSessionsAllClasses: function (req, res) {
-        // console.log("got called ", req.params.userid)
+        console.log("got called  to get all sessions all classes")
+        console.log("user id", req.params.userid)
         db.UserClass.findAll({
             where: { userId: req.params.userid },
             include: {
@@ -177,7 +179,7 @@ module.exports = {
 
                     }
                 }
-                console.log(allSessions)
+                // console.log(allSessions)
                 // can this be an array of objects?
                 res.json(allSessions)
             })
@@ -237,7 +239,7 @@ module.exports = {
                     }
                 }
 
-                console.log(allSessions);
+                // console.log(allSessions);
                 res.json(allSessions)
             })
     },

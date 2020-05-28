@@ -14,8 +14,9 @@ const UserDashboard = props => {
     useEffect(() => {
 
         if (mounted) {
+            setMounted(false);
 
-            console.log("state is null")
+            console.log("Mounting")
 
             API_User.verifyUser().then(function (response) {
                 let userObj = {
@@ -26,47 +27,48 @@ const UserDashboard = props => {
                 }
 
                 dispatch({ type: "setUser", user: userObj })
-                console.log(response)
+                // console.log(response)
 
                 API_User.getAllClasses(response.data.id).then(classres => {
                     console.log("coming from userdashboard - ", classres)
-                        dispatch({
-                            type: "setClasses",
-                            classes: classres.data
-                        })
-                    console.log("class array",classres.data)
+                    dispatch({
+                        type: "setClasses",
+                        classes: classres.data
+                    })
+                })
+                API_User.getHostedSessions(response.data.id).then(resHostedSessions => {
+                    dispatch({
+                        type: "setHostedSessions",
+                        sessions: resHostedSessions.data
+                    })
                 })
 
-                // API_User.getSessionsForOneClass("3").then(sessionClassResp =>{
-                //     console.log("getting all sessions for one class")
-                //     console.log(sessionClassResp)
-                // })
+                API_User.getAllParticipatingSessions(response.data.id).then(resParticipatingSessions => {
+                    console.log("getting participating sessions")
+                    dispatch({
+                        type: "setParticipatingSessions",
+                        sessions: resParticipatingSessions.data
+                    })
+                })
 
-                // API_User.getAllParticipatingSessions("4").then(res => {
-                //     console.log("getting participating sessions")
-                //     console.log(res)
-                // })
+              
+           
 
-                // API_User.getHostedSessions("4").then(res => {
-                //     console.log("getting hosted sessions")
-                //     console.log(res)
-                // })
+                // API_User.getAllLocations().then(qresponse => {
 
+                //     console.log(qresponse)
+                // })
 
             });
-            // API_User.getAllLocations().then(qresponse =>{
 
-            // console.log(qresponse)
-            // })
-          
-        
-
-            setMounted(false);
+           
 
         }
-   
+
 
     }, [mounted, state, dispatch])
+   
+   
     console.log(state)
 
     return (
@@ -78,10 +80,10 @@ const UserDashboard = props => {
                 <div className="col-md-3 mt-5 pt-5 pr-5 text-center">
                     <Profile classid={state.classid} />
                 </div>
-             <div className="col-md-9 mt-5 pt-5">
-                {/* <Main /> */}
+                <div className="col-md-9 mt-5 pt-5">
+                    {/* <Main /> */}
                 </div>
-        </div>
+            </div>
         </div>
     )
 }
