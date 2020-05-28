@@ -15,7 +15,8 @@ module.exports = {
             }
         }
         ).then(dbModelClass => {res.json(dbModelClass)
-            console.log(dbModelClass)})
+            // console.log(dbModelClass)
+        })
             .catch(err => {res.status(422).json(err)
             console.log(err)});
     },

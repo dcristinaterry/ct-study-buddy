@@ -37,14 +37,19 @@ const UserDashboard = props => {
                     console.log("class array",classres.data)
                 })
 
-
+                API_User.getSessionsForOneClass("3").then(sessionClassResp =>{
+                    console.log("getting all sessions for one class")
+                    console.log(sessionClassResp)
+                })
 
 
             });
-            API_User.getAllLocations().then(qresponse =>{
+            // API_User.getAllLocations().then(qresponse =>{
 
-            console.log(qresponse)
-        })
+            // console.log(qresponse)
+            // })
+          
+        
 
             setMounted(false);
 
