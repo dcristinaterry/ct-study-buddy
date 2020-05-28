@@ -6,6 +6,10 @@ function Main() {
     console.log(state.classes)
     return (
         <div className="col-md-4">
+
+            <HostSessions/>
+            <ParticipatingSessions/>
+            <SearchedSessions/>
             {/* <div className="row">
                 <Avatar />
             </div>

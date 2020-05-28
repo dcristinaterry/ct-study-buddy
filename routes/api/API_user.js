@@ -65,7 +65,7 @@ router
   .put(sessionController.update)
 
 router
-  .route("/:classid/:userid/session")
+  .route("/info-session/:classid/session")
   .get(sessionController.findAllSessionsOneClasses)
 
 

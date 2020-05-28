@@ -4,6 +4,7 @@ import Avatar from "../avatar/avatar"
 
 function Profile() {
     const [state] = useStoreContext()
+    
     console.log(state)
     return (
         <div className="col-md-2">
