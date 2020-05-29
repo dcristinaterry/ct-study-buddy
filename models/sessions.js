@@ -8,6 +8,9 @@ module.exports = function (sequelize, DataTypes) {
         },
         sessionDate:{
             type: DataTypes.DATE
+        },
+        maxPartipants:{
+            type: DataTypes.INTEGER
         }
     })
 
