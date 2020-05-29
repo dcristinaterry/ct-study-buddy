@@ -67,6 +67,10 @@ const StoreProvider = ({ value = [], ...props }) => {
       host: "",
       participants: []
     },
+    userSession: {
+      SessionId: "",
+      UserId: ""
+    },
     classes: [],
     sessions: [],
     hostedSessions: [],

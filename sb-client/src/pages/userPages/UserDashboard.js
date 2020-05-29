@@ -74,14 +74,14 @@ const UserDashboard = props => {
 
     return (
         <div>
-            <div className="col-12 mb-5 pb-5">
+            <div className="col-12 pb-5">
                 <Jumbotron />
             </div>
-            <div className="row mt-5 pt-5">
-                <div className="col-md-3 mt-5 pt-5 pr-5 text-center">
+            <div className="row">
+                <div className="col-md-3 pt-5 px-5 text-center border-top border-right border-dark">
                     <Profile classid={state.classid} />
                 </div>
-             <div className="col-md-9 mt-5 pt-5">
+             <div className="col-md-9 pt-5 border-top border-dark">
                 <Main />
                 </div>
             </div>

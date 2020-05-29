@@ -1,4 +1,5 @@
 const db = require("../models")
+const moment = require("moment")
 
 module.exports = {
 
@@ -50,7 +51,9 @@ module.exports = {
                 sessionObject.classId = sessionInfo.ClassId
                 sessionObject.className = classInfo.subject + " " + classInfo.class
                 sessionObject.sessionSubject = sessionInfo.subject
-                sessionObject.sessionDate = sessionInfo.sessionDate
+                let formattedDate = moment(sessionInfo.sessionDate).format("M-D-YY hh:mm")
+                console.log("formatted date", formattedDate)
+                sessionObject.sessionDate = formattedDate
 
                 // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
@@ -107,7 +110,9 @@ module.exports = {
                 sessionObject.classId = sessionInfo.ClassId
                 sessionObject.className = classInfo.subject + " " + classInfo.class
                 sessionObject.sessionSubject = sessionInfo.subject
-                sessionObject.sessionDate = sessionInfo.sessionDate
+                let formattedDate = moment(sessionInfo.sessionDate).format("M-D-YY hh:mm")
+                console.log("formatted date", formattedDate)
+                sessionObject.sessionDate = formattedDate
 
                 //     // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
@@ -169,7 +174,9 @@ module.exports = {
                             sessionObject.classId = findAllSR[i].Class.dataValues.id
                             sessionObject.className = findAllSR[i].Class.dataValues.subject + " " + findAllSR[i].Class.dataValues.class
                             sessionObject.sessionSubject = tempSessions[j].dataValues.subject
-                            sessionObject.sessionDate = tempSessions[j].dataValues.sessionDate
+                            let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm")
+                            console.log("formatted date", formattedDate)
+                            sessionObject.sessionDate = formattedDate
 
                             // console.log("created object", sessionObject)
 
@@ -231,7 +238,10 @@ module.exports = {
                         sessionObject.classId = sessiontempObj.ClassId
                         sessionObject.className = sessiontempObj.Class.dataValues.subject + " " + sessionsClass[i].Class.dataValues.class
                         sessionObject.sessionSubject = sessiontempObj.subject
-                        sessionObject.sessionDate = sessiontempObj.sessionDate
+                        let formattedDate = moment(sessiontempObj.sessionDate).format("M-D-YY hh:mm")
+                        console.log("formatted date", formattedDate)
+                        sessionObject.sessionDate = formattedDate
+                        
 
                         //  console.log("created object", sessionObject)
 

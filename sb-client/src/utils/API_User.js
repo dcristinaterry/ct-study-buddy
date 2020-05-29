@@ -1,7 +1,6 @@
 import axios from 'axios'
 export default {
     authenticate: function (loginData) {
-
         return axios.put("/api/user", loginData)
     },
     verifyUser: function (sessionId) {
@@ -39,6 +38,16 @@ export default {
     getAllClasses: function (userId) {
         console.log("get all classes for a user")
         return axios.get(`/api/user/allclasses/${userId}/classes`)
-    }
+    },
     
+
+    // ****************** USERSESSIONS **********************************
+    joinSession: function (sessionId) {
+        console.log("joining session",sessionId)
+        return axios.post(`/api/user/info-session/joinsession`,sessionId)
+    },
+    leaveSession: function (sessionId) {
+        console.log("leaving session",sessionId)
+        return axios.delete(`/api/user/info-session/leavesession`,sessionId)
+    },
 }

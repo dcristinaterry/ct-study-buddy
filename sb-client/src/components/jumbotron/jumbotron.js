@@ -6,13 +6,13 @@ import "./jumbotron.css"
 
 function Jumbotron() {
     return (
-        <div className="jumbotron jumbotron-fluid fixed-top noBg mt-3">
+        <div className="jumbotron jumbotron-fluid noBg mt-3">
             <div className="container">
-                <div className="float-right">
-                    <h1>SEARCH BAR AREA </h1>
-                {/* <SearchDate /> */}
-                {/* <SearchClass /> */}
-                {/* <SearchTopic /> */}
+                <div className="form-inline my-2 my-md-0 justify-content-end float-right">
+
+                <SearchDate />
+                <SearchClass />
+                <SearchTopic />
                 </div>
             </div>
         </div>

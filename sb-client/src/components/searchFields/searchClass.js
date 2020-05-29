@@ -3,11 +3,9 @@ import React from 'react'
 
 function SearchClass() {
     return (
-        <div>
-            <form className="form-inline my-2 my-md-0">
-                <input className="form-control mr-sm-2" type="search" placeholder="Class" aria-label="Search" />
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Class</button>
-            </form>
+        <div className="mr-2">
+            <input className="form-control mr-sm-0" type="search" placeholder="Class" aria-label="Search" />
+            <button className="btn btn-primary my-2 my-sm-0" type="submit">Class</button>
         </div>
     )
 };
