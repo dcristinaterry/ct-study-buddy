@@ -31,7 +31,7 @@ const UserDashboard = props => {
                 // console.log(response)
 
                 API_User.getAllClasses(response.data.id).then(classres => {
-                    console.log("coming from userdashboard - ", classres)
+                    // console.log("coming from userdashboard - ", classres)
                     dispatch({
                         type: "setClasses",
                         classes: classres.data
@@ -45,20 +45,21 @@ const UserDashboard = props => {
                 })
 
                 API_User.getAllParticipatingSessions(response.data.id).then(resParticipatingSessions => {
-                    console.log("getting participating sessions")
+                    // console.log("getting participating sessions")
                     dispatch({
                         type: "setParticipatingSessions",
                         sessions: resParticipatingSessions.data
                     })
                 })
+                API_User.getAllLocations().then(qresponse => {
 
-              
-           
+                    // console.log(qresponse)
 
-                // API_User.getAllLocations().then(qresponse => {
-
-                //     console.log(qresponse)
-                // })
+                    dispatch({
+                        type: "setLocations",
+                        locations: qresponse.data
+                    })
+                })
 
             });
 

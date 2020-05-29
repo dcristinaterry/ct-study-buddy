@@ -1,5 +1,6 @@
 const db = require("../models")
-const moment = require("moment")
+const { Op } = require('sequelize')
+const moment = require('moment')
 
 module.exports = {
 
@@ -138,6 +139,9 @@ module.exports = {
                 model: db.Class,
                 include: {
                     model: db.Session,
+                    // where:{
+                    //     // [Op.gte]: moment().toDate()
+                    // },
                     include: {
                         model: db.User, as: 'host',
                         attributes: ["firstName", "lastName", "image"]
@@ -198,10 +202,13 @@ module.exports = {
 
     findAllSessionsOneClasses: function (req, res) {
 
+
+        // {$and: [filters["State"], {$not: this.filterSBM()}] };
+        // [Op.gte]: moment().toDate()
         db.Session.findAll({
             where: {
                 classId: req.params.classid,
-
+                
             },
             include: [
                 {
@@ -256,12 +263,13 @@ module.exports = {
 
     //========================================================================
     // find one session
+ // Id: req.params.sessionid,
 
     findOneSessionForUser: function (req, res) {
         db.Session.findById({
             where: {
                 userId: req.params.userid,
-                Id: req.params.sessionid,
+               
             }
         })
             .then(dbModel => res.json(dbModel))

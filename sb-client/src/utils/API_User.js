@@ -20,23 +20,23 @@ export default {
     },
 
     getSessionsForOneClass: function (classId){
-        console.log("calling info-session all one class")
+        // console.log("calling info-session all one class")
         return axios.get(`/api/user/info-session/${classId}/class-sessions`)
     },
 
     getHostedSessions: function(userid){
-        console.log("get hosting")
+        // console.log("get hosting")
         return axios.get(`/api/user/info-session/${userid}/hosting`)
     },
 
     // ****************** SESSIONS **************************************
 
     getAllLocations: function () {
-        console.log("calling locations")
+        // console.log("calling locations")
         return axios.get("/api/user/locations")
     },
     getAllClasses: function (userId) {
-        console.log("get all classes for a user")
+        // console.log("get all classes for a user")
         return axios.get(`/api/user/allclasses/${userId}/classes`)
     },
     

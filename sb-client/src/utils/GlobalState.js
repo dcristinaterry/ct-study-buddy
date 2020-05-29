@@ -40,7 +40,12 @@ const reducer = (state, action) => {
         hostedSessions: action.sessions,
         loading: false
       };
-
+      case "setLocations":
+        return{
+          ...state,
+          locations: action.locations,
+          loading: false
+        }
 
     case "LOADING":
       return {
@@ -61,20 +66,12 @@ const StoreProvider = ({ value = [], ...props }) => {
       lastName: "",
       image: ""
     },
-    session: {
-      date: Date(),
-      location: "",
-      host: "",
-      participants: []
-    },
-    userSession: {
-      SessionId: "",
-      UserId: ""
-    },
+    session: {},
     classes: [],
     sessions: [],
     hostedSessions: [],
     participatingSessions: [],
+    locations:[]
     
 
 
