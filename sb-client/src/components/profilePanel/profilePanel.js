@@ -58,11 +58,9 @@ const Profile = props => {
                      </button>
                      </div>
                     <div>
-
                         <button className="btn btn-light mx-auto mb-3 border-dark" variant="primary" onClick={() => setModalShow(true)}>
                            Add New Study Session
                          </button>
-
                         <CreateSession
                             show={modalShow}
                             onHide={() => setModalShow(false)}

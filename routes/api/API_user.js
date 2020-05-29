@@ -6,6 +6,7 @@ const sessionController = require("../../controllers/sessionController");
 const locationController = require("../../controllers/locationController");
 const authenticatedUser = require("../../config/authenticatedUser.js");
 const classController = require("../../controllers/classController");
+const userSessionController = require("../../controllers/userSessionController")
 const passport = require("../../config/passport");
 
 // matches with "/api/user/"
@@ -31,7 +32,7 @@ router
   .route("/info/:id", authenticatedUser)
   .get(userController.findUser)
   .put(userController.update)
-
+  
 // Matches with "/api/class"
 router
   .route("/allclasses/:id/classes")
@@ -69,6 +70,15 @@ router
   .get(sessionController.findAllSessionsOneClasses)
 
 
+// =================UserSessions=API====================
+router
+  .route("/info-session/joinsession")
+  .post(userSessionController.create)
+
+router
+  .route("/info-session/leavesession") 
+  .delete(userSessionController.remove)
+
 // =====================================================
 // =====================LOCATIONS API ==================
 
@@ -79,7 +89,7 @@ router
 
 router
   .route("/location/:sessionid")
-// .get(locationController.findOne)
+  // .get(locationController.findOne)
 
 //   app.put("/api/user", passport.authenticate("local"), function (req, res) {
 //     db.User.findOne({

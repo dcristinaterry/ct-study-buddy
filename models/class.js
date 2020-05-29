@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         class: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: false
         },
         section: {
             type: DataTypes.INTEGER,

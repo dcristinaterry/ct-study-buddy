@@ -14,9 +14,6 @@ let sessiondata = [
     });
 
 
-
-
-
 let sessionUser = [
 
       {SessionId:"24", UserId:"4"},
