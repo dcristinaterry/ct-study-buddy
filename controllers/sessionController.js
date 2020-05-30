@@ -299,8 +299,13 @@ module.exports = {
     },
 
     remove: function (req, res) {
-        db.Session.destroy({ where: { id: req.params.Sessionid } })
-            .then(dbModel => res.json(dbModel))
+        console.log("deleting object")
+        db.Session.destroy({ where: { id: req.params.sessionid } })
+            .then(dbModel => 
+                {
+                    res.json(dbModel)
+                }
+                )
             .catch(err => res.status(422).json(err));
     }
 }

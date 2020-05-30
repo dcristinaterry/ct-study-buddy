@@ -33,7 +33,12 @@ export default {
         console.log("got called create")
         return axios.post(`/api/user/info-session/${userid}/hosting`, session)
     },
-    // ****************** SESSIONS **************************************
+    deleteStudySession : function(sessionId){
+        console.log("got called delete")
+        return axios.delete(`/api/user/info-session/${sessionId}/hosted`)
+    },
+    
+    // ****************** LOCATIONS **************************************
 
     getAllLocations: function () {
         // console.log("calling locations")
