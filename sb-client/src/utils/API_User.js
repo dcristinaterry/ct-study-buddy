@@ -7,7 +7,10 @@ export default {
         console.log("requesting verify")
         return axios.get("/api/user/verifyUser")
     },
-
+    logoutUser: function () {
+        console.log("logout user")
+        return axios.get("/api/user/logout")
+    },    
     // ****************** SESSIONS **************************************
     // Gets ALL Sessions for ALL the Classes
     

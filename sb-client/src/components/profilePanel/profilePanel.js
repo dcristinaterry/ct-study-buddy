@@ -32,6 +32,15 @@ const Profile = props => {
         })
     }
 
+    const Logout = item => {
+        console.log("logout button clicked")
+        API_User.logoutUser(state.currentUser.id).then(logOut => {
+            console.log("logout user", logOut)
+        })
+
+    }
+
+
     return (
         <div className="col-md-12">
             <div className="row">
@@ -64,6 +73,11 @@ const Profile = props => {
                             onHide={() => setModalShow(false)}
                         />
                     </div>
+                    <div>
+                    <button className="btn btn-danger mx-auto mb-3" onClick={() => Logout()}>
+                        Logout
+                     </button>
+                     </div>
                 </div>
             </div>
         </div>
