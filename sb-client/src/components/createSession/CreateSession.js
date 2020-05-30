@@ -9,7 +9,7 @@ import API_User from "../../utils/API_User";
 
 const CreateSession = props => {
 
-    const [state] = useStoreContext();
+    const [state, dispatch] = useStoreContext();
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [sessionForm, setSessionForm] = useState({});
 
@@ -33,6 +33,7 @@ const CreateSession = props => {
 
         API_User.createHostSession(state.currentUser.id, sessionObject).then((createResponse)=>{
             console.log(createResponse)
+            dispatch({type:"LOADING", loading: true})
         })
 
         console.log("submitting form", sessionObject)
