@@ -59,11 +59,12 @@ router
   .route("/info-session/:userid/hosting")
   .get(sessionController.findAllSessionsAsHost)
   .post(sessionController.create)
-  .delete(sessionController.remove)
+ 
 
 router
-  .route("/:sessionid")
+  .route("/info-session/:sessionid/hosted")
   .put(sessionController.update)
+  .delete(sessionController.remove)
 
 router
   .route("/info-session/:classid/class-sessions")
