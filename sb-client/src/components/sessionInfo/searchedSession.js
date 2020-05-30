@@ -15,16 +15,18 @@ function SearchedSessions() {
             UserId: state.currentUser.id
         }
         console.log(useSess)
+
         API_User.joinSession(useSess).then(req => {
             console.log("this is being sent", req)
-            // page refresh needs to happen here
-            window.location.reload(false);
-        })
-    }
+            dispatch({type:"LOADING", loading: true})
+          
+
+        })        
+    } 
+  
 
     // needs useEffect to alter state
-    // needs useEffect to filter out sessions where user is already host or participant
-    console.log(state.sessions)
+    // console.log(state.sessions)
     return (
         <div className="row">
             <div className="col">

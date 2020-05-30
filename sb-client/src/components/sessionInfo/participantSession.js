@@ -1,11 +1,34 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User"
 import "./session.css"
 
 
 function ParticipantSessions() {
-    const [state, dispacher] = useStoreContext()
+    const [state, dispatch] = useStoreContext()
+
+    useEffect(()=>{
+        
+            console.log("got called again participant")
+            console.log("I'm loading participant",  state.loading)
+            // state.loading = false;
+            if(state.loading){
+                dispatch({type:"LOADING", loading: false})
+                API_User.getAllParticipatingSessions(state.currentUser.id).then(resParticipatingSessions => {
+                    console.log("calling API",)
+                
+        
+                    dispatch({
+                        type: "setParticipatingSessions",
+                        sessions: resParticipatingSessions.data
+                    
+                    } )
+         
+                })
+              
+            }
+
+    },[state])
 
     const leaveSession = (item) => {
         console.log("leave session button clicked",item)
@@ -14,7 +37,7 @@ function ParticipantSessions() {
         })        
     } 
 
-    console.log(state.participatingSessions)
+    // console.log(state.participatingSessions)
     // needs useEffect to alter state
     return (
         <div className="row">

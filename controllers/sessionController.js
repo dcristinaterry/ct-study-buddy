@@ -142,10 +142,8 @@ module.exports = {
                     // where:{
                     //     // [Op.gte]: moment().toDate()
                     // },
-                    // need sessions where date is greater than Yesterday 
-                    // && where host is not userid 
-                    // && userid is not in participant session
 
+                  
                     include: {
                         model: db.User, as: 'host',
                         attributes: ["firstName", "lastName", "image"]
@@ -281,6 +279,8 @@ module.exports = {
     },
 
     create: function (req, res) {
+
+        console.log("creating session object", req.body)
         db.Session.create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

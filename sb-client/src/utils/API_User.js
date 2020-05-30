@@ -29,6 +29,10 @@ export default {
         return axios.get(`/api/user/info-session/${userid}/hosting`)
     },
 
+    createHostSession : function(userid,session){
+        console.log("got called create")
+        return axios.post(`/api/user/info-session/${userid}/hosting`, session)
+    },
     // ****************** SESSIONS **************************************
 
     getAllLocations: function () {

@@ -2,34 +2,53 @@ import React, { useState } from "react"
 import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
 import { useStoreContext } from "../../utils/GlobalState"
-import SessionForm from "../createSessionForm/SessionForm.js"
-import Calendar from 'react-calendar'
-
 import "react-datepicker/dist/react-datepicker.css";
+import API_User from "../../utils/API_User";
+
 // import 'react-calendar/dist/Calendar.css';
 
 const CreateSession = props => {
 
-    const [state] = useStoreContext();
-    const [date] = useState(new Date());
-    const [sessionForm, setSessionFrom] = useState({});
+    const [state, dispatch] = useStoreContext();
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [sessionForm, setSessionForm] = useState({});
 
 
     // // funciton create () { 
 
 
     const submitSessionForm = () => {
-        console.log("submitting form")
+         console.log("this date:" , selectedDate.toDateString)
+        let tempdate = selectedDate;
+
+        const sessionObject = {
+            subject: sessionForm.subject,
+            sessionDate: tempdate,
+            maxParticipants: sessionForm.maxParticipants,
+            ClassId: sessionForm.ClassId,
+            LocationId: sessionForm.LocationId,
+            hostId: state.currentUser.id
+
+        }
+
+        API_User.createHostSession(state.currentUser.id, sessionObject).then((createResponse)=>{
+            console.log(createResponse)
+            dispatch({type:"LOADING", loading: true})
+        })
+
+        console.log("submitting form", sessionObject)
         props.onHide();
 
     }
+
+    // const handleDate = date=>{
+    //     setDate(date)
+    //     console.log("setting date date picker", date)
+    // }
     const handleSessionForm = event => {
-        // setDate(date)
-
+        console.log("hey there", event.target.name, event.target.value)
         const { name, value } = event.target;
-        setSessionFrom({ [name]: value })
-
-
+        setSessionForm({ ...sessionForm, [name]: value })
     };
 
     return (
@@ -42,110 +61,107 @@ const CreateSession = props => {
                 </Modal.Header>
                 <Modal.Body>
 
-                <form>
-            <div className="form-row">
+                    <form>
+                        <div className="form-row">
 
-                {/* <SessionDescription somet ={handleSessionForm}/> */}
-                <div className="form-group col-md-8">
-                    <label htmlFor="sessionDescription">Session Description</label>
-                    <div>
-                        <input
-                            className="form-control"
-                            type="text"
-                            placeholder="Midterm prep"
-                            name="sessionDescription"
-                            onChange={handleSessionForm}
+                            {/* <SessionDescription somet ={handleSessionForm}/> */}
+                            <div className="form-group col-md-8">
+                                <label htmlFor="sessionDescription">Session Description</label>
+                                <div>
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Midterm prep"
+                                        name="subject"
+                                        onChange={handleSessionForm}
+                                    />
+                                </div>
 
+                            </div>
+                            <div className="form-group col-md-4">
+                                <label htmlFor="maxParticipants">Max. Number partipants</label>
+                                <select className="custom-select"
+                                    id="maxParticipants"
+                                    name="maxParticipants"
+                                    onChange={handleSessionForm}
+                                >
+                                    <option defaultValue>Choose...</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="7">9</option>
+                                    <option value="8">10</option>
+                                </select>
+                            </div>
 
-                        />
-                    </div>
+                        </div>
 
-                </div>
-                <div className="form-group col-md-4">
-                    <label htmlFor="maxParticipants">Max. Number partipants</label>
-                    <select className="custom-select"
-                        id="maxParticipants"
-                        name="maxParticipants"
-                        onChange={handleSessionForm}
-                    >
-                        <option defaultValue>Choose...</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="7">9</option>
-                        <option value="8">10</option>
-                    </select>
-                </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label htmlFor="classId">Select Class</label>
+                                <select className="custom-select"
+                                    id="classId"
+                                    name="ClassId"
+                                    onChange={handleSessionForm}
+                                >
+                                    <option defaultValue>Choose...</option>
 
-            </div>
+                                    {state.classes.map((item) => (
+                                        <option key={item.ClassId} value={item.ClassId}> {item.Class.subject} {item.Class.class}</option>
 
-            <div className="form-row">
-                <div className="form-group col-md-12">
-                    <label htmlFor="classId">Select Class</label>
-                    <select className="custom-select"
-                        id="maxParticipants"
-                        name="classId"
-                        onChange={handleSessionForm}
-                    >
-                        <option defaultValue>Choose...</option>
+                                    ))}
 
-                        {state.classes.map((item) => (
-                            <option key={item.ClassId} value={item.ClassId}> {item.Class.subject} {item.Class.class}</option>
+                                </select>
+                            </div>
 
-                        ))}
+                        </div>
 
-                    </select>
-                </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-4 ">
+                                <label htmlFor="sessionDatePicker">Session Date</label>
+                                <div>
 
-            </div>
+                                    <DatePicker
+                                        selected={selectedDate}
+                                        onChange={date => setSelectedDate(date)}
+                                        dateFormat="dd/MM/yyyy hh:mm aa"
+                                        showTimeSelect
+                                        minDate={new Date()}
+                                        // dateFormat="Pp"
+                                        id="sessionDatePicker"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group col-md-8">
+                                <label htmlFor="locationId">Select a Location</label>
+                                <select className="custom-select"
+                                    id="locationId"
+                                    name="LocationId"
+                                    onChange={handleSessionForm}
+                                >
+                                    <option defaultValue>Choose...</option>
 
-            <div className="form-row">
-                <div className="form-group col-md-4 ">
-                    <label htmlFor="sessionDatePicker">Session Date</label>
-                    <div>
+                                    {state.locations.map((item) => (
+                                        <option key={item.id} value={item.id}> {item.building}-{item.room} - Max. Occupants: {item.maxOccupancy}</option>
+                                    ))}
 
-                        <DatePicker
-                            defaultValue={date}
-                            onChange={handleSessionForm}
-                            name="date"
-                            dateFormat="dd/MM/yyyy"
-                            showTimeSelect
-                            minDate={new Date()}
-                            dateFormat="Pp"
-                            id="sessionDatePicker"
-                        />
-                    </div>
-                </div>
-                <div className="form-group col-md-8">
-                    <label htmlFor="classId">Select a Location</label>
-                    <select className="custom-select"
-                        id="maxParticipants"
-                        name="classId"
-                        onChange={handleSessionForm}
-                    >
-                        <option defaultValue>Choose...</option>
+                                </select>
+                            </div>
 
-                        {state.locations.map((item) => (
-                            <option key={item.id}> {item.building}-{item.room} - Max. Occupants: {item.maxOccupancy}</option>
-                        ))}
+                        </div>
 
-                    </select>
-                </div>
-
-            </div>
-
-        </form>
+                    </form>
 
                 </Modal.Body>
                 <Modal.Footer>
                     <button onClick={submitSessionForm}>Save</button>
                     <button onClick={props.onHide}>Close</button>
-                 
+
                 </Modal.Footer>
             </Modal>
         </div>
