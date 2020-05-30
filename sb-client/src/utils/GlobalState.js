@@ -11,46 +11,47 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentUser: action.user,
-        loading: false
+        // loading: false
       };
     case "setClasses":
       return {
         ...state,
         classes: action.classes,
-        loading: false
+        // loading: false
       };
     case "setAllSessions":
       // console.log("setting sessions state ", action.sessions)
       return {
         ...state,
         sessions: action.sessions,
-        loading: false
+        // loading: false
       };
     case "setParticipatingSessions":
       // console.log("setting sessions state ", action.sessions)
       return {
         ...state,
         participatingSessions: action.sessions,
-        loading: false
+        // loading: true
       };
     case "setHostedSessions":
       // console.log("setting sessions state ", action.sessions)
       return {
         ...state,
         hostedSessions: action.sessions,
-        loading: false
+        // loading: false
       };
       case "setLocations":
         return{
           ...state,
           locations: action.locations,
-          loading: false
+          // loading: false
         }
 
     case "LOADING":
+      console.log("setting object to true")
       return {
         ...state,
-        loading: true
+        loading: action.loading
       };
 
     default:
@@ -71,7 +72,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     sessions: [],
     hostedSessions: [],
     participatingSessions: [],
-    locations:[]
+    locations:[],
+    loading:false
     
 
 

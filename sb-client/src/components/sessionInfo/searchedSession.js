@@ -2,9 +2,11 @@ import React, { useEffect } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User"
 import "./session.css"
+import ParticipantSessions from "./participantSession"
+import Main from "../mainPanel/mainPanel.js"
 
 function SearchedSessions() {
-    const [state] = useStoreContext()
+    const [state, dispatch] = useStoreContext()
 
     const joinSession = item => {
         console.log("join session button clicked")
@@ -13,13 +15,19 @@ function SearchedSessions() {
             UserId: state.currentUser.id
         }
         console.log(useSess)
+
         API_User.joinSession(useSess).then(req => {
             console.log("this is being sent", req)
+              
+            dispatch({type:"LOADING", loading: true})
+          
+
         })        
     } 
   
+
     // needs useEffect to alter state
-    console.log(state.sessions)
+    // console.log(state.sessions)
     return (
         <div className="row">
             <div className="col">
