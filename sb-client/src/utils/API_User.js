@@ -46,8 +46,8 @@ export default {
         console.log("joining session",sessionId)
         return axios.post(`/api/user/info-session/joinsession`,sessionId)
     },
-    leaveSession: function (sessionId) {
-        console.log("leaving session",sessionId)
-        return axios.delete(`/api/user/info-session/leavesession`,sessionId)
+    leaveSession: function (sessionId,userId) {
+        console.log("leaving session")
+        return axios.delete(`/api/user/info-session/leavesession/${sessionId}/${userId}`)
     },
 }

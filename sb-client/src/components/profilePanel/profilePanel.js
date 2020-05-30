@@ -21,9 +21,7 @@ const Profile = props => {
         })
     }
 
-
     const allClassSessions = () => {
-
         console.log("session button clicked")
         API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
             console.log("get allclass allsessions", sessionResp)

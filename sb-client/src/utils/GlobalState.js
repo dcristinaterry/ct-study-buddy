@@ -40,12 +40,12 @@ const reducer = (state, action) => {
         hostedSessions: action.sessions,
         loading: false
       };
-      case "setLocations":
-        return{
-          ...state,
-          locations: action.locations,
-          loading: false
-        }
+    case "setLocations":
+      return {
+        ...state,
+        locations: action.locations,
+        loading: false
+      };
 
     case "LOADING":
       return {
@@ -71,8 +71,9 @@ const StoreProvider = ({ value = [], ...props }) => {
     sessions: [],
     hostedSessions: [],
     participatingSessions: [],
-    locations:[]
-    
+    locations: [],
+    loading: false
+
 
 
   });

@@ -76,7 +76,7 @@ router
   .post(userSessionController.create)
 
 router
-  .route("/info-session/leavesession") 
+  .route("/info-session/leavesession/:sessionId/:userId") 
   .delete(userSessionController.remove)
 
 // =====================================================

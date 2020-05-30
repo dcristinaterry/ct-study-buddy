@@ -7,9 +7,9 @@ import "./session.css"
 function ParticipantSessions() {
     const [state, dispacher] = useStoreContext()
 
-    const leaveSession = () => {
-        console.log("leave session button clicked")
-        API_User.leaveSession().then(req => {
+    const leaveSession = (item) => {
+        console.log("leave session button clicked",item)
+        API_User.leaveSession(item,state.currentUser.Id).then(req => {
             console.log("this is being sent", req)
         })        
     } 
