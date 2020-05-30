@@ -65,7 +65,13 @@ db.sequelize.sync().then(function () {
     // ===============
  
 
-//     let sessiondata = [
+    // let sessiondata = [
+//   {ClassId: "2",
+// LocationId: "4",
+// hostId: 4,
+// maxParticipants: "3",
+// sessionDate: Fri Jun 05 2020 22:00:00 GMT-0700 (Pacific Daylight Time), {}
+// subject: "asdf"}}
 //       { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34', maxPartipants:3, LocationId:3, ClassId:1, hostId:2},
 //       { subject: 'midterm', sessionDate: '2020-06-04 05:39:34', maxPartipants:3, LocationId:3, ClassId:4, hostId:4},
 //       { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', maxPartipants:3, LocationId:3, ClassId:15, hostId:5},

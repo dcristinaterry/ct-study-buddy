@@ -6,19 +6,19 @@ import SearchedSessions from "../sessionInfo/searchedSession"
 
 function Main() {
     const [state] = useStoreContext()
-    console.log(state.sessions)
+    // console.log(state.sessions)
     return (
         <div className="container" style={ { background: 'url("./Berkeley_campus.jpg") no-repeat center center fixed 0.5' } }>
 
-            <HostSessions>
+            <HostSessions/>
 
-            </HostSessions>
-            <ParticipantSessions>
+      
+            <ParticipantSessions/>
 
-            </ParticipantSessions> 
-            <SearchedSessions>
+    
+            <SearchedSessions/>
 
-            </SearchedSessions>
+      
 
         </div>
     )
