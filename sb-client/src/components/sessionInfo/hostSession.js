@@ -8,8 +8,6 @@ function HostSessions() {
 
     useEffect(() => {
 
-        console.log("got called again participant")
-        console.log("I'm loading participant", state.loading)
         // state.loading = false;
         if (state.loading) {
             dispatch({ type: "LOADING", loading: false })
@@ -24,12 +22,14 @@ function HostSessions() {
 
     }, [state])
 
-    const delSession = item => {
-        console.log("delete session button clicked", item)
-        // API_User.leaveSession(item, state.currentUser.Id).then(req => {
-        //     console.log("this is being sent", req)
-        // })
+    const deleteSession = (sessionId) =>{
+        console.log("deleting now")
+        API_User.deleteStudySession(sessionId).then(deleteResponse =>{
+            dispatch({type:"LOADING", loading: true})
+            console.log(deleteResponse)
+        })
     }
+
     // needs useEffect to alter state
     return (
         <div className="row">
@@ -46,7 +46,7 @@ function HostSessions() {
                                 <br />
                                 Date - {item.sessionDate}
                                 <br />
-                                <p className="text-danger delBtn mx-auto mt-2 mb-1" onClick={() => delSession(item.sessionId)}><i className="fa fa-trash"></i></p>
+                                <p className="text-danger delBtn mx-auto mt-2 mb-1" onClick ={ () => deleteSession(item.sessionId)}><i className="fa fa-trash"></i></p>
 
                             </div>
                         </div>

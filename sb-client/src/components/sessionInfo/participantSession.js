@@ -16,8 +16,6 @@ function ParticipantSessions() {
                 dispatch({type:"LOADING", loading: false})
                 API_User.getAllParticipatingSessions(state.currentUser.id).then(resParticipatingSessions => {
                     console.log("calling API",)
-                
-        
                     dispatch({
                         type: "setParticipatingSessions",
                         sessions: resParticipatingSessions.data
@@ -31,9 +29,11 @@ function ParticipantSessions() {
     },[state])
 
     const leaveSession = (item) => {
-        console.log("leave session button clicked",item)
-        API_User.leaveSession(item,state.currentUser.Id).then(req => {
+        console.log("leave session button clicked",item,state.currentUser.id)
+        API_User.leaveSession(item,state.currentUser.id).then(req => {
             console.log("this is being sent", req)
+            dispatch({type:"LOADING", loading: true})
+            console.log(req)
         })        
     } 
 

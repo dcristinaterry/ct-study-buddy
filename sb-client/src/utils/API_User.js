@@ -36,7 +36,12 @@ export default {
         console.log("got called create")
         return axios.post(`/api/user/info-session/${userid}/hosting`, session)
     },
-    // ****************** SESSIONS **************************************
+    deleteStudySession : function(sessionId){
+        console.log("got called delete")
+        return axios.delete(`/api/user/info-session/${sessionId}/hosted`)
+    },
+    
+    // ****************** LOCATIONS **************************************
 
     getAllLocations: function () {
         // console.log("calling locations")
@@ -54,7 +59,7 @@ export default {
         return axios.post(`/api/user/info-session/joinsession`,sessionId)
     },
     leaveSession: function (sessionId,userId) {
-        console.log("leaving session")
+        console.log("leaving session",{sessionId,userId})
         return axios.delete(`/api/user/info-session/leavesession/${sessionId}/${userId}`)
     },
 }
