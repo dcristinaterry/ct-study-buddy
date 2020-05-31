@@ -164,7 +164,7 @@ module.exports = {
     // find all sessions for all the classes of a user
 
     findAllSessionsAllClasses: function (req, res) {
-        // console.log("got called  to get all sessions all classes")
+        console.log("got called  to get all sessions all classes")
         // console.log("user id", req.params.userid)
         db.UserClass.findAll({
             where: { userId: req.params.userid },
@@ -227,6 +227,7 @@ module.exports = {
 
                             let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm a")
                             // console.log("formatted date", formattedDate)
+                            console.log(sessiontempObj.Location)
                             sessionObject.sessionDate = formattedDate
                             sessionObject.participants = sessiontempObj.UserSessions
                             sessionObject.locationBuilding = sessiontempObj.Location.dataValues.building

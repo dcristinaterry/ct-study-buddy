@@ -7,7 +7,6 @@ import "./session.css"
 function HostSessions() {
     const [state, dispatch] = useStoreContext()
 
-
     useEffect(() => {
 
         // state.loading = false;
@@ -23,8 +22,6 @@ function HostSessions() {
         }
 
     }, [state])
-
-
 
     const deleteSession = (sessionId) =>{
         console.log("deleting now")
@@ -47,7 +44,7 @@ function HostSessions() {
                                 item={item}
                                 cardFunction={deleteSession}
                                 cardImage={""}
-                                buttonName="delete"
+                                buttonName="Delete"
                             />
                         </div>
                         </div>

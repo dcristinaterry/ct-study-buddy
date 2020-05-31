@@ -63,28 +63,26 @@ db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
     // ===============
- 
-
     // let sessiondata = [
-//   {ClassId: "2",
-// LocationId: "4",
-// hostId: 4,
-// maxParticipants: "3",
-// sessionDate: Fri Jun 05 2020 22:00:00 GMT-0700 (Pacific Daylight Time), {}
-// subject: "asdf"}}
-//       { subject: 'bioExam1', sessionDate: '2020-06-27 05:39:34', maxPartipants:3, LocationId:3, ClassId:1, hostId:2},
-//       { subject: 'midterm', sessionDate: '2020-06-04 05:39:34', maxPartipants:3, LocationId:3, ClassId:4, hostId:4},
-//       { subject: 'midterm1', sessionDate: '2020-06-02 05:39:34', maxPartipants:3, LocationId:3, ClassId:15, hostId:5},
-//       { subject: 'midterm1', sessionDate: '2020-06-03 05:39:34', maxPartipants:3, LocationId:3, ClassId:9, hostId:7},
-//       { subject: 'midterm1', sessionDate: '2020-06-05 05:39:34', maxPartipants:3, LocationId:3, ClassId:29, hostId:8}   
-//     ]
-//     sessiondata.forEach(item => {
-//       db.Session.create(item)
-//         .then(() =>
-//           console.log("session table seeded"))
-//         .catch(error => console.log(error));
-//     });
-//     // =============
+    //   { subject: 'Midterm1', sessionDate: '2020-06-04 15:30:34', maxParticipants:10, ClassId:9, hostId:2},
+    //   { subject: 'Midterm2', sessionDate: '2020-06-05 13:30:34', maxParticipants:10, ClassId:1, hostId:15},
+    //   { subject: 'Midterm1', sessionDate: '2020-06-02 17:00:34', maxParticipants:8, ClassId:15, hostId:5},
+    //   { subject: 'Midterm2', sessionDate: '2020-06-03 18:00:34', maxParticipants:10, ClassId:29, hostId:7},
+    //   { subject: 'Midterm3', sessionDate: '2020-06-07 19:00:34', maxParticipants:8, ClassId:13, hostId:17},
+    //   { subject: 'Midterm1', sessionDate: '2020-06-08 20:00:34', maxParticipants:6, ClassId:9, hostId:8},
+    //   { subject: 'Midterm2', sessionDate: '2020-06-10 17:30:34', maxParticipants:10, ClassId:16, hostId:2},
+    //   { subject: 'Midterm1', sessionDate: '2020-06-12 14:00:34', maxParticipants:10, ClassId:27, hostId:9},
+    //   { subject: 'Midterm2', sessionDate: '2020-06-15 15:30:34', maxParticipants:8, ClassId:33, hostId:22},
+    //   { subject: 'Midterm3', sessionDate: '2020-06-17 17:30:34', maxParticipants:6, ClassId:34, hostId:18}    
+    // ]
+    // sessiondata.forEach(item => {
+    //   db.Session.create(item)
+    //     .then(() =>
+    //       console.log("session table seeded"))
+    //     .catch(error => console.log(error));
+    // });
+
+
   })
 })
 

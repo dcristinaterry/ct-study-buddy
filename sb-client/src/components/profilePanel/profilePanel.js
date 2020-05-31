@@ -3,6 +3,7 @@ import { useStoreContext } from "../../utils/GlobalState"
 import Avatar from "../avatar/avatar"
 import API_User from "../../utils/API_User"
 import CreateSession from "../createSession/CreateSession.js"
+import "./profile.css"
 
 const Profile = props => {
     const [state, dispatch] = useStoreContext()
@@ -21,9 +22,7 @@ const Profile = props => {
         })
     }
 
-
     const allClassSessions = () => {
-
         console.log("session button clicked")
         API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
             console.log("get allclass allsessions", sessionResp)
@@ -33,6 +32,15 @@ const Profile = props => {
             })
         })
     }
+
+    const Logout = item => {
+        console.log("logout button clicked")
+        API_User.logoutUser(state.currentUser.id).then(logOut => {
+            console.log("logout user", logOut)
+        })
+
+    }
+
 
     return (
         <div className="col-md-12">
@@ -45,7 +53,7 @@ const Profile = props => {
                 <div className="col-md-12">
                     {state.classes.map((item, index) => (
                         <div key={item.id}>
-                            <button className="btn btn-light mx-auto mb-3 border-dark"
+                            <button className="btn btn-light mx-auto mb-3 border-dark hover"
                                 onClick={() => oneClassSessions(item.ClassId)}
                             >
                                 {item.Class.subject} {item.Class.class}
@@ -53,12 +61,12 @@ const Profile = props => {
                         </div>
                     ))}
                     <div>
-                    <button className="btn btn-light mx-auto mb-3 border-dark" onClick={() => allClassSessions()}>
+                    <button className="btn btn-light mx-auto mb-3 border-dark hover" onClick={() => allClassSessions()}>
                         Sessions
                      </button>
                      </div>
                     <div>
-                        <button className="btn btn-light mx-auto mb-3 border-dark" variant="primary" onClick={() => setModalShow(true)}>
+                        <button className="btn btn-light mx-auto mb-3 border-dark hover" variant="primary" onClick={() => setModalShow(true)}>
                            Add New Study Session
                          </button>
                         <CreateSession
@@ -66,6 +74,11 @@ const Profile = props => {
                             onHide={() => setModalShow(false)}
                         />
                     </div>
+                    <div>
+                    <button className="btn btn-danger mx-auto mb-3" onClick={() => Logout()}>
+                        Logout
+                     </button>
+                     </div>
                 </div>
             </div>
         </div>

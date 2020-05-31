@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User"
-import "./session.css"
 import ParticipantSessions from "./participantSession"
 import Main from "../mainPanel/mainPanel.js"
 import SessionCard from "../sessionCard/SessionCard"

@@ -27,6 +27,13 @@ router
     res.json(req.user)
   })
 
+router
+  .get('/logout', function (req, res) {
+    console.log(req)
+    console.log(res)
+    req.logout();
+    res.sendFile('/');
+});
 // Matches with "/api/user/:id"
 router
   .route("/info/:id", authenticatedUser)

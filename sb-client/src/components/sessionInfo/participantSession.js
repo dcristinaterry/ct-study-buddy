@@ -17,8 +17,6 @@ function ParticipantSessions() {
                 dispatch({type:"LOADING", loading: false})
                 API_User.getAllParticipatingSessions(state.currentUser.id).then(resParticipatingSessions => {
                     console.log("calling API",)
-                
-        
                     dispatch({
                         type: "setParticipatingSessions",
                         sessions: resParticipatingSessions.data
