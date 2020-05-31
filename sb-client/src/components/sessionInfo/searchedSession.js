@@ -11,7 +11,22 @@ function SearchedSessions() {
 
     console.log("this are the sessions I got", state.sessions)
     
-    
+    useEffect(()=>{
+
+        if(state.loading){
+            dispatch({ type: "LOADING", loading: false })
+            API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
+                console.log("get allclass allsessions", sessionResp)
+                dispatch({
+                    type: "setAllSessions",
+                    sessions: sessionResp.data
+                })
+            })
+
+        }
+    }, [state])
+
+
     const joinSession = item => {
         console.log("join session button clicked")
         let useSess = {
