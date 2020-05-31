@@ -83,6 +83,18 @@ module.exports = {
             {
                 model: db.User, as: "host",
                 attributes: ["firstName", "lastName", "image"]
+            },
+            {
+                model: db.UserSession,
+                include: {
+                    model: db.User,
+                    attributes: ["firstName", "lastName", "image"]
+
+                }
+            },
+            {
+                model: db.Location,
+                attributes: ["building", "room"]
             }
             ]
 
@@ -90,14 +102,16 @@ module.exports = {
         ).then(hostsessions => {
 
             let allSessions = []
-            // console.log("alt hosted sessions:  ",hostsessions)
+            console.log("alt hosted sessions:  ",hostsessions)
 
             for (let i = 0; i < hostsessions.length; i++) {
 
-                // console.log(participatingSessions[i].dataValues.Session)
+                console.log(hostsessions[i].dataValues)
                 let sessionInfo = hostsessions[i].dataValues
                 let classInfo = hostsessions[i].dataValues.Class.dataValues
                 let hostInfo = hostsessions[i].dataValues.host.dataValues
+                let locationInfo = hostsessions[i].dataValues.Location.dataValues
+                let participants = hostsessions[i].dataValues.UserSessions
 
                 // console.log("session Info:  ", sessionInfo);
                 // console.log("classInfo", classInfo)
@@ -111,11 +125,13 @@ module.exports = {
                 sessionObject.classId = sessionInfo.ClassId
                 sessionObject.className = classInfo.subject + " " + classInfo.class
                 sessionObject.sessionSubject = sessionInfo.subject
-                let formattedDate = moment(sessionInfo.sessionDate).format("M-D-YY hh:mm")
-                console.log("formatted date", formattedDate)
+                let formattedDate = moment(sessionInfo.sessionDate).format("M-D-YY hh:mm a")
+                // console.log("formatted date", formattedDate)
                 sessionObject.sessionDate = formattedDate
-
-                //     // console.log("created object", sessionObject)
+                sessionObject.participants = participants
+                sessionObject.locationBuilding = locationInfo.building
+                sessionObject.locationRoom =locationInfo.room
+                // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
             }
 
@@ -156,7 +172,7 @@ module.exports = {
                     },
                     {
                         model: db.Location,
-                        attributes:["building", "room"]
+                        attributes: ["building", "room"]
                     }
                     ]
                 }
@@ -191,12 +207,13 @@ module.exports = {
                             sessionObject.classId = findAllSR[i].Class.dataValues.id
                             sessionObject.className = findAllSR[i].Class.dataValues.subject + " " + findAllSR[i].Class.dataValues.class
                             sessionObject.sessionSubject = tempSessions[j].dataValues.subject
-                            sessionObject.locationBuilding =sessiontempObj.Location.dataValues.building 
-                            sessionObject.locationRoom=sessiontempObj.Location.dataValues.room 
+
                             let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm a")
                             // console.log("formatted date", formattedDate)
                             sessionObject.sessionDate = formattedDate
                             sessionObject.participants = sessiontempObj.UserSessions
+                            sessionObject.locationBuilding = sessiontempObj.Location.dataValues.building
+                            sessionObject.locationRoom = sessiontempObj.Location.dataValues.room
                             //  console.log("created object", sessionObject)
 
                             allSessions.push(sessionObject)
