@@ -30,10 +30,16 @@ function ParticipantSessions() {
 
     },[state])
 
-    const leaveSession = () => {
-        console.log("leave session button clicked")
-        API_User.leaveSession().then(req => {
-            console.log("this is being sent", req)
+    const leaveSession = (session) => {
+        console.log("leave session button clicked", session)
+        const sessionObj = {
+            session:session, 
+            user:state.currentUser.id
+        
+        }
+        API_User.leaveSession(sessionObj).then(response => {
+            console.log("this is being sent", response)
+            dispatch({type:"LOADING", loading: true})
         })        
     } 
 

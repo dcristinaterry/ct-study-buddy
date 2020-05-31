@@ -62,14 +62,14 @@ module.exports = {
             res.json(allSessions)
 
         })
-         .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err));
     },
 
     //========================================================================
     // find all sessions where the user is a HOST
 
     findAllSessionsAsHost: function (req, res) {
-        
+
         db.Session.findAll({
             where: {
                 hostId: req.params.userid
@@ -142,12 +142,23 @@ module.exports = {
                     // where:{
                     //     // [Op.gte]: moment().toDate()
                     // },
-
-                  
-                    include: {
+                    include: [{
                         model: db.User, as: 'host',
                         attributes: ["firstName", "lastName", "image"]
+                    },
+                    {
+                        model: db.UserSession,
+                        include: {
+                            model: db.User,
+                            attributes: ["firstName", "lastName", "image"]
+
+                        }
+                    },
+                    {
+                        model: db.Location,
+                        attributes:["building", "room"]
                     }
+                    ]
                 }
             }
         })
@@ -168,7 +179,7 @@ module.exports = {
                     if (findAllSR[i].Class.Sessions.length > 0) {
                         // console.log("Greather than 0")
                         tempSessions = [...findAllSR[i].Class.Sessions]
-                        // console.log(tempSessions)
+                        //  console.log(tempSessions)
                         for (let j = 0; j < tempSessions.length; j++) {
 
                             sessiontempObj = tempSessions[j].dataValues
@@ -180,11 +191,13 @@ module.exports = {
                             sessionObject.classId = findAllSR[i].Class.dataValues.id
                             sessionObject.className = findAllSR[i].Class.dataValues.subject + " " + findAllSR[i].Class.dataValues.class
                             sessionObject.sessionSubject = tempSessions[j].dataValues.subject
-                            let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm")
-                            console.log("formatted date", formattedDate)
+                            sessionObject.locationBuilding =sessiontempObj.Location.dataValues.building 
+                            sessionObject.locationRoom=sessiontempObj.Location.dataValues.room 
+                            let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm a")
+                            // console.log("formatted date", formattedDate)
                             sessionObject.sessionDate = formattedDate
-
-                            // console.log("created object", sessionObject)
+                            sessionObject.participants = sessiontempObj.UserSessions
+                            //  console.log("created object", sessionObject)
 
                             allSessions.push(sessionObject)
 
@@ -210,7 +223,7 @@ module.exports = {
         db.Session.findAll({
             where: {
                 classId: req.params.classid,
-                
+
             },
             include: [
                 {
@@ -250,7 +263,7 @@ module.exports = {
                         let formattedDate = moment(sessiontempObj.sessionDate).format("M-D-YY hh:mm")
                         console.log("formatted date", formattedDate)
                         sessionObject.sessionDate = formattedDate
-                        
+
 
                         //  console.log("created object", sessionObject)
 
@@ -265,13 +278,13 @@ module.exports = {
 
     //========================================================================
     // find one session
- // Id: req.params.sessionid,
+    // Id: req.params.sessionid,
 
     findOneSessionForUser: function (req, res) {
         db.Session.findById({
             where: {
                 userId: req.params.userid,
-               
+
             }
         })
             .then(dbModel => res.json(dbModel))
@@ -301,11 +314,10 @@ module.exports = {
     remove: function (req, res) {
         console.log("deleting object")
         db.Session.destroy({ where: { id: req.params.sessionid } })
-            .then(dbModel => 
-                {
-                    res.json(dbModel)
-                }
-                )
+            .then(dbModel => {
+                res.json(dbModel)
+            }
+            )
             .catch(err => res.status(422).json(err));
     }
 }
