@@ -4,6 +4,13 @@ import ModalParticipants from "../modalParticipants/ModalParticipants.js"
 const SessionCard = props => {
     const [modalParticipantsShow, setModalParticipantsShow] = useState(false);
 
+
+    const check= ()=>{
+        if(props.item.participants.lentght >0){
+            setModalParticipantsShow(true)
+        }
+    }
+
     return (
         <div className="card text-center float-left py-2 mb-3 mr-3 sessCard">
             <img className="mx-auto imgMain" src="" alt="universiytLogo" />
@@ -20,7 +27,7 @@ const SessionCard = props => {
                 <p>Location: {props.item.location} </p>
                 <div>
                     <p>Num. Attendees: {props.item.participants.length}</p>
-                    <button onClick={()=>setModalParticipantsShow(true)}>See All</button>
+                    {/* <button onClick={()=>check()}>See All</button> */}
                     <ModalParticipants
                         participants = {props.item.participants}
                         show={modalParticipantsShow}

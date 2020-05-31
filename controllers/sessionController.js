@@ -267,6 +267,18 @@ module.exports = {
                 {
                     model: db.Class,
                     attributes: ["subject", "class"]
+                },
+                {
+                    model: db.UserSession,
+                    include: {
+                        model: db.User,
+                        attributes: ["firstName", "lastName", "image"]
+    
+                    }
+                },
+                {
+                    model: db.Location,
+                    attributes: ["building", "room"]
                 }
             ]
 
@@ -275,17 +287,18 @@ module.exports = {
 
                 let allSessions = []
 
-                //  console.log("printing 1", findAllSR)
+   
                 for (let i = 0; i < sessionsClass.length; i++) {
 
 
-                    //    console.log("printing 1", sessionsClass[i])
+                   
                     // let tempSessions = sessionsClass[i].dataValues;
 
 
                     if (sessionsClass.length > 0) {
                         // console.log("Greather than 0")
                         sessiontempObj = sessionsClass[i].dataValues
+                        console.log("sessions one class",sessiontempObj)
                         const sessionObject = {}
                         sessionObject.sessionId = sessiontempObj.id
                         sessionObject.hostid = sessiontempObj.hostId
@@ -294,11 +307,14 @@ module.exports = {
                         sessionObject.classId = sessiontempObj.ClassId
                         sessionObject.className = sessiontempObj.Class.dataValues.subject + " " + sessionsClass[i].Class.dataValues.class
                         sessionObject.sessionSubject = sessiontempObj.subject
-                        let formattedDate = moment(sessiontempObj.sessionDate).format("M-D-YY hh:mm")
-                        console.log("formatted date", formattedDate)
+                        let formattedDate = moment(sessiontempObj.sessionDate).format("M-D-YY hh:mm a")
+                        // console.log("formatted date", formattedDate)
                         sessionObject.sessionDate = formattedDate
+                        sessionObject.participants = sessiontempObj.UserSessions
+                        sessionObject.locationBuilding = sessiontempObj.Location.building
+                        sessionObject.locationRoom =sessiontempObj.Location.room
 
-
+                    
                         //  console.log("created object", sessionObject)
 
                         allSessions.push(sessionObject)
