@@ -2,4 +2,5 @@ img{
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgb(97, 95, 95), 0 2px 4px rgb(97, 95, 95)
 }
