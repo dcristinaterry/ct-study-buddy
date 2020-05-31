@@ -50,13 +50,19 @@ export default {
     },
     
 
-    // ****************** USERSESSIONS **********************************
+    // ****************** PARTICIPANT **********************************
     joinSession: function (sessionId) {
         console.log("joining session",sessionId)
         return axios.post(`/api/user/info-session/joinsession`,sessionId)
     },
-    leaveSession: function (sessionId) {
-        console.log("leaving session",sessionId)
-        return axios.delete(`/api/user/info-session/leavesession`,sessionId)
+
+
+    leaveSession: function (session) {
+        console.log("leaving session",session)
+        return axios.delete(`/api/user/participant/${session.session}/${session.user}/leavesession`)
     },
+
+    removeParticipant(session){
+        return axios.delete(`/api/user/info-session/leavesession`,session)
+    }
 }
