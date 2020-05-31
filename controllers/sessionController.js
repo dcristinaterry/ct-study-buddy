@@ -24,6 +24,18 @@ module.exports = {
                     model: db.User, as: "host",
                     attributes: ["firstName", "lastName", "image"]
                 },
+                {
+                    model: db.UserSession,
+                    include: {
+                        model: db.User,
+                        attributes: ["firstName", "lastName", "image"]
+    
+                    }
+                },
+                {
+                    model: db.Location,
+                    attributes: ["building", "room"]
+                }
                 ]
             }
         }
@@ -39,6 +51,8 @@ module.exports = {
                 let sessionInfo = participatingSessions[i].dataValues.Session.dataValues
                 let classInfo = participatingSessions[i].dataValues.Session.Class.dataValues
                 let hostInfo = participatingSessions[i].dataValues.Session.host.dataValues
+                let locationInfo = participatingSessions[i].dataValues.Session.Location.dataValues
+                let participants = participatingSessions[i].dataValues.Session.UserSessions
 
                 // console.log("session Info:  ", sessionInfo);
                 // console.log("classInfo", classInfo)
@@ -52,9 +66,12 @@ module.exports = {
                 sessionObject.classId = sessionInfo.ClassId
                 sessionObject.className = classInfo.subject + " " + classInfo.class
                 sessionObject.sessionSubject = sessionInfo.subject
-                let formattedDate = moment(sessionInfo.sessionDate).format("M-D-YY hh:mm")
-                console.log("formatted date", formattedDate)
+                let formattedDate = moment(sessionInfo.sessionDate).format("M-D-YY hh:mm a")
+                // console.log("formatted date", formattedDate)
                 sessionObject.sessionDate = formattedDate
+                sessionObject.participants = participants
+                sessionObject.locationBuilding = locationInfo.building
+                sessionObject.locationRoom =locationInfo.room
 
                 // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
