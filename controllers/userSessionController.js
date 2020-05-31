@@ -12,8 +12,8 @@ module.exports = {
     },
     remove: function (req, res) {
         console.log("destroy route for userSession hit")
-        console.log(req.params)
-        db.UserSession.destroy({ where: { SessionId: req.params.sessionId, UserId: req.params.userId } })
+        console.log(req.params.session, req.params.user)
+        db.UserSession.destroy({ where: { SessionId: req.params.session, UserId: req.params.user } })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     }

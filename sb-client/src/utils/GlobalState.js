@@ -53,6 +53,12 @@ const reducer = (state, action) => {
         ...state,
         loading: action.loading
       };
+      case "LOADING-Participants":
+        console.log("setting object to true")
+        return {
+          ...state,
+          loading: action.loading
+        };
 
     default:
       return state;
@@ -73,7 +79,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     hostedSessions: [],
     participatingSessions: [],
     locations:[],
-    loading:false
+    loading:false,
+    loadingParticipants:false
     
 
 

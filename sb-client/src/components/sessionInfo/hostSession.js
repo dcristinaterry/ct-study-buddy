@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User"
+import SessionCard from "../sessionCard/SessionCard"
 import "./session.css"
 
 function HostSessions() {
@@ -38,17 +39,14 @@ function HostSessions() {
                     <h3>Hosted Sessions</h3>
                     {state.hostedSessions.map((item, index) => (
                         <div key={item.sessionId}>
-                            <div className="card text-center float-left py-2 mb-3 mr-3 sessCard">
-
-                                Topic - {item.sessionSubject}
-                                <br />
-                                Class - {item.className}
-                                <br />
-                                Date - {item.sessionDate}
-                                <br />
-                                <p className="text-danger delBtn mx-auto mt-2 mb-1" onClick ={ () => deleteSession(item.sessionId)}><i className="fa fa-trash"></i></p>
-
-                            </div>
+                            <div key={index}>
+                            <SessionCard
+                                item={item}
+                                cardFunction={deleteSession}
+                                cardImage={""}
+                                buttonName="Delete"
+                            />
+                        </div>
                         </div>
                     ))}
                 </div>
