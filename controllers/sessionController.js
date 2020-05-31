@@ -119,7 +119,7 @@ module.exports = {
         ).then(hostsessions => {
 
             let allSessions = []
-            console.log("alt hosted sessions:  ",hostsessions)
+            // console.log("alt hosted sessions:  ",hostsessions)
 
             for (let i = 0; i < hostsessions.length; i++) {
 
@@ -164,8 +164,8 @@ module.exports = {
     // find all sessions for all the classes of a user
 
     findAllSessionsAllClasses: function (req, res) {
-        console.log("got called  to get all sessions all classes")
-        console.log("user id", req.params.userid)
+        // console.log("got called  to get all sessions all classes")
+        // console.log("user id", req.params.userid)
         db.UserClass.findAll({
             where: { userId: req.params.userid },
             include: {
@@ -251,13 +251,13 @@ module.exports = {
 
     findAllSessionsOneClasses: function (req, res) {
 
-
+       
         // {$and: [filters["State"], {$not: this.filterSBM()}] };
         // [Op.gte]: moment().toDate()
         db.Session.findAll({
             where: {
                 classId: req.params.classid,
-
+                hostId: {[Op.not]:req.user.id}
             },
             include: [
                 {
@@ -270,6 +270,9 @@ module.exports = {
                 },
                 {
                     model: db.UserSession,
+                    // where:{
+                    //     UserId: {[Op.not]:req.user.id}
+                    // },
                     include: {
                         model: db.User,
                         attributes: ["firstName", "lastName", "image"]
@@ -298,7 +301,7 @@ module.exports = {
                     if (sessionsClass.length > 0) {
                         // console.log("Greather than 0")
                         sessiontempObj = sessionsClass[i].dataValues
-                        console.log("sessions one class",sessiontempObj)
+                        // console.log("sessions one class",sessiontempObj)
                         const sessionObject = {}
                         sessionObject.sessionId = sessiontempObj.id
                         sessionObject.hostid = sessiontempObj.hostId

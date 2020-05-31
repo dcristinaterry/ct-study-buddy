@@ -6,7 +6,9 @@ const SessionCard = props => {
 
 
     const check= ()=>{
-        if(props.item.participants.lentght >0){
+        console.log("got clicked",props.item.participants.length )
+        if(props.item.participants.lentgth >0){
+            console.log("got clicked")
             setModalParticipantsShow(true)
         }
     }
@@ -27,7 +29,7 @@ const SessionCard = props => {
                 <p>Location: {props.item.location} </p>
                 <div>
                     <p>Num. Attendees: {props.item.participants.length}</p>
-                    {/* <button onClick={()=>check()}>See All</button> */}
+                    <button onClick={()=> setModalParticipantsShow(true)}>See All</button>
                     <ModalParticipants
                         participants = {props.item.participants}
                         show={modalParticipantsShow}
