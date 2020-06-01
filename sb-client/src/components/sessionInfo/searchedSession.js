@@ -21,7 +21,6 @@ function SearchedSessions() {
                     sessions: sessionResp.data
                 })
             })
-
         }
     }, [state])
 
