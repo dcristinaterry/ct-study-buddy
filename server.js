@@ -82,6 +82,22 @@ db.sequelize.sync().then(function () {
     //     .catch(error => console.log(error));
     // });
   //  let userclass = [ 
+  //   {role:"student", ClassId:1, UserId:8},
+  //   {role:"student", ClassId:9, UserId:8},
+  //   {role:"student", ClassId:15, UserId:8},
+  //   {role:"student", ClassId:29, UserId:8},
+  //   {role:"student", ClassId:1, UserId:11},
+  //   {role:"student", ClassId:9, UserId:11},
+  //   {role:"student", ClassId:14, UserId:11},
+  //   {role:"student", ClassId:29, UserId:11},
+  //   {role:"student", ClassId:1, UserId:15},
+  //   {role:"student", ClassId:29, UserId:15},
+  //   {role:"student", ClassId:42, UserId:15},
+  //   {role:"student", ClassId:74, UserId:15},
+  //   {role:"student", ClassId:9, UserId:20},
+  //   {role:"student", ClassId:14, UserId:20},
+  //   {role:"student", ClassId:29, UserId:20},
+  //   {role:"student", ClassId:33, UserId:20}
   //   {role:"student", ClassId:1, UserId:12},
   //   {role:"student", ClassId:9, UserId:12},
   //   {role:"student", ClassId:14, UserId:12},
