@@ -125,7 +125,6 @@ const CreateSession = props => {
                             <div className="form-group col-md-4 ">
                                 <label htmlFor="sessionDatePicker">Session Date</label>
                                 <div>
-
                                     <DatePicker
                                         selected={selectedDate}
                                         onChange={date => setSelectedDate(date)}
@@ -159,8 +158,8 @@ const CreateSession = props => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={submitSessionForm}>Save</button>
-                    <button onClick={props.onHide}>Close</button>
+                    <button className="btn btn-light btnShadow mx-auto mb-3 border-dark hover" onClick={submitSessionForm}>Save</button>
+                    <button className="btn btn-danger btnShadow mx-auto mb-3 border-dark" onClick={props.onHide}>Close</button>
 
                 </Modal.Footer>
             </Modal>

@@ -3,7 +3,7 @@
 
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
-// const sessionController = require("../../controllers/sessionController");
+const sessionController = require("../../controllers/sessionController");
 const locationController = require("../../controllers/locationController");
 const classController = require("../../controllers/classController");
 const authenticatedAdmin = require("../../config/authenticatedAdmin")
@@ -42,5 +42,11 @@ router
   // .get(locationController.findLocation)
   .put(locationController.update)
   .delete(locationController.remove)
+
+// =======================================================================
+// find all sessions for an administrator
+router
+  .route("/allsession")
+  .get(sessionController.findAllSessionsAdmin)
 
 module.exports = router;

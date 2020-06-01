@@ -3,19 +3,16 @@ import Modal from 'react-bootstrap/Modal'
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User"
 
-
-
 const ModalParticipants = props => {
 
     const [state, dispatch] = useStoreContext()
-
 
     useEffect(() => {
         if (state.loadingParticpants) {
             dispatch({ type: "LOADING-Participants", loading: false })
         }
-    },[state])
-    
+    }, [state])
+
     const removeParticipant = (sessionId, userId, index) => {
         // remove that item from the array and reload component
         props.participants.splice(index, 1);
@@ -23,8 +20,6 @@ const ModalParticipants = props => {
             dispatch({ type: "LOADING-Participants", loading: true })
         )
     }
-
-
     return (
 
         <div>
@@ -32,28 +27,22 @@ const ModalParticipants = props => {
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         PARTICIPANTS
-        </Modal.Title>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
                     {props.participants.map((item, index) => (
                         <div key={index}>
-                            <a onClick={() => removeParticipant(item.SessionId, item.UserId, index)}>X</a>
                             <img className="mx-auto imgMain" src={item.User.image} alt={item.User.firstName} />
+                            <a onClick={() => removeParticipant(item.SessionId, item.UserId, index)}> X </a>
                             <p>{item.User.firstName}  {item.User.lastName}</p>
 
                         </div>
-
-
                     ))
                     }
-
-
                 </Modal.Body>
                 <Modal.Footer>
-
-                    <button onClick={props.onHide}>Close</button>
-
+                    <button className="btn btn-danger btnShadow px-1" onClick={props.onHide}>Close</button>
                 </Modal.Footer>
             </Modal>
         </div>

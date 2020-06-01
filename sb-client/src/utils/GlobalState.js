@@ -1,6 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-
 const StoreContext = createContext();
 const { Provider } = StoreContext;
 
@@ -19,6 +18,12 @@ const reducer = (state, action) => {
         classes: action.classes,
         // loading: false
       };
+    case "setUsers":
+      console.log("set users: ",action)
+      return {
+        ...state,
+        users: action.users,
+      }
     case "setAllSessions":
       // console.log("setting sessions state ", action.sessions)
       return {
@@ -45,7 +50,7 @@ const reducer = (state, action) => {
           ...state,
           locations: action.locations,
           // loading: false
-        }
+      }
 
     case "LOADING":
       console.log("setting object to true")
@@ -73,6 +78,7 @@ const StoreProvider = ({ value = [], ...props }) => {
       lastName: "",
       image: ""
     },
+    users:[],
     session: {},
     classes: [],
     sessions: [],

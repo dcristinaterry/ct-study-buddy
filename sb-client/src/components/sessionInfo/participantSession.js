@@ -55,7 +55,7 @@ function ParticipantSessions() {
                             item={item}
                             cardFunction={leaveSession}
                             cardImage={""}
-                            buttonName="leave"
+                            buttonName="Leave"
                         />
                     </div>
                     ))}

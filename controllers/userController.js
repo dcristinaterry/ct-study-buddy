@@ -28,6 +28,12 @@ module.exports = {
         }).then(dbModelUser => res.json(dbModelUser))
             .catch(err => res.status(422).json(err));
     },
+    findAllUsers: function (req,res) {
+        console.log("finding users",req)
+        db.User.findAll({})
+            .then(dbModelUser = res.json(dbModelUser))
+            .catch(err => res.status(422).json(err));
+    },
     // find all users for a class
     findAllClassForUser: function (req, res) {
         db.UserClass.findAll({
