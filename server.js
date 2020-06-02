@@ -53,12 +53,12 @@ app.use(routes);
 
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "development") {
-//   app.use(express.static("client/build"));
+//   app.use(express.static("sb-client/build"));
 // }
 // Add routes, both API and view
-app.use(express.static('./sb-client/public'));
+// app.use(express.static('sb-client/public'));
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static('./sb-client/build'))
+  app.use(express.static('sb-client/build'))
   }
 
 
