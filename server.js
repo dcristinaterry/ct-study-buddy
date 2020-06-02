@@ -47,9 +47,9 @@ app.use(cookieParser());
 app.use(routes);
 
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "development") {
-//   app.use(express.static("sb-client/build"));
-// }
+if (process.env.NODE_ENV === "development") {
+  app.use(express.static("sb-client/public"));
+  }
 // Add routes, both API and view
 // app.use(express.static('sb-client/public'));
 if (process.env.NODE_ENV === "production") {
