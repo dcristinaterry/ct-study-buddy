@@ -6,7 +6,7 @@ import SearchedSessions from "../sessionInfo/searchedSession"
 import ViewUsers from "../viewUsers/ViewUsers"
 
 function Main() {
-    // const [state] = useStoreContext()
+    const [state] = useStoreContext()
     // console.log(state.sessions)
    
     return (

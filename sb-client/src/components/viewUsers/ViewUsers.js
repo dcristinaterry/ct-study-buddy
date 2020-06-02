@@ -1,9 +1,9 @@
 import React, { useEffect } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
-// import API_User from "../../utils/API_User"
+import API_User from "../../utils/API_User"
 
 function DisplayUsers() {
-    // const [state, dispatch] = useStoreContext()
+    const [state, dispatch] = useStoreContext()
 
     // needs useEffect to alter state
     // console.log(state.sessions)
