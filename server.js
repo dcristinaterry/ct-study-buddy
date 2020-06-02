@@ -43,11 +43,6 @@ app.use(session({
 }));
 
 app.use(cookieParser());
-// app.use(express.bodyParser());
-// app.use(cors({origin:[url], credentials: true}))
-// app.use(session({ secret: "buddy", resave: true, saveUninitialized: true , cookie:{maxAge:7200000}}));
-// app.use(session({ secret: 'buddy' }));
-
 
 app.use(routes);
 
