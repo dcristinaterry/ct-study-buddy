@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User.js"
-import Profile from "../../components/profilePanel/profilePanel"
+import Admin from "../../components/adminProfile/adminProfile"
 import Jumbotron from "../../components/jumbotron/jumbotron"
-import Main from "../../components/mainPanel/mainPanel"
+import Main from "../../components/adminMain/adminMain"
 
 
 const AdminDashboard = props => {
@@ -30,6 +30,13 @@ const AdminDashboard = props => {
 
                 dispatch({ type: "setUser", user: userObj })
                 // console.log(response)
+
+                API_User.getAllUsers().then(usersres => {
+                    dispatch({
+                        type: "setUsers",
+                        users: usersres.data
+                    })
+                })
 
                 API_User.getAllClasses(response.data.id).then(classres => {
                     // console.log("coming from userdashboard - ", classres)
@@ -63,9 +70,6 @@ const AdminDashboard = props => {
                 })
 
             });
-
-           
-
         }
 
 
@@ -81,7 +85,7 @@ const AdminDashboard = props => {
             </div>
             <div className="row">
                 <div className="col-md-3 pt-5 px-5 text-center border-top border-right border-dark">
-                    <Profile classid={state.classid} />
+                    <Admin />
                 </div>
              <div className="col-md-9 pt-5 border-top border-dark">
                 <Main />

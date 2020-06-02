@@ -61,7 +61,7 @@ module.exports = {
                 const sessionObject = {}
                 sessionObject.sessionId = sessionInfo.id
                 sessionObject.hostid = sessionInfo.hostId
-                sessionObject.hostImage = hostInfo.image
+                sessionObject.userImage = hostInfo.image
                 sessionObject.hostName = hostInfo.firstName + " " + hostInfo.lastName
                 sessionObject.classId = sessionInfo.ClassId
                 sessionObject.className = classInfo.subject + " " + classInfo.class
@@ -96,7 +96,6 @@ module.exports = {
                 model: db.Class,
                 attributes: ["subject", "class"]
             },
-
             {
                 model: db.User, as: "host",
                 attributes: ["firstName", "lastName", "image"]
@@ -106,15 +105,12 @@ module.exports = {
                 include: {
                     model: db.User,
                     attributes: ["firstName", "lastName", "image"]
-
                 }
             },
             {
                 model: db.Location,
                 attributes: ["building", "room"]
-            }
-            ]
-
+            }]
         }
         ).then(hostsessions => {
 
@@ -137,7 +133,7 @@ module.exports = {
                 const sessionObject = {}
                 sessionObject.sessionId = sessionInfo.id
                 sessionObject.hostid = sessionInfo.hostId
-                sessionObject.hostImage = hostInfo.image
+                sessionObject.userImage = hostInfo.image
                 sessionObject.hostName = hostInfo.firstName + " " + hostInfo.lastName
                 sessionObject.classId = sessionInfo.ClassId
                 sessionObject.className = classInfo.subject + " " + classInfo.class
@@ -151,10 +147,8 @@ module.exports = {
                 // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
             }
-
             // console.log(allSessions)
             res.json(allSessions)
-
         })
             .catch(err => res.status(422).json(err));
     },
@@ -164,7 +158,7 @@ module.exports = {
     // find all sessions for all the classes of a user
 
     findAllSessionsAllClasses: function (req, res) {
-        console.log("got called  to get all sessions all classes")
+        console.log("got called to get all sessions all classes")
         // console.log("user id", req.params.userid)
         db.UserClass.findAll({
             where: { userId: req.params.userid },
@@ -196,25 +190,18 @@ module.exports = {
             }
         })
             .then(findAllSR => {
-
-
                 let allSessions = []
-
                 // console.log("printing 1", findAllSR)
                 for (let i = 0; i < findAllSR.length; i++) {
                     // obj.classId= findAllSR[i].id;
-
                     //  console.log("printing 1", findAllSR[i].Class.dataValues)
                     let tempSessions = [...[]];
-
                     // console.log("length sessions: ", findAllSR[i].Class.Sessions.length )
-
                     if (findAllSR[i].Class.Sessions.length > 0) {
                         // console.log("Greather than 0")
                         tempSessions = [...findAllSR[i].Class.Sessions]
                         //  console.log(tempSessions)
                         for (let j = 0; j < tempSessions.length; j++) {
-
                             sessiontempObj = tempSessions[j].dataValues
                             const sessionObject = {}
                             sessionObject.sessionId = sessiontempObj.id
@@ -235,9 +222,7 @@ module.exports = {
                             //  console.log("created object", sessionObject)
 
                             allSessions.push(sessionObject)
-
                         }
-
                     }
                 }
                 // console.log(allSessions)
@@ -344,7 +329,14 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    // =======================================================================
+    // find all sessions for an administrator
 
+    findAllSessionsAdmin: function (req,res) {
+        db.Session.findAll({})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     create: function (req, res) {
 
         console.log("creating session object", req.body)

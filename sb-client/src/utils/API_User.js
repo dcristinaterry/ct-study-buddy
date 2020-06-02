@@ -51,7 +51,14 @@ export default {
         // console.log("get all classes for a user")
         return axios.get(`/api/user/allclasses/${userId}/classes`)
     },
-    
+    getAllSessions: function() {
+        console.log("get all sessions")
+        return axios.get("/api/user/allsessions")
+    },
+    getAllUsers: function () {
+        console.log("get all users")
+        return axios.get("/api/user/allusers")   
+    },
 
     // ****************** PARTICIPANT **********************************
     joinSession: function (sessionId) {

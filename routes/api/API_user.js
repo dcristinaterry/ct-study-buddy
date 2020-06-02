@@ -99,6 +99,18 @@ router
   .route("/location/:sessionid")
   // .get(locationController.findOne)
 
+// =======================================================================
+// find all users for an administrator
+router
+  .route("/allusers")
+  .get(userController.findAllUsers)
+
+// =======================================================================
+// find all sessions for an administrator
+router
+  .route("/allsession")
+  .get(sessionController.findAllSessionsAdmin)
+
 //   app.put("/api/user", passport.authenticate("local"), function (req, res) {
 //     db.User.findOne({
 //         where: {
