@@ -9,16 +9,10 @@ import Main from "../../components/mainPanel/mainPanel"
 const UserDashboard = props => {
     const [state, dispatch] = useStoreContext();
     const [mounted, setMounted] = useState(true);
-    // const [sessions, setSession] = useState();
-    // const [loading, setLoading] = useState(true);
-
     useEffect(() => {
 
         if (mounted) {
             setMounted(false);
-
-            console.log("Mounting")
-
             API_User.verifyUser().then(function (response) {
                 let userObj = {
                     id: response.data.id,
@@ -26,12 +20,8 @@ const UserDashboard = props => {
                     lastName: response.data.lastName,
                     image: response.data.image
                 }
-
                 dispatch({ type: "setUser", user: userObj })
-                // console.log(response)
-
                 API_User.getAllClasses(response.data.id).then(classres => {
-                    // console.log("coming from userdashboard - ", classres)
                     dispatch({
                         type: "setClasses",
                         classes: classres.data
@@ -43,18 +33,13 @@ const UserDashboard = props => {
                         sessions: resHostedSessions.data
                     })
                 })
-
                 API_User.getAllParticipatingSessions(response.data.id).then(resParticipatingSessions => {
-                    // console.log("getting participating sessions")
                     dispatch({
                         type: "setParticipatingSessions",
                         sessions: resParticipatingSessions.data
                     })
                 })
                 API_User.getAllLocations().then(qresponse => {
-
-                    // console.log(qresponse)
-
                     dispatch({
                         type: "setLocations",
                         locations: qresponse.data
@@ -62,15 +47,8 @@ const UserDashboard = props => {
                 })
 
             });
-
-           
-
         }
-
-
     }, [mounted, state, dispatch])
-   
-   
     console.log(state)
 
     return (

@@ -3,6 +3,7 @@ import ModalParticipants from "../modalParticipants/ModalParticipants.js"
 import "./session.css"
 
 const SessionCard = props => {
+    
     const [modalParticipantsShow, setModalParticipantsShow] = useState(false);
     console.log(props.item)
 
@@ -13,6 +14,9 @@ const SessionCard = props => {
             setModalParticipantsShow(true)
         }
     }
+
+
+
 
     return (
         <div className="card text-center float-left mb-3 mr-3 sessCard">
@@ -43,7 +47,18 @@ const SessionCard = props => {
 
 
             <div className="card-footer text-muted px-1 py-1">
-                <button className="btn btn-danger px-1" onClick={() => props.cardFunction(props.item.sessionId)}><i className={props.cardImage}></i>{props.buttonName}</button>
+
+                {props.buttonName === "Join" ? (
+
+                    <button className="btn btn-danger px-1" onClick={() => props.cardFunction(props.item.sessionId)}><i className={props.cardImage}></i>{props.buttonName}</button>
+                ) : props.buttonName === "leave" ? (
+
+                    <button className="btn btn-danger px-1" onClick={() => props.cardFunction(props.item.sessionId)}><i className={props.cardImage}></i>{props.buttonName}</button>
+                ) : props.buttonName === "Delete" ? (
+
+                    <button className="btn btn-danger px-1" onClick={() => props.cardFunction(props.item.sessionId)}><i className={props.cardImage}></i>{props.buttonName}</button>
+                ) : ("")}
+                
             </div>
         </div>
     )

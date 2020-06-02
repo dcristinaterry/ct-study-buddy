@@ -58,7 +58,7 @@ router
 
 // find all sessions for all classes
 router
-  .route("/info-session/:userid/allsessions")
+  .route("/info-session/:userid/allsessions", authenticatedUser)
   .get(sessionController.findAllSessionsAllClasses)
 
 // find sessions where user is the host

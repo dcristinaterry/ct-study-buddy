@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User"
 import ParticipantSessions from "./participantSession"
@@ -7,23 +7,25 @@ import SessionCard from "../sessionCard/SessionCard"
 
 function SearchedSessions() {
     const [state, dispatch] = useStoreContext()
+    const [mountSearched, setMountSearched]=useState(false);
 
     console.log("this are the sessions I got", state.sessions)
     
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        if(state.loading){
-            dispatch({ type: "LOADING", loading: false })
-            API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
-                console.log("get allclass allsessions", sessionResp)
-                dispatch({
-                    type: "setAllSessions",
-                    sessions: sessionResp.data
-                })
-            })
+    //     if(mountSearched){
+    //         setMountSearched(false);
+    //         dispatch({ type: "LOADING", loading: false })
+    //         API_User.getAllUserSessions(state.currentUser.id).then(sessionResp => {
+    //             console.log("get allclass allsessions", sessionResp)
+    //             dispatch({
+    //                 type: "setAllSessions",
+    //                 sessions: sessionResp.data
+    //             })
+    //         })
 
-        }
-    }, [state])
+    //     }
+    // }, [mountSearched])
 
 
     const joinSession = item => {
@@ -36,7 +38,7 @@ function SearchedSessions() {
 
         API_User.joinSession(useSess).then(req => {
             console.log("this is being sent to participate", req)
-
+            setMountSearched(true);
             dispatch({ type: "LOADING", loading: true })
 
 

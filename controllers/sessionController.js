@@ -123,7 +123,7 @@ module.exports = {
 
             for (let i = 0; i < hostsessions.length; i++) {
 
-                console.log(hostsessions[i].dataValues)
+                // console.log(hostsessions[i].dataValues)
                 let sessionInfo = hostsessions[i].dataValues
                 let classInfo = hostsessions[i].dataValues.Class.dataValues
                 let hostInfo = hostsessions[i].dataValues.host.dataValues
@@ -164,7 +164,7 @@ module.exports = {
     // find all sessions for all the classes of a user
 
     findAllSessionsAllClasses: function (req, res) {
-        console.log("got called  to get all sessions all classes")
+        console.log("got called  to get all sessions all classes", req.user.id)
         // console.log("user id", req.params.userid)
         db.UserClass.findAll({
             where: { userId: req.params.userid },
@@ -172,19 +172,18 @@ module.exports = {
                 model: db.Class,
                 include: {
                     model: db.Session,
-                    // where:{
-                    //     // [Op.gte]: moment().toDate()
-                    // },
                     include: [{
                         model: db.User, as: 'host',
+                        where:{id:{[Op.not]:req.user.id}},
                         attributes: ["firstName", "lastName", "image"]
+
                     },
                     {
                         model: db.UserSession,
                         include: {
                             model: db.User,
+                            where:{id:{[Op.not]:req.user.id}},
                             attributes: ["firstName", "lastName", "image"]
-
                         }
                     },
                     {
@@ -227,7 +226,7 @@ module.exports = {
 
                             let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm a")
                             // console.log("formatted date", formattedDate)
-                            console.log(sessiontempObj.Location)
+                            // console.log(sessiontempObj.Location)
                             sessionObject.sessionDate = formattedDate
                             sessionObject.participants = sessiontempObj.UserSessions
                             sessionObject.locationBuilding = sessiontempObj.Location.dataValues.building
@@ -240,7 +239,7 @@ module.exports = {
 
                     }
                 }
-                // console.log(allSessions)
+                console.log(allSessions)
                 // can this be an array of objects?
                 res.json(allSessions)
             })
