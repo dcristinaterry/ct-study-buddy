@@ -10,9 +10,9 @@ function Jumbotron() {
             <div className="container">
                 <div className="form-inline my-2 my-md-0 justify-content-end float-right">
 
-                <SearchDate />
+                {/* <SearchDate />
                 <SearchClass />
-                <SearchTopic />
+                <SearchTopic /> */}
                 </div>
             </div>
         </div>

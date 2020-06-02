@@ -23,10 +23,7 @@ var options = {
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(express.static('./sb-client/public'));
-if (process.env.NODE_ENV === "production") {
-app.use(express.static('./sb-client/build'))
-}
+
 
 // setting up cookies
 app.use(cookieSession({
@@ -59,7 +56,10 @@ app.use(routes);
 //   app.use(express.static("client/build"));
 // }
 // Add routes, both API and view
-// app.use(routes);
+app.use(express.static('./sb-client/public'));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static('./sb-client/build'))
+  }
 
 
 db.sequelize.sync().then(function () {
