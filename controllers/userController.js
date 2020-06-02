@@ -1,25 +1,7 @@
 const db = require("../models")
 
 module.exports = {
-    // authenticateUser: function (req, res) {
-    //     db.User.findOne({
-    //         where: {
-    //             email: req.body.email,
-    //             password: req.body.password
-    //         }
-    //     }).then(function (dbUser) {
-    //         console.log("passport checking user...")
-    //         // console.log(req.user);
-    //         // Added Passport logic for validating user
-    //         if (req.user) {
-    //             console.log(req.user)
-    //             console.log("true");
-    //             // console.log(dbUser);
-    //             res.json(dbUser);
-    //         }
-    //         else { res.sendFile("/html/login.html", { root: path.join(__dirname, "../public") }) };
-    //     });
-    // },
+
     findUser: function (req, res) {
         db.User.findOne({
             where: {
