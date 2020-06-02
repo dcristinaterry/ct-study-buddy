@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // app.use(express.static('./sb-client/public'));
 if (process.env.NODE_ENV === "production") {
-app.use(express.static(',/sb-client/build'))
+app.use(express.static('./sb-client/build'))
 }
 
 // setting up cookies
