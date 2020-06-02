@@ -23,7 +23,15 @@ var options = {
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "development") {
+  app.use(express.static("sb-client/public"));
+  }
+// Add routes, both API and view
+// app.use(express.static('sb-client/public'));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static('sb-client/build'))
+  }
 
 // setting up cookies
 app.use(cookieSession({
@@ -46,15 +54,7 @@ app.use(cookieParser());
 
 app.use(routes);
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "development") {
-  app.use(express.static("sb-client/public"));
-  }
-// Add routes, both API and view
-// app.use(express.static('sb-client/public'));
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static('sb-client/build'))
-  }
+
 
 
 db.sequelize.sync().then(function () {
