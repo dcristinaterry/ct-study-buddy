@@ -13,8 +13,6 @@ The idea behind this application is to allow collegiate or graduate level studen
 
   * [Learning-Points](#Learning-Points)
   
-  * [Login](#Login)
-  
   * [Contributing](#Contributing)
   
   * [Installation](#Installation)
@@ -190,20 +188,6 @@ To demonstrate the functionality of the application, we present the following gi
 
 The challenge of this application pushed our team to consider a real work use case for a product.  Included with that was the consideration of how we would best use the technology available to deploy our app.  While we wanted to explore a full MERN stack, with the database we were constructing, using Mongo as our database was not really the best direction.  This did not take away from our experience in building out a complex database to work for our React application.
 
-## Login
-
-As this application is not designed to allow just anyone to be able to Sign-up, anyone who wishes to review the application can use the following test logins to review from a user's perspective:
-
-User email - cbell@ucb.edu; User password - testing
-User email - jmejia@ucb.edu; User password - testing
-User email - tjohnson@ucb.edu; User password - testing
-User email - bblackwell@ucb.edu; User password - testing
-User email - hcraig@ucb.edu; User password - testing
-User email - jknox@ucb.edu; User password - testing
-User email - mrobertson@ucb.edu ; User password - testing
-
-All "students" and "admins" were set up with "testing" as the password, so in theory, all user emails from the sample DB can use the password testing for loging for a review of the application.
-
 ## Contributing
 
 Jerome Chenette, Kerwin Hy, Mahi Gunasekaran, Cristina Terry, Brad Davis
@@ -239,7 +223,17 @@ For more detailed instructions, you can visit GitHub directly to <a herf="https:
 
 ## Tests
 
-No tests were required for this application
+As this application is not designed to allow just anyone to be able to Sign-up, anyone who wishes to review the application can use the following test logins to review from a user's perspective:
+
+User email - cbell@ucb.edu; User password - testing
+User email - jmejia@ucb.edu; User password - testing
+User email - tjohnson@ucb.edu; User password - testing
+User email - bblackwell@ucb.edu; User password - testing
+User email - hcraig@ucb.edu; User password - testing
+User email - jknox@ucb.edu; User password - testing
+User email - mrobertson@ucb.edu ; User password - testing
+
+All "students" and "admins" were set up with "testing" as the password, so in theory, all user emails from the sample DB can use the password testing for loging for a review of the application.
 
 ## Questions
 
