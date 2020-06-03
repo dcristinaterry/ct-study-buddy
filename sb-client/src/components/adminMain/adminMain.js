@@ -1,7 +1,7 @@
 import React from "react"
 import { useStoreContext } from "../../utils/GlobalState"
-import HostSessions from "../sessionInfo/hostSession"
-import ParticipantSessions from "../sessionInfo/participantSession"
+// import HostSessions from "../sessionInfo/hostSession"
+// import ParticipantSessions from "../sessionInfo/participantSession"
 import SearchedSessions from "../sessionInfo/searchedSession"
 import ViewUsers from "../viewUsers/ViewUsers"
 

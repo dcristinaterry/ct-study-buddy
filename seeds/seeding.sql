@@ -22,22 +22,25 @@ let sessiondata = [
 
 
 let sessionUser = [
-
-      {SessionId:"24", UserId:"4"},
-      {SessionId:"25", UserId:"4"},
-      {SessionId:"22", UserId:"4"},
-      {SessionId:"20", UserId:"4"},
-      {SessionId:"19", UserId:"4"},
-    
+      {SessionId:"11", UserId:"8"},
+      {SessionId:"11", UserId:"7"},
+      {SessionId:"11", UserId:"17"},
+      {SessionId:"2", UserId:"8"},
+      {SessionId:"2", UserId:"7"},
+      {SessionId:"2", UserId:"17"},
+      {SessionId:"2", UserId:"18"},
+      {SessionId:"6", UserId:"7"},
+      {SessionId:"6", UserId:"9"},
+      {SessionId:"6", UserId:"17"},
+      {SessionId:"6", UserId:"18"},
+      {SessionId:"6", UserId:"20"}
+      
     ]
     sessionUser.forEach(item => {
       db.UserSession.create(item)
         .then(() =>{
           console.log("userclass table seeded")
       })
-      
-    }) 
-    })    
 
  
  let userclass = [
@@ -52,7 +55,7 @@ userclass.forEach(item => {
     .then(() => {
       console.log("userclass table seeded")
     })
-  })
+
 
 
     
