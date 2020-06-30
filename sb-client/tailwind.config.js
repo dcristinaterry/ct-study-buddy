@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     screens: {
       sm: '640px',
-      md: '768px',
+      md: '765px',
       lg: '1024px',
       xl: '1280px',
     },
@@ -160,6 +160,8 @@ module.exports = {
       '48': '12rem',
       '56': '14rem',
       '64': '16rem',
+      '80': '24rem',
+      '120': '32rem',
     },
     backgroundColor: theme => theme('colors'),
     backgroundOpacity: theme => theme('opacity'),
@@ -297,6 +299,7 @@ module.exports = {
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
+      semifull: '50%',
       screen: '100vh',
     }),
     inset: {
