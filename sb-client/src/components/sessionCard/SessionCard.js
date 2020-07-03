@@ -15,18 +15,18 @@ const SessionCard = props => {
     }
 
     return (
-        <div id="cardHosted" className="flex-initial">
+        <div id="cardHosted" className="flex-initial w-46">
        
-            <div className="p-2 bg-green-200 text-gray-900  font-syncopate text-xl text-center">
+            <div className="p-3 bg-green-200 text-gray-900  font-syncopate text-xl text-center rounded-lg">
                 <h5 className="">{props.item.sessionSubject}</h5>
             </div>
-            <div className="mb-2 -mt-2">
+            <div className="mb-2 -mt-3 ml-4">
                 <img className="h-12 w-12" src={props.item.userImage} alt={props.item.userName} />
             </div>
-            <div className="">
+            <div className="m-4 text-gray-900  font-syncopate ">
 
-                <p className="mb-0">{props.item.sessionDate}</p>
-                <p className="mb-1">Num. Attendees: {props.item.participants.length}</p>
+                <p className="">{props.item.sessionDate}</p>
+                <p className="">No. Attendees: <span>{props.item.participants.length}</span></p>
                 <div>
 
                     <ModalParticipants
@@ -41,10 +41,10 @@ const SessionCard = props => {
             </div>
 
 
-            <div className="">
+            {/* <div className="">
                 <button className="btn btn-primary btnShadow" onClick={() => setModalParticipantsShow(true)}>details</button>
                 <button className="btn btn-danger btnShadow px-1 border-dark" onClick={() => props.cardFunction(props.item.sessionId)}><i className={props.cardImage}></i>{props.buttonName}</button>
-            </div>
+            </div> */}
         </div>
     )
 

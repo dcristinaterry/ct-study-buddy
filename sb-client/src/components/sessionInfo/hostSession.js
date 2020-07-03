@@ -36,7 +36,7 @@ function HostSessions() {
         <div className="mt-4 mb-4 ">
             <div className="flex overflow-x-scroll">
                 {state.hostedSessions.map((item, index) => (
-                    <div key={item.sessionId} className="bg-white-100 bg-opacity-25">
+                    <div key={item.sessionId} className="bg-white-100 bg-opacity-25 rounded-lg">
                         {/* <div key={index}> */}
                             <SessionCard
                                 item={item}

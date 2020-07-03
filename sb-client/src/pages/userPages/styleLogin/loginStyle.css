@@ -1,5 +1,8 @@
 body{
-    background-color: gray;
+    /* background-color: gray; */
+    background-image: url('./book-1822474.jpg');
+    /* background-size: cover; */
+    background-repeat: no-repeat;
 }
 
 .bodyBack{

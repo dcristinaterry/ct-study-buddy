@@ -50,8 +50,9 @@ const LoginUser = props => {
         const { name, value } = event.target
         setLoginForm({ ...loginForm, [name]: value })
     }
+    //  w-screen  h-screen absolute
     return (
-        <div className="absolute bg-center w-screen  h-screen bodyBack">
+        <div className="bg-center bg-cover">
 
             <div className="mt-24" >
                 <div className=" text-center">
@@ -65,14 +66,14 @@ const LoginUser = props => {
             <div className="absolute md:mt-24 lg:mt-56 xl:mt-56 m-16 md:m-0 md:h-80 " >
                 <div className="relative md:flex md:flex-wrap  bg-black-900 ">
                     <div className="md:w-1/4 lg:w-1/3 md:flex hidden shadow-none">
-                        <img className="object-cover object-center w-full rounded-none" src="./assets/geometry-1023846_1920.jpg" />
+                        <img className="object-cover object-center w-full  rounded-none " src="./assets/geometry-1023846_1920.jpg" />
                     </div>
 
 
                     <div className="md:w-2/4 lg:w-1/3 relative overflow-auto">
                         <div className="flex overflow-auto">
                             {/* image middle */}
-                            <img className="object-cover object-center w-full h-full rounded-none " src="./assets/back-to-school-2941924_1920.jpg" />
+                            <img className="object-cover object-center w-full h-full rounded-none " src="./assets/book-1822474.jpg" />
 
 
                             {/* form */}
@@ -86,17 +87,17 @@ const LoginUser = props => {
                                                     <label htmlFor="inputStudentEmail">E-mail</label>
                                                 </div>
                                                 <div className="w-2/3 pl-4">
-                                                    <input type="text" id="inputStudentEmail" onChange={setValues} name="email"></input>
+                                                    <input type="text" id="inputStudentEmail" className="opacity-75" onChange={setValues} name="email"></input>
                                                 </div>
 
                                             </div>
-                                            <div className="flex items-center mb-4">
+                                            <div className="flex items-center mb-4 mt-10">
 
                                                 <div className="w-1/3">
                                                     <label htmlFor="pass">Password</label>
                                                 </div>
                                                 <div className="w-2/3 pl-4">
-                                                    <input type="password" id="pass" onChange={setValues} name="password"></input>
+                                                    <input type="password" className="text-gray-920 opacity-75" id="pass" onChange={setValues} name="password"></input>
                                                 </div>
 
                                             </div>
