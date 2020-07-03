@@ -46,10 +46,8 @@ function SearchedSessions() {
     // needs useEffect to alter state
     // console.log(state.sessions)
     return (
-        <div className="row">
-            <div className="col">
-                <div className="container card-rows mt-2 pt-2">
-                    <h3>Searched Sessions</h3>
+        <div className="mt-4 mb-4 ">
+            <div className="flex overflow-x-scroll">
                     {state.sessions.map((item, index) => (
                         <div key={index}>
                             <SessionCard
@@ -60,7 +58,7 @@ function SearchedSessions() {
                             />
                         </div>
                     ))}
-                </div>
+           
             </div>
         </div>
     )

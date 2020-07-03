@@ -45,12 +45,10 @@ function ParticipantSessions() {
     // console.log(state.participatingSessions)
     // needs useEffect to alter state
     return (
-        <div className="row">
-            <div className="col">
-                <div className="container card-rows mt-2 pt-2">
-                    <h3>Participating Sessions</h3>
+        <div className="mt-4 mb-4 ">
+            <div className="flex overflow-x-scroll">
                     {state.participatingSessions.map((item, index) => (
-                        <div key={index}>
+                        <div key={item.sessionId}>
                         <SessionCard
                             item={item}
                             cardFunction={leaveSession}
@@ -59,7 +57,7 @@ function ParticipantSessions() {
                         />
                     </div>
                     ))}
-                </div>
+               
             </div>
         </div>
        
