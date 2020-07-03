@@ -55,8 +55,6 @@ app.use(cookieParser());
 app.use(routes);
 
 
-
-
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);

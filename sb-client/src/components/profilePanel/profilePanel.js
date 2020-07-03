@@ -1,9 +1,8 @@
 import React, {useState} from "react"
 import { useStoreContext } from "../../utils/GlobalState"
-import Avatar from "../avatar/avatar"
 import API_User from "../../utils/API_User"
 import CreateSession from "../createSession/CreateSession.js"
-import "./profile.css"
+
 
 const Profile = props => {
     const [state, dispatch] = useStoreContext()
@@ -41,30 +40,25 @@ const Profile = props => {
     }
 
     return (
-        <div className="col-md-12">
-            <div className="row">
-                <div className="col-md-12">
-                    <Avatar />
-                </div>
-            </div>
-            <div className="row mt-1">
-                <div className="col-md-12">
+        <div className="relative">
+            <div className="mr-10 ml-10">
+                <div className="w-full my-10">
                     {state.classes.map((item, index) => (
-                        <div key={item.id}>
-                            <button className="btn btn-light btnShadow mx-auto mb-3 border-dark hover"
+                        <div className="bg-gray-920 rounded-lg mb-4 w-full" key={item.id}>
+                            <button className="text-white-101  font-syncopate text-2xl text-center w-full p-2"
                                 onClick={() => oneClassSessions(item.ClassId)}
                             >
                                 {item.Class.subject} {item.Class.class}
                             </button>
                         </div>
                     ))}
-                    <div>
-                    <button className="btn btn-light btnShadow mx-auto mb-3 border-dark hover" onClick={() => allClassSessions()}>
-                        Sessions
+                    <div className="bg-gray-900 rounded mb-4 w-full">
+                    <button className="text-white-101  font-syncopate text-2xl text-center w-full p-2" onClick={() => allClassSessions()}>
+                        All-Sessions
                      </button>
                      </div>
-                    <div>
-                        <button className="btn btn-light btnShadow mx-auto mb-3 border-dark hover" variant="primary" onClick={() => setModalShow(true)}>
+                    <div className="bg-green-200  rounded w-full mb-4">
+                        <button className="text-gray-920  font-syncopate text-2xl text-center w-full p-2" variant="primary" onClick={() => setModalShow(true)}>
                            Add New Study Session
                          </button>
                         <CreateSession
@@ -72,8 +66,8 @@ const Profile = props => {
                             onHide={() => setModalShow(false)}
                         />
                     </div>
-                    <div>
-                    <button className="btn btn-danger btnShadow mx-auto mb-3" onClick={() => Logout()}>
+                    <div className="bg-white-101 rounded w-full">
+                    <button className="text-gray-920  font-syncopate text-2xl text-center w-full p-2" onClick={() => Logout()}>
                         Logout
                      </button>
                      </div>

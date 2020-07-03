@@ -4,6 +4,7 @@ import API_User from "../../utils/API_User.js"
 import Profile from "../../components/profilePanel/profilePanel"
 import Jumbotron from "../../components/jumbotron/jumbotron"
 import Main from "../../components/mainPanel/mainPanel"
+import Avatar from "../../components/avatar/avatar"
 
 
 const UserDashboard = props => {
@@ -62,31 +63,55 @@ const UserDashboard = props => {
                 })
 
             });
-
-           
-
         }
-
-
     }, [mounted, state, dispatch])
-   
-   
+
+
     console.log(state)
 
     return (
-        <div>
-            <div className="col-12 pb-5">
-                <Jumbotron />
-            </div>
-            <div className="row">
-                <div className="col-md-3 pt-5 px-5 text-center border-top border-right border-dark">
-                    <Profile classid={state.classid} />
+
+        <div className="absolute w-screen  h-full userDashBack bg-center bg-cover bg-opacity-100 " >
+
+            <div className="py-12 border-b-4 border-white-100" >
+                <div className=" text-center">
+                    <h1 className="font-pacifico text-8xl text-white-100 text-center">Study Buddy</h1>
                 </div>
-             <div className="col-md-9 pt-5 border-top border-dark">
-                <Main />
-                </div>
+
             </div>
+
+
+            <div className="flex flex-wrap m-10 ">
+
+                <div id="leftPannel" className=" bg-opacity-25 bg-white-100 lg:w-3/12 rounded-lg ">
+
+                    <div className="-mt-32 ml-32">
+                        <Avatar />
+                    </div>
+                    <div className="mt-20">
+                        <div className="">
+                            <h1 className="font-lexend text-5xl text-white-100 text-center" >Class-Sessions</h1>
+                        </div>
+
+                        <div className="">
+                            <Profile classid={state.classid} />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="w-1/12 m-0 p-0"></div>
+
+                <div id="mainPannel" className=" lg:w-8/12  rounded-lg">
+                    <Main />
+                </div>
+
+
+            </div>
+
         </div>
+
     )
 }
 

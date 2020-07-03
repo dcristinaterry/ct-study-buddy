@@ -270,6 +270,7 @@ module.exports = {
       spaceMono: ['Space Mono', 'monospace'],
       electro: ['Electrolize', 'sans-serif'],
       lexend: ['Lexend Peta', 'sans-serif'],
+      pacifico: ['Pacifico', 'cursive'],
     },
     fontSize: {
       xs: '0.75rem',
@@ -356,6 +357,10 @@ module.exports = {
       '4xl': '56rem',
       '5xl': '64rem',
       '6xl': '72rem',
+      '7xl': '80rem',
+      '8xl': '84rem',
+      '9xl': '90rem',
+      '10xl': '100rem',
       full: '100%',
       ...breakpoints(theme('screens')),
     }),

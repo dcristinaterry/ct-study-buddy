@@ -6523,6 +6523,10 @@ video {
   font-family: Lexend Peta, sans-serif;
 }
 
+.font-pacifico {
+  font-family: Pacifico, cursive;
+}
+
 .font-hairline {
   font-weight: 100;
 }
@@ -6769,6 +6773,10 @@ video {
 
 .text-6xl {
   font-size: 4rem;
+}
+
+.text-8xl {
+  font-size: 6rem;
 }
 
 .text-10xl {
@@ -8161,6 +8169,22 @@ video {
 
 .max-w-6xl {
   max-width: 72rem;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
+}
+
+.max-w-8xl {
+  max-width: 84rem;
+}
+
+.max-w-9xl {
+  max-width: 90rem;
+}
+
+.max-w-10xl {
+  max-width: 100rem;
 }
 
 .max-w-full {
@@ -25157,6 +25181,10 @@ video {
     font-family: Lexend Peta, sans-serif;
   }
 
+  .sm\:font-pacifico {
+    font-family: Pacifico, cursive;
+  }
+
   .sm\:font-hairline {
     font-weight: 100;
   }
@@ -26795,6 +26823,22 @@ video {
 
   .sm\:max-w-6xl {
     max-width: 72rem;
+  }
+
+  .sm\:max-w-7xl {
+    max-width: 80rem;
+  }
+
+  .sm\:max-w-8xl {
+    max-width: 84rem;
+  }
+
+  .sm\:max-w-9xl {
+    max-width: 90rem;
+  }
+
+  .sm\:max-w-10xl {
+    max-width: 100rem;
   }
 
   .sm\:max-w-full {
@@ -43792,6 +43836,10 @@ video {
     font-family: Lexend Peta, sans-serif;
   }
 
+  .md\:font-pacifico {
+    font-family: Pacifico, cursive;
+  }
+
   .md\:font-hairline {
     font-weight: 100;
   }
@@ -45430,6 +45478,22 @@ video {
 
   .md\:max-w-6xl {
     max-width: 72rem;
+  }
+
+  .md\:max-w-7xl {
+    max-width: 80rem;
+  }
+
+  .md\:max-w-8xl {
+    max-width: 84rem;
+  }
+
+  .md\:max-w-9xl {
+    max-width: 90rem;
+  }
+
+  .md\:max-w-10xl {
+    max-width: 100rem;
   }
 
   .md\:max-w-full {
@@ -62427,6 +62491,10 @@ video {
     font-family: Lexend Peta, sans-serif;
   }
 
+  .lg\:font-pacifico {
+    font-family: Pacifico, cursive;
+  }
+
   .lg\:font-hairline {
     font-weight: 100;
   }
@@ -64065,6 +64133,22 @@ video {
 
   .lg\:max-w-6xl {
     max-width: 72rem;
+  }
+
+  .lg\:max-w-7xl {
+    max-width: 80rem;
+  }
+
+  .lg\:max-w-8xl {
+    max-width: 84rem;
+  }
+
+  .lg\:max-w-9xl {
+    max-width: 90rem;
+  }
+
+  .lg\:max-w-10xl {
+    max-width: 100rem;
   }
 
   .lg\:max-w-full {
@@ -81062,6 +81146,10 @@ video {
     font-family: Lexend Peta, sans-serif;
   }
 
+  .xl\:font-pacifico {
+    font-family: Pacifico, cursive;
+  }
+
   .xl\:font-hairline {
     font-weight: 100;
   }
@@ -82700,6 +82788,22 @@ video {
 
   .xl\:max-w-6xl {
     max-width: 72rem;
+  }
+
+  .xl\:max-w-7xl {
+    max-width: 80rem;
+  }
+
+  .xl\:max-w-8xl {
+    max-width: 84rem;
+  }
+
+  .xl\:max-w-9xl {
+    max-width: 90rem;
+  }
+
+  .xl\:max-w-10xl {
+    max-width: 100rem;
   }
 
   .xl\:max-w-full {

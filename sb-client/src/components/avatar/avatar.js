@@ -6,8 +6,8 @@ import "./avatar.css"
 function Avatar(props) {
     const [state] = useStoreContext()
     return (
-        <div className="row pb-3">
-            <img className="mx-auto" src={state.currentUser.image} alt="..." />
+        <div className="">
+            <img className="h-64 w-64 object-cover object-center" src={state.currentUser.image} alt="..." />
         </div>
     )
 }

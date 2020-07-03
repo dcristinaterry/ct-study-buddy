@@ -15,23 +15,23 @@ const SessionCard = props => {
     }
 
     return (
-        <div className="card text-center float-left mb-3 mr-3 sessCard">
-            {/* <img className="mx-auto imgTiny" src="" alt="universiytLogo" /> */}
-            <div className="card-header px-1 py-1">
-                <h5 className="mb-0">{props.item.sessionSubject}</h5>
-                {/* <h5>{props.item.userName}</h5> */}
+        <div id="cardHosted" className="flex-initial">
+       
+            <div className="p-2 bg-green-200 text-gray-900  font-syncopate text-xl text-center">
+                <h5 className="">{props.item.sessionSubject}</h5>
             </div>
-            <div className="my-1">
-                <img className="mx-auto imgMain" src={props.item.userImage} alt={props.item.userName} />
+            <div className="mb-2 -mt-2">
+                <img className="h-12 w-12" src={props.item.userImage} alt={props.item.userName} />
             </div>
-            <div className="card-body px-1 pt-1 pb-2">
-                <h5 className="card-text-title mb-1">{props.item.className}</h5>
+            <div className="">
+
                 <p className="mb-0">{props.item.sessionDate}</p>
-                <p className="mb-0">Location: {props.item.Location} </p>
+                <p className="mb-1">Num. Attendees: {props.item.participants.length}</p>
                 <div>
-                    <p className="mb-1">Num. Attendees: {props.item.participants.length}</p>
-                    <button className="btn btn-primary btnShadow" onClick={() => setModalParticipantsShow(true)}>See All</button>
+
                     <ModalParticipants
+                        class={props.item.className}
+                        location={props.item.Location}
                         participants={props.item.participants}
                         show={modalParticipantsShow}
                         onHide={() => setModalParticipantsShow(false)}
@@ -41,7 +41,8 @@ const SessionCard = props => {
             </div>
 
 
-            <div className="card-footer text-muted px-1 py-1">
+            <div className="">
+                <button className="btn btn-primary btnShadow" onClick={() => setModalParticipantsShow(true)}>details</button>
                 <button className="btn btn-danger btnShadow px-1 border-dark" onClick={() => props.cardFunction(props.item.sessionId)}><i className={props.cardImage}></i>{props.buttonName}</button>
             </div>
         </div>

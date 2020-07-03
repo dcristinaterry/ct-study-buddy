@@ -5,16 +5,29 @@ import ParticipantSessions from "../sessionInfo/participantSession"
 import SearchedSessions from "../sessionInfo/searchedSession"
 
 function Main() {
-    const [state] = useStoreContext()
-    // console.log(state.sessions)
+    const [state] = useStoreContext();
 
     return (
-        <div className="container" style={ { background: 'url("./Berkeley_campus.jpg") no-repeat center center fixed 0.5' } }>
-            <HostSessions/>
+        <div className="">
+            <div className="">
+                <h3 className="font-lexend text-4xl text-white-100 text-center bg-opacity-50 bg-gray-920 p-2">Hosted Sessions</h3>
+                <div>
+                    <HostSessions />
+                </div>
 
-            <ParticipantSessions/>
-    
-            <SearchedSessions/>
+            </div>
+
+            <div>
+                <h3 className="font-lexend  text-4xl text-white-100 text-center bg-opacity-50 bg-gray-920 p-2">Participating Sessions</h3>
+                <ParticipantSessions />
+            </div>
+
+
+            <div >
+                <h3 className="font-lexend text-4xl text-white-100 text-center bg-opacity-50 bg-gray-920  p-2">Hosted Sessions</h3>
+                <SearchedSessions />
+            </div>
+
         </div>
     )
 }
