@@ -29,7 +29,7 @@ module.exports = {
                     include: {
                         model: db.User,
                         attributes: ["firstName", "lastName", "image"]
-    
+
                     }
                 },
                 {
@@ -71,7 +71,7 @@ module.exports = {
                 sessionObject.sessionDate = formattedDate
                 sessionObject.participants = participants
                 sessionObject.locationBuilding = locationInfo.building
-                sessionObject.locationRoom =locationInfo.room
+                sessionObject.locationRoom = locationInfo.room
 
                 // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
@@ -119,7 +119,7 @@ module.exports = {
 
             for (let i = 0; i < hostsessions.length; i++) {
 
-                console.log(hostsessions[i].dataValues)
+                // console.log(hostsessions[i].dataValues)
                 let sessionInfo = hostsessions[i].dataValues
                 let classInfo = hostsessions[i].dataValues.Class.dataValues
                 let hostInfo = hostsessions[i].dataValues.host.dataValues
@@ -143,7 +143,7 @@ module.exports = {
                 sessionObject.sessionDate = formattedDate
                 sessionObject.participants = participants
                 sessionObject.locationBuilding = locationInfo.building
-                sessionObject.locationRoom =locationInfo.room
+                sessionObject.locationRoom = locationInfo.room
                 // console.log("created object", sessionObject)
                 allSessions.push(sessionObject)
             }
@@ -158,25 +158,28 @@ module.exports = {
     // find all sessions for all the classes of a user
 
     findAllSessionsAllClasses: function (req, res) {
-        console.log("got called to get all sessions all classes")
+        console.log("got called to get all sessions all classes", req.user.id)
         // console.log("user id", req.params.userid)
         db.UserClass.findAll({
-            where: { userId: req.params.userid },
+            where: { userId: req.user.id },
             include: {
                 model: db.Class,
                 include: {
                     model: db.Session,
-                    // where:{
-                    //     // [Op.gte]: moment().toDate()
-                    // },
                     include: [{
                         model: db.User, as: 'host',
+                        where: {
+                            id: { [Op.not]: req.user.id },
+                        },
                         attributes: ["firstName", "lastName", "image"]
                     },
                     {
                         model: db.UserSession,
                         include: {
                             model: db.User,
+                            // where: {
+                            //     id: { [Op.not]: req.user.id },
+                            // },
                             attributes: ["firstName", "lastName", "image"]
 
                         }
@@ -191,7 +194,11 @@ module.exports = {
         })
             .then(findAllSR => {
                 let allSessions = []
-                // console.log("printing 1", findAllSR)
+                //  console.log("printing 1", findAllSR)
+                for (let i = 0; i < findAllSR.length; i++) {
+                    // console.log("printing 1", findAllSR[i].Class) 
+                    console.log("printing 1", findAllSR[i].Class.Sessions.length)
+                }
                 for (let i = 0; i < findAllSR.length; i++) {
                     // obj.classId= findAllSR[i].id;
                     //  console.log("printing 1", findAllSR[i].Class.dataValues)
@@ -214,7 +221,7 @@ module.exports = {
 
                             let formattedDate = moment(tempSessions[j].sessionDate).format("M-D-YY hh:mm a")
                             // console.log("formatted date", formattedDate)
-                            console.log(sessiontempObj.Location)
+                            // console.log(sessiontempObj.Location)
                             sessionObject.sessionDate = formattedDate
                             sessionObject.participants = sessiontempObj.UserSessions
                             sessionObject.locationBuilding = sessiontempObj.Location.dataValues.building
@@ -228,6 +235,7 @@ module.exports = {
                 // console.log(allSessions)
                 // can this be an array of objects?
                 res.json(allSessions)
+                // res.json(findAllSR)
             })
     },
 
@@ -237,13 +245,13 @@ module.exports = {
 
     findAllSessionsOneClasses: function (req, res) {
 
-       
+
         // {$and: [filters["State"], {$not: this.filterSBM()}] };
         // [Op.gte]: moment().toDate()
         db.Session.findAll({
             where: {
                 classId: req.params.classid,
-                hostId: {[Op.not]:req.user.id}
+                hostId: { [Op.not]: req.user.id }
             },
             include: [
                 {
@@ -262,7 +270,7 @@ module.exports = {
                     include: {
                         model: db.User,
                         attributes: ["firstName", "lastName", "image"]
-    
+
                     }
                 },
                 {
@@ -276,11 +284,11 @@ module.exports = {
 
                 let allSessions = []
 
-   
+
                 for (let i = 0; i < sessionsClass.length; i++) {
 
 
-                   
+
                     // let tempSessions = sessionsClass[i].dataValues;
 
 
@@ -301,9 +309,9 @@ module.exports = {
                         sessionObject.sessionDate = formattedDate
                         sessionObject.participants = sessiontempObj.UserSessions
                         sessionObject.locationBuilding = sessiontempObj.Location.building
-                        sessionObject.locationRoom =sessiontempObj.Location.room
+                        sessionObject.locationRoom = sessiontempObj.Location.room
 
-                    
+
                         //  console.log("created object", sessionObject)
 
                         allSessions.push(sessionObject)
@@ -332,14 +340,14 @@ module.exports = {
     // =======================================================================
     // find all sessions for an administrator
 
-    findAllSessionsAdmin: function (req,res) {
+    findAllSessionsAdmin: function (req, res) {
         db.Session.findAll({})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
 
-        console.log("creating session object", req.body)
+        // console.log("creating session object", req.body)
         db.Session.create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
