@@ -23,7 +23,7 @@ function Main() {
             </div>
 
             <div >
-                <h3 className="font-lexend text-4xl text-white-100 text-center bg-opacity-50 bg-gray-920  p-2">ALL Sessions</h3>
+                <h3 className="font-lexend text-4xl text-white-100 text-center bg-opacity-50 bg-gray-920  p-2">All Sessions</h3>
                 <SearchedSessions />
             </div>
 
