@@ -5,18 +5,3 @@ body{
     background-repeat: no-repeat;
 }
 
-.bodyBack{
-    background-image: url('./open-book-1428428_1920.jpg') !important;
-    background-size: cover;
-    background-repeat: no-repeat;
-    
-}
-
-.userDashBack{
-    background-image: url('./book-1822474.jpg');
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    
-   
-}
-

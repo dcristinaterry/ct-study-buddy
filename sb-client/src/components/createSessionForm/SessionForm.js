@@ -8,8 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 // import 'react-calendar/dist/Calendar.css';
 
 const SessionForm = props => {
-
-
     const [state] = useStoreContext();
     const [date] = useState(new Date());
     const [sessionForm, setSessionFrom] = useState({});
@@ -27,8 +25,6 @@ const SessionForm = props => {
 
         const { name, value } = event.target;
         setSessionFrom({ [name]: value })
-
-
     };
 
     return (
@@ -45,8 +41,7 @@ const SessionForm = props => {
                             placeholder="Midterm prep"
                             name="sessionDescription"
                             onChange={handleSessionForm}
-
-
+                            required
                         />
                     </div>
 
@@ -57,6 +52,7 @@ const SessionForm = props => {
                         id="maxParticipants"
                         name="maxParticipants"
                         onChange={handleSessionForm}
+                        required
                     >
                         <option defaultValue>Choose...</option>
                         <option value="1">1</option>
@@ -81,6 +77,7 @@ const SessionForm = props => {
                         id="maxParticipants"
                         name="classId"
                         onChange={handleSessionForm}
+                        required
                     >
                         <option defaultValue>Choose...</option>
 
@@ -117,6 +114,7 @@ const SessionForm = props => {
                         id="maxParticipants"
                         name="classId"
                         onChange={handleSessionForm}
+                        required
                     >
                         <option defaultValue>Choose...</option>
 
@@ -130,8 +128,6 @@ const SessionForm = props => {
             </div>
 
            <input type="submit" className="btn"></input>
-
-
         </form>
 
     )

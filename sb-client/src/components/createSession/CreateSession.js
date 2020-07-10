@@ -13,32 +13,36 @@ const CreateSession = props => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [sessionForm, setSessionForm] = useState({});
 
+    // TODO: Refactor Validation
+    const isValid = (field) => field && field.length() != 0;
 
     // // funciton create () { 
-
+    const isFormValid = () => {
+        const { subject, maxParticipants, ClassId, LocationId } = sessionForm;
+        return isValid(subject) && isValid(maxParticipants) && isValid(ClassId) && isValid(LocationId)
+    }
 
     const submitSessionForm = () => {
-         console.log("this date:" , selectedDate.toDateString)
-        let tempdate = selectedDate;
+        if(isFormValid()) {
+            const sessionObject = {
+                subject: sessionForm.subject,
+                sessionDate: selectedDate,
+                maxParticipants: sessionForm.maxParticipants,
+                ClassId: sessionForm.ClassId,
+                LocationId: sessionForm.LocationId,
+                hostId: state.currentUser.id
+            }
 
-        const sessionObject = {
-            subject: sessionForm.subject,
-            sessionDate: tempdate,
-            maxParticipants: sessionForm.maxParticipants,
-            ClassId: sessionForm.ClassId,
-            LocationId: sessionForm.LocationId,
-            hostId: state.currentUser.id
+            API_User.createHostSession(state.currentUser.id, sessionObject).then((createResponse)=>{
+                console.log(createResponse)
+                dispatch({type:"LOADING", loading: true})
+            })
 
+            props.onHide();
+        } else {
+            // TODO: Display error to user in form (errors)
+            console.log("Error form...");
         }
-
-        API_User.createHostSession(state.currentUser.id, sessionObject).then((createResponse)=>{
-            console.log(createResponse)
-            dispatch({type:"LOADING", loading: true})
-        })
-
-        console.log("submitting form", sessionObject)
-        props.onHide();
-
     }
 
     // const handleDate = date=>{
@@ -60,6 +64,7 @@ const CreateSession = props => {
             </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {/* TODO: {errors ? <Error /> : null} */}
 
                     <form>
                         <div className="form-row">
@@ -74,6 +79,7 @@ const CreateSession = props => {
                                         placeholder="Midterm prep"
                                         name="subject"
                                         onChange={handleSessionForm}
+                                        required
                                     />
                                 </div>
 
@@ -84,6 +90,7 @@ const CreateSession = props => {
                                     id="maxParticipants"
                                     name="maxParticipants"
                                     onChange={handleSessionForm}
+                                    required
                                 >
                                     <option defaultValue>Choose...</option>
                                     <option value="1">1</option>
@@ -108,6 +115,7 @@ const CreateSession = props => {
                                     id="classId"
                                     name="ClassId"
                                     onChange={handleSessionForm}
+                                    required
                                 >
                                     <option defaultValue>Choose...</option>
 
@@ -142,6 +150,7 @@ const CreateSession = props => {
                                     id="locationId"
                                     name="LocationId"
                                     onChange={handleSessionForm}
+                                    required
                                 >
                                     <option defaultValue>Choose...</option>
 
@@ -160,7 +169,6 @@ const CreateSession = props => {
                 <Modal.Footer>
                     <button className="btn btn-light btnShadow mx-auto mb-3 border-dark hover" onClick={submitSessionForm}>Save</button>
                     <button className="btn btn-danger btnShadow mx-auto mb-3 border-dark" onClick={props.onHide}>Close</button>
-
                 </Modal.Footer>
             </Modal>
         </div>

@@ -23,7 +23,7 @@ const SessionCard = props => {
                 <div className="mb-2 -mt-3 ml-4">
                     <img className="h-12 w-12" src={props.item.userImage} alt={props.item.userName} />
                 </div>
-                <div className="m-4 text-gray-900   ">
+                <div className="m-4 text-gray-900 bg-opacity-75 bg-white-101 p-2  ">
 
                     <p className="">{props.item.sessionDate}</p>
                     <p className="">No. Attendees: <span>{props.item.participants.length}</span></p>

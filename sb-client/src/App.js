@@ -5,7 +5,7 @@ import LoginUser from "./pages/userPages/LoginUser"
 import UserDashboard from "./pages/userPages/UserDashboard"
 import AdminDashboard from "./pages/adminPages/AdminDashboard"
 import { StoreProvider } from "./utils/GlobalState"
-import Style1 from  "./pages/userPages/styleLogin/loginStyle.css"
+import  "./pages/userPages/styleLogin/loginStyle.css"
 
 
 

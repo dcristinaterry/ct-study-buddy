@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { useStoreContext } from "../../utils/GlobalState"
 import API_User from "../../utils/API_User.js"
 import Profile from "../../components/profilePanel/profilePanel"
-import Jumbotron from "../../components/jumbotron/jumbotron"
 import Main from "../../components/mainPanel/mainPanel"
 import Avatar from "../../components/avatar/avatar"
 
