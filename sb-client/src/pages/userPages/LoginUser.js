@@ -48,7 +48,7 @@ const LoginUser = (props) => {
 
             <div className="mt-24" >
                 <div className=" text-center">
-                    <h1 className="font-pacifico text-6xl sm:text-6xl md:text-6xl lg:text-8xl xl:text-9xl text-white-100 text-center">Study Buddy</h1>
+                    <h1 className="font-pacifico text-5xl sm:text-6xl md:text-6xl lg:text-8xl xl:text-9xl text-white-100 text-center">Study Buddy</h1>
                 </div>
 
             </div>
@@ -64,28 +64,35 @@ const LoginUser = (props) => {
                             className="text-white-100 text-xl lg:text-xl xl:text-4xl px-8 pt-6 pb-8  max-w-sm m-auto"
                             onSubmit={handleSubmit(authenticateUser)}
                         >
-                            <label className="block" htmlFor="inputStudentEmail">E-mail</label>
+                            <label className="block " htmlFor="inputStudentEmail">E-mail</label>
                             <input
                                 type="text"
                                 id="inputStudentEmail"
-                                className="text-gray-920 opacity-75 mb-4 w-full"
+                                className="text-gray-920 opacity-75 w-full pr-2"
                                 onChange={setValues}
                                 name="email"
                                 ref={register({
                                     required: "Required",
                                     pattern: {
-                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        message: "invalid email address"
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
                                     }
                                 })}
+                               
                             >
                             </input>
-
-                            <label className="block " htmlFor="pass">Password</label>
-                            <input type="password" className="text-gray-920 opacity-75 mb-4 w-full" id="pass" onChange={setValues} name="password"></input>
-
-                            <div className="flex items-center">
-                                <button className="rounded mx-auto bg-gray-920 p-2 opacity-75" type="submit">Submit</button>
+                            {errors.email && <p className="font-mono text-xs text-red-700 ">please enter a valid e-mail</p>}
+                          
+                            <label className="block mt-4 " htmlFor="pass">Password</label>
+                            <input type="password" className="text-gray-920 opacity-75 w-full pr-2" id="pass" onChange={setValues} name="password"
+                              ref={register({
+                                required: "Required"
+                            })}
+                            
+                            ></input>
+                            {errors.password && <p className="font-mono text-xs text-red-700 ">please enter a valid password</p>}
+                           
+                            <div className="flex items-center  mt-6">
+                                <button className="rounded mx-auto bg-gray-100 text-gray-920 hover:bg-gray-920 hover:text-white-100 text-lg py-1 px-2  " type="submit">Submit</button>
                             </div>
                         </form>
                     </div>
