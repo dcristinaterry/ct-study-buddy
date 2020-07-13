@@ -1,7 +1,24 @@
 body{
     /* background-color: gray; */
+    background-image: url('./bookCroped.jpg');
+    /* background-size: cover; */
+    /* background-blend-mode: saturation; */
+    /* background-repeat: no-repeat; */
+}
+
+.imageCenter{
+    /* background-color: gray; */
     background-image: url('./book-1822474.jpg');
     /* background-size: cover; */
     background-repeat: no-repeat;
 }
 
+
+.imageLeft{
+    background-image: url('./geometry-1023846_1920.jpg');
+    background-repeat: no-repeat;
+}
+.imageRight{
+    background-image: url('./people-2557399_1920.jpg');
+    background-repeat: no-repeat;
+}

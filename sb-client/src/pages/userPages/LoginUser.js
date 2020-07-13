@@ -1,49 +1,41 @@
 import React, { useState, useEffect } from "react"
 import API_User from "../../utils/API_User.js"
 import { useStoreContext } from "../../utils/GlobalState";
+import { useForm } from "react-hook-form";
 
 
-const LoginUser = props => {
+
+const LoginUser = (props) => {
     const [state, dispatch] = useStoreContext();
     const [loginForm, setLoginForm] = useState({})
-    const [find, setFind] = useState(false);
+
+    const { handleSubmit, register, errors } = useForm();
 
     const authenticateUser = (event) => {
-        event.preventDefault()
-        setFind(true);
+        // event.preventDefault()
+        // setFind(true);
+        API_User.authenticate(loginForm)
+            .then(response => {
+                // console.log(response.data.role)
+                console.log(response)
+
+                let userObj = {
+                    id: response.data.id,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    image: response.data.image
+                }
+
+                dispatch({ type: "setUser", user: userObj })
+                console.log(loginForm)
+                console.log(state)
+                if (response.data.role === "admin") {
+                    props.history.push("/adminDashboard")
+                } else {
+                    props.history.push("/userDashboard")
+                }
+            });
     }
-
-    useEffect(() => {
-
-        if (find) {
-            setFind(false);
-            API_User.authenticate(loginForm)
-                .then(response => {
-                    // console.log(response.data.role)
-                    console.log(response)
-
-                    let userObj = {
-                        id: response.data.id,
-                        firstName: response.data.firstName,
-                        lastName: response.data.lastName,
-                        image: response.data.image
-                    }
-
-                    dispatch({ type: "setUser", user: userObj })
-                    console.log(loginForm)
-                    console.log(state)
-                    if (response.data.role === "admin") {
-                        props.history.push("/adminDashboard")
-                    } else {
-
-                        props.history.push("/userDashboard")
-
-                    }
-
-                });
-        }
-
-    }, [find, dispatch, state])
 
 
     const setValues = (event) => {
@@ -56,69 +48,49 @@ const LoginUser = props => {
 
             <div className="mt-24" >
                 <div className=" text-center">
-                    <h1 className="font-pacifico text-8xl text-white-100 text-center">Study Buddy</h1>
-
+                    <h1 className="font-pacifico text-6xl sm:text-6xl md:text-6xl lg:text-8xl xl:text-9xl text-white-100 text-center">Study Buddy</h1>
                 </div>
 
             </div>
 
-
-            <div className="absolute md:mt-24 lg:mt-56 xl:mt-56 m-16 md:m-0 md:h-80 " >
-                <div className="relative md:flex md:flex-wrap  bg-black-900 ">
-                    <div className="md:w-1/4 lg:w-1/3 md:flex hidden shadow-none">
-                        <img className="object-cover object-center w-full  rounded-none " src="./assets/geometry-1023846_1920.jpg" />
+            <div className="absolute md:mt-24 lg:mt-56 xl:mt-56 md:m-0 md:h-80 mt-12 w-full" >
+                <div className="relative md:flex md:flex-wrap bg-black-900 sm:p-4 md:p-0 ">
+                    <div className="md:w-1/4 lg:w-1/3 md:flex hidden shadow-none imageLeft bg-center ">
+                      
                     </div>
 
+                    <div className="md:w-2/4 lg:w-1/3 imageCenter bg-center bg-cover"  >
+                        <form
+                            className="text-white-100 text-xl lg:text-xl xl:text-4xl px-8 pt-6 pb-8  max-w-sm m-auto"
+                            onSubmit={handleSubmit(authenticateUser)}
+                        >
+                            <label className="block" htmlFor="inputStudentEmail">E-mail</label>
+                            <input
+                                type="text"
+                                id="inputStudentEmail"
+                                className="text-gray-920 opacity-75 mb-4 w-full"
+                                onChange={setValues}
+                                name="email"
+                                ref={register({
+                                    required: "Required",
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: "invalid email address"
+                                    }
+                                })}
+                            >
+                            </input>
 
-                    <div className="md:w-2/4 lg:w-1/3 relative overflow-auto">
-                        <div className="flex overflow-auto">
-                            {/* image middle */}
-                            <img className="object-cover object-center w-full h-full rounded-none " src="./assets/book-1822474.jpg" />
+                            <label className="block " htmlFor="pass">Password</label>
+                            <input type="password" className="text-gray-920 opacity-75 mb-4 w-full" id="pass" onChange={setValues} name="password"></input>
 
-
-                            {/* form */}
-                            <div className="absolute w-full" >
-                                <div className="relative overflow-auto ">
-                                    <div className="md:w-9/12 sm:ml-6 md:ml-4 xl:ml-10 sm:mt-32 md:mt-16 lg:mt-20 xl:mt-40 ">
-                                        <form className=" text-white-100 text-2xl lg:text-2xl  xl:text-4xl  ">
-
-                                            <div className="flex items-center mb-4">
-                                                <div className="w-1/3 pr-2">
-                                                    <label htmlFor="inputStudentEmail">E-mail</label>
-                                                </div>
-                                                <div className="w-2/3 pl-4">
-                                                    <input type="text" id="inputStudentEmail" className="opacity-75" onChange={setValues} name="email"></input>
-                                                </div>
-
-                                            </div>
-                                            <div className="flex items-center mb-4 mt-10">
-
-                                                <div className="w-1/3">
-                                                    <label htmlFor="pass">Password</label>
-                                                </div>
-                                                <div className="w-2/3 pl-4">
-                                                    <input type="password" className="text-gray-920 opacity-75" id="pass" onChange={setValues} name="password"></input>
-                                                </div>
-
-                                            </div>
-                                            <div className="flex items-center">
-                                                <div className="w-1/3"></div>
-                                                <div className="w-2/3 pl-4">
-                                                    <button className="bg-gray-920 hover:bg-gray-900 text-white font-bold  px-8 rounded focus:outline-none focus:shadow-outline" onClick={authenticateUser}> Submit </button>
-                                                </div>
-
-                                            </div>
-
-                                        </form>
-
-                                    </div>
-                                </div>
+                            <div className="flex items-center">
+                                <button className="rounded mx-auto bg-gray-920 p-2 opacity-75" type="submit">Submit</button>
                             </div>
-                        </div>
-
+                        </form>
                     </div>
-                    <div className="md:w-1/4 lg:w-1/3 md:flex hidden ">
-                        <img className="object-cover object-center w-full rounded-none " src="./assets/people-2557399_1920.jpg" />
+                    <div className="md:w-1/4 lg:w-1/3 md:flex hidden imageRight bg-center bg-cover">
+                       
                     </div>
 
                 </div>
