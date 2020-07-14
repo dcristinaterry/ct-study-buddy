@@ -1,65 +1,103 @@
 # P3-Study-Buddy
-[<img src="https://img.shields.io/badge/License-MIT-blue.svg">](https://opensource.org/licenses/MIT) 
+
+[<img src="https://img.shields.io/badge/License-MIT-green.svg">](https://opensource.org/licenses/MIT)
 
 ## Description
 
-The idea behind this application is to allow collegiate or graduate level students to interact within their own class/cohort to better schedule and host group study sessions.
+The idea behind this application is to allow students to interact within their own class/cohort to better schedule and host group study sessions.  This application is meant to be used for a specific college or instution therfor the user's login information most be created by the administrator.
+
+## ScreenShot
+
+### Login
+
+![logIn](./sb-client/public/assets/ssLogin.png)
+
+### Main Dashboard
+
+![studyBuddy](./sb-client/public/assets/ssMain.png)
 
 ## Table of Contents
 
-  * [Technology](#Technology)
+* [Technology](#Technology)
 
-  * [Summary](#Summary)
+* [Summary](#Summary)
 
-  * [Learning-Points](#Learning-Points)
+* [Learning-Points](#Learning-Points)
   
-  * [Contributing](#Contributing)
+* [Contributing](#Contributing)
   
-  * [Installation](#Installation)
+* [Installation](#Installation)
   
-  * [Tests](#Tests)
+* [Tests](#Tests)
   
-  * [Questions](#Questions)
+* [Questions](#Questions)
 
 ## Technologies Used
-- HTML - used to create elements on the DOM
-- CSS - used to add style to the deployed page
-- JavaScript - used to create the logic controlling the client-side application
-- Bootstrap - automate syling elements
-- jQuery - library supplement to JavaScript controlling application logic
-- Axios - a library which allows HTTP requests
-- Moment.js - used to aid in apportioning time to some elements 
-- DatePicker - a simple and reusable Datepicker component for React
-- Node.js - runtime environment which executes the JS code
-- Express - framework for Node.js to create a server
-- MySQL Workbench - database used for storing and calling information on commandline application
-- Sequelize - a promise-based Node.js ORM for MySQL
-- React - a JS library for building user interfaces
-- JSX - similar to HTML, this can be used to structure component rendering within React
-- Git - version control system to track changes to source code
-- GitHub - hosts repository that can be deployed to GitHub Pages
-- Heroku - host for deployed application
+
+* HTML6 - used to create elements on the DOM.
+* CSS - used to add style to the deployed page.
+* JavaScript - used to create the logic controlling the client-side application.
+* TailWind CSS - fron-end utility framework.
+* Express - framework for Node.js to create a server.
+* MySQL - database.
+* Sequelize - a promise-based Node.js ORM for MySQL.
+* React - a JS library for building user interfaces.
+* Git - version control system to track changes to source code.
+* GitHub - hosts repository that can be deployed to GitHub Pages.
+* Heroku - host for deployed application.
+
+## Dependencies
+
+* "bcryptjs": "^2.4.3"
+* "cookie-parser": "^1.4.5"
+* "cookie-session": "^1.4.0"
+* "express": "^4.17.1"
+* "express-mysql-session": "^2.1.4"
+* "express-session": "^1.17.1"
+* "moment": "^2.26.0"
+* "mysql2": "^2.1.0"
+* "passport": "^0.4.1"
+* "passport-cookie": "^1.0.6"
+* "passport-local": "^1.0.0"
+* "sequelize": "^5.21.10"
+* "if-env": "1.0.4"
+
+### React dependencies:
+
+* "axios": "^0.19.2"
+* "moment": "^2.26.0"
+* "react": "^16.13.1"
+* "react-bootstrap": "^1.0.1"
+* "react-calendar": "^3.1.0"
+* "react-datepicker": "^2.16.0"
+* "react-dom": "^16.13.1"
+* "react-hook-form": "^6.0.4"
+* "react-router-dom": "^5.2.0"
+* "react-scripts": "3.4.1"
+* "tailwindcss": "^1.4.6"
 
 ## Summary
 
 In our attempt to create a streamlined application to allow students to connect and aid each other through independent study sessions, we were faced with several challenges.  The first of which was how we would separate authentication routes for situations where a user or admin would be accessing the application:
 
 authenticatedUser.js
-```
+
+```js
 module.exports = function (req, res, next) {
-    if (req.user) {            
+    if (req.user) {
       if(req.user.role !== "admin"){
         return next();
       }
     }else{
       console.log("user doesn't exists")
       return res.redirect("/");
-    }    
+    }
   };
 ```
 
 App_User.js
-```
+
+```js
 import axios from 'axios'
 export default {
     authenticate: function (loginData) {
@@ -72,7 +110,8 @@ export default {
 ```
 
 App_user.js
-```
+
+```js
 router
   .route("/")
   .put(passport.authenticate("local"), function (req, res) {
@@ -92,7 +131,9 @@ router
 With an authenticated user now accessing the site, we were faced with another task of ensuring all data would be rendering properly depending on the user's actions.  Given that we are saving a plethora of data to state, it was vital that realtime updates to state would display accordingly, as executed by the following code:
 
 profilePanel.js
-```
+
+```js
+
     const oneClassSessions = (item) => {
         API_User.getSessionsForOneClass(item).then(classSess => {
             dispatch({
@@ -113,18 +154,21 @@ profilePanel.js
 ```
 
 GlobalState.js
-```
+
+```js
 case "setAllSessions":
       return {
         ...state,
         sessions: action.sessions,
       };
-```      
+```
 
 With regards to the data that would be displayed, a complex set of data queries were executed through sequelize to pull data for each user, based upon the classes they are in, and any sessions they had signed up to attend. An example of the query for the sessions a user would be attending, please see the below code:
 
 sessionController.js
-```
+
+```js
+
 module.exports = {
     findAllParticipatinSessions: function (req, res) {
         db.UserSession.findAll({
@@ -180,9 +224,7 @@ module.exports = {
     },
 ```
 
-To demonstrate the functionality of the application, we present the following gif:
 
-<img src="https://github.com/crisdc88/P3-study-budy/blob/master/sb-client/public/StudyBuddy_Functionality.gif">
 
 ## Learning-Points
 
@@ -207,6 +249,7 @@ For those who wish to clone or fork this repo, the following steps should be fol
 For those who wish to clone or fork this repo, the following steps should be followed:
 
 Clone:
+
 1) On GitHub, navigate to the main page of the repository.
 2) Under the repository name, click Clone or download.
 3) To clone the repository using HTTPS, under "Clone with HTTPS", click the clipboard icon. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click Use SSH, then click the clipboard icon.
@@ -216,6 +259,7 @@ Clone:
 7) Press enter
 
 Fork:
+
 1) On GitHub, navigate to the main page of the repository.
 2) In the top-right corner of the page, click Fork.
 
@@ -225,13 +269,11 @@ For more detailed instructions, you can visit GitHub directly to <a herf="https:
 
 As this application is not designed to allow just anyone to be able to Sign-up, anyone who wishes to review the application can use the following test logins to review from a user's perspective:
 
-User email - cbell@ucb.edu; User password - testing
-User email - jmejia@ucb.edu; User password - testing
-User email - tjohnson@ucb.edu; User password - testing
-User email - bblackwell@ucb.edu; User password - testing
-User email - hcraig@ucb.edu; User password - testing
-User email - jknox@ucb.edu; User password - testing
-User email - mrobertson@ucb.edu ; User password - testing
+User email - admin@test.edu; User password - testing
+User email - ta@test.edu; User password - testing
+User email - usera@test.edu; User password - testing
+User email - userb@test.edu; User password - testing
+User email - userc@test.edu; User password - testing
 
 All "students" and "admins" were set up with "testing" as the password, so in theory, all user emails from the sample DB can use the password testing for loging for a review of the application.
 
@@ -240,7 +282,3 @@ All "students" and "admins" were set up with "testing" as the password, so in th
 <img src="https://avatars0.githubusercontent.com/u/61372364?v=4" alt="avatar" style="border-radius: 16px" width="30">
 
 [Cristina Terry](https://github.com/crisdc88) directly at crisdc88@gmail.com
-
-<img src="https://avatars3.githubusercontent.com/u/61176147?v=4" alt="avatar" style="border-radius: 16px" width="30">
-
-[Brad Davis](https://github.com/davisbradleyj) directly at davis.bradleyj@gmail.com

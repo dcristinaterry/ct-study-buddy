@@ -59,12 +59,12 @@ db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   })
-  // // ===============
+  // // // ===============
   // let sessiondata = [
-  //   { subject: 'Midterm1', sessionDate: '2020-06-04 15:30:34', maxParticipants:10, LocationId:4, ClassId:9, hostId:2},
-  //   { subject: 'Midterm2', sessionDate: '2020-06-21 13:30:34', maxParticipants:10, LocationId:6,ClassId:1, hostId:15},
-  //   { subject: 'Midterm2', sessionDate: '2020-06-21 17:00:34', maxParticipants:8, LocationId:1, ClassId:15, hostId:5},
-  //   { subject: 'Midterm3', sessionDate: '2020-07-28 18:00:34', maxParticipants:10, LocationId:2, ClassId:29, hostId:7},
+  //   { subject: 'Midterm1', sessionDate: '2020-08-04 15:30:34', maxParticipants:10, LocationId:4, ClassId:9, hostId:5},
+  //   { subject: 'Midterm2', sessionDate: '2020-08-21 13:30:34', maxParticipants:10, LocationId:6,ClassId:80, hostId:5},
+  //   { subject: 'Midterm2', sessionDate: '2020-08-21 17:00:34', maxParticipants:8, LocationId:1, ClassId:2, hostId:5},
+  //   { subject: 'Midterm3', sessionDate: '2020-08-28 18:00:34', maxParticipants:10, LocationId:2, ClassId:28, hostId:5},
   //   { subject: 'Midterm1', sessionDate: '2020-06-03 19:00:34', maxParticipants:8, LocationId:6, ClassId:13, hostId:17},
   //   { subject: 'Midterm1', sessionDate: '2020-06-06 20:00:34', maxParticipants:6, LocationId:7, ClassId:9, hostId:8},
   //   { subject: 'Midterm2', sessionDate: '2020-06-28 17:30:34', maxParticipants:10, LocationId:8, ClassId:16, hostId:2},
@@ -93,22 +93,13 @@ db.sequelize.sync().then(function () {
     // {role:"student", ClassId:9, UserId:4},
     // {role:"student", ClassId:14, UserId:4},
     // {role:"student", ClassId:29, UserId:4},
-    // {role:"student", ClassId:1, UserId:4},
-  //   {role:"student", ClassId:9, UserId:9},
-  //   {role:"student", ClassId:14, UserId:9},
-  //   {role:"student", ClassId:28, UserId:9},
-  //   {role:"student", ClassId:1, UserId:17},
-  //   {role:"student", ClassId:9, UserId:17},
-  //   {role:"student", ClassId:13, UserId:17},
-  //   {role:"student", ClassId:29, UserId:17},
-  //   {role:"student", ClassId:1, UserId:18},
-  //   {role:"student", ClassId:9, UserId:18},
-  //   {role:"student", ClassId:14, UserId:18},
-  //   {role:"student", ClassId:34, UserId:18},
-  //   {role:"student", ClassId:2, UserId:20},
-  //   {role:"student", ClassId:9, UserId:20},
-  //   {role:"student", ClassId:14, UserId:20},
-  //   {role:"student", ClassId:33, UserId:20}
+  //   // {role:"student", ClassId:1, UserId:4},
+  //   {role:"student", ClassId:9, UserId:5},
+  //   {role:"student", ClassId:14, UserId:5},
+  //   {role:"student", ClassId:28, UserId:5},
+  //   {role:"student", ClassId:34, UserId:5},
+  //   {role:"student", ClassId:2, UserId:5},
+  //   {role:"student", ClassId:80, UserId:5},
   // ]
   // userclass.forEach(item => {
   //   db.UserClass.create(item)
