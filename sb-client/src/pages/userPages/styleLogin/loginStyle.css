@@ -22,3 +22,8 @@ body{
     background-image: url('./people-2557399_1920.jpg');
     background-repeat: no-repeat;
 }
+.userDashBack{
+    background-image: url('./book-1822474.jpg');
+    /* background-size: cover; */
+   
+}
