@@ -53,7 +53,7 @@ const LoginUser = (props) => {
 
             </div>
 
-            <div className="absolute md:mt-24 lg:mt-56 xl:mt-56 md:m-0 md:h-80 mt-12 w-full" >
+            <div className=" md:mt-24 lg:mt-56 xl:mt-56 md:m-0 md:h-80 mt-12 w-full" >
                 <div className="relative md:flex md:flex-wrap bg-black-900 sm:p-4 md:p-0 ">
                     <div className="md:w-1/4 lg:w-1/3 md:flex hidden shadow-none imageLeft bg-center ">
                       
@@ -101,6 +101,10 @@ const LoginUser = (props) => {
                     </div>
 
                 </div>
+            </div>
+
+            <div className="">
+                            <p className="text-center font-mono  bg-white-100 bg-opacity-50 text-gray-900 py-2">Try out this application with these test users:  usera@test.edu, userb@test.edu, userc@test.edu;   Password:testing</p>
             </div>
         </div>
     )
