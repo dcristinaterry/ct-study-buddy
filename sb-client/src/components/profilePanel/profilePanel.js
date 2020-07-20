@@ -58,9 +58,9 @@ const Profile = props => {
                      </button>
                      </div>
                     <div className="bg-green-200  rounded w-full mb-4">
-                        <a className="text-gray-920  font-syncopate text-2xl text-center w-full p-2" variant="primary" onClick={() => setModalShow(true)}>
+                        <button className="text-gray-920  font-syncopate text-2xl text-center w-full p-2" variant="primary" onClick={() => setModalShow(true)}>
                            Add New Study Session
-                         </a>
+                         </button>
                         <CreateSession
                             show={modalShow}
                             onHide={() => setModalShow(false)}

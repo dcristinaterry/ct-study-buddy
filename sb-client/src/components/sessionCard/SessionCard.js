@@ -1,22 +1,22 @@
 import React, { useState } from "react"
-import ModalParticipants from "../modalParticipants/ModalParticipants.js"
+import ModalSessionInfo from "../modalSessionInfo/ModalSessionInfo.js"
 import "./session.css"
 
 const SessionCard = props => {
-    const [modalParticipantsShow, setModalParticipantsShow] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     console.log(props.item)
 
-    const check = () => {
-        console.log("got clicked", props.item.participants.length)
-        if (props.item.participants.lentgth > 0) {
-            console.log("got clicked")
-            setModalParticipantsShow(true)
-        }
-    }
+    // const check = () => {
+    //     console.log("got clicked", props.item.participants.length)
+    //     if (props.item.participants.lentgth > 0) {
+    //         console.log("got clicked")
+    //         setModalOpen(true)
+    //     }
+    // }
 
     return (
         <div id="cardHosted" className="flex-initial w-46 bg-white-100 bg-opacity-50 rounded-lg font-syncopate rounded-lg mr-10">
-            <button onClick={() => setModalParticipantsShow(true)}>
+            <button onClick={() => setModalOpen(true)}>
                 <div className="p-3 bg-green-200 text-gray-900  text-xl text-center rounded-t-lg">
                     <h5 className="">{props.item.sessionSubject}</h5>
                 </div>
@@ -26,7 +26,7 @@ const SessionCard = props => {
                 <div className="m-4 text-gray-900 bg-opacity-75 bg-white-101 p-2 rounded-lg ">
 
                     <p className="">{props.item.sessionDate}</p>
-                    <p className="">No. Attendees: <span>{props.item.participants.length}</span></p>
+                    <p className="">No. Attendees: <span>{props.item.participants.length+1}</span></p>
 
                 </div>
 
@@ -39,13 +39,17 @@ const SessionCard = props => {
             </div>
 
             <div>
-                <ModalParticipants
+                <ModalSessionInfo
+                    subject={props.item.sessionSubject}
                     class={props.item.className}
+                    sessDate={props.item.sessionDate}
                     location={props.item.Location}
+                    hostImage={props.item.userImage}
+                    hoseName={props.item.userName}
                     participants={props.item.participants}
-                    show={modalParticipantsShow}
+                    show={modalOpen}
                     hosting="true"
-                    onHide={() => setModalParticipantsShow(false)}
+                    onHide={() => setModalOpen(false)}
                 />
             </div>
         </div>

@@ -1,10 +1,10 @@
 {
 
     "development": {
-      "username": "root",
-      "password": "password",
-      "database": "study_buddy",
-      "host": "127.0.0.1",
+      "username": "ck3spwsfn50op5t2",
+      "password": "rsq1swvhbqsgycwq",
+      "database": "vpymyzhhi8mykv0y",
+      "host": "nnmeqdrilkem9ked.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       "dialect": "mysql"
     },
     "test": {

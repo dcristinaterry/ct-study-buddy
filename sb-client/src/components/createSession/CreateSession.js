@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-modal'
 import DatePicker from "react-datepicker";
 import { useStoreContext } from "../../utils/GlobalState"
 import "react-datepicker/dist/react-datepicker.css";
 import API_User from "../../utils/API_User";
+import "./modalCreateSessStyle.css"
 
 // import 'react-calendar/dist/Calendar.css';
-
+Modal.setAppElement('#root')
 const CreateSession = props => {
 
     const [state, dispatch] = useStoreContext();
@@ -14,16 +15,16 @@ const CreateSession = props => {
     const [sessionForm, setSessionForm] = useState({});
 
     // TODO: Refactor Validation
-    const isValid = (field) => field && field.length() != 0;
+    // const isValid = (field) => field && field.length() != 0;
 
     // // funciton create () { 
-    const isFormValid = () => {
-        const { subject, maxParticipants, ClassId, LocationId } = sessionForm;
-        return isValid(subject) && isValid(maxParticipants) && isValid(ClassId) && isValid(LocationId)
-    }
+    // const isFormValid = () => {
+    //     const { subject, maxParticipants, ClassId, LocationId } = sessionForm;
+    //     return isValid(subject) && isValid(maxParticipants) && isValid(ClassId) && isValid(LocationId)
+    // }
 
     const submitSessionForm = () => {
-        if(isFormValid()) {
+        // if(isFormValid()) {
             const sessionObject = {
                 subject: sessionForm.subject,
                 sessionDate: selectedDate,
@@ -39,10 +40,10 @@ const CreateSession = props => {
             })
 
             props.onHide();
-        } else {
-            // TODO: Display error to user in form (errors)
-            console.log("Error form...");
-        }
+        // } else {
+        //     // TODO: Display error to user in form (errors)
+        //     console.log("Error form...");
+        // }
     }
 
     // const handleDate = date=>{
@@ -57,22 +58,23 @@ const CreateSession = props => {
 
     return (
         <div>
-            <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
+            <Modal  isOpen={props.show}
+                shouldCloseOnOverlayClick={false}
+                onRequestClose={() => props.onHide}
+                className="Modal2"
+                overlayClassName="Overlay2">
+                
                         NEW STUDY SESSION
-            </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {/* TODO: {errors ? <Error /> : null} */}
+          
+    
 
                     <form>
-                        <div className="form-row">
+                        <div className="">
 
                             {/* <SessionDescription somet ={handleSessionForm}/> */}
-                            <div className="form-group col-md-8">
+                        
                                 <label htmlFor="sessionDescription">Session Description</label>
-                                <div>
+                           
                                     <input
                                         className="form-control"
                                         type="text"
@@ -81,10 +83,7 @@ const CreateSession = props => {
                                         onChange={handleSessionForm}
                                         required
                                     />
-                                </div>
-
-                            </div>
-                            <div className="form-group col-md-4">
+                          
                                 <label htmlFor="maxParticipants">Max. Number partipants</label>
                                 <select className="custom-select"
                                     id="maxParticipants"
@@ -104,12 +103,9 @@ const CreateSession = props => {
                                     <option value="7">9</option>
                                     <option value="8">10</option>
                                 </select>
-                            </div>
+                        
 
-                        </div>
-
-                        <div className="form-row">
-                            <div className="form-group col-md-12">
+                       
                                 <label htmlFor="classId">Select Class</label>
                                 <select className="custom-select"
                                     id="classId"
@@ -125,14 +121,9 @@ const CreateSession = props => {
                                     ))}
 
                                 </select>
-                            </div>
-
-                        </div>
-
-                        <div className="form-row">
-                            <div className="form-group col-md-4 ">
+                   
                                 <label htmlFor="sessionDatePicker">Session Date</label>
-                                <div>
+                              
                                     <DatePicker
                                         selected={selectedDate}
                                         onChange={date => setSelectedDate(date)}
@@ -142,9 +133,8 @@ const CreateSession = props => {
                                         // dateFormat="Pp"
                                         id="sessionDatePicker"
                                     />
-                                </div>
-                            </div>
-                            <div className="form-group col-md-8">
+                          
+                          
                                 <label htmlFor="locationId">Select a Location</label>
                                 <select className="custom-select"
                                     id="locationId"
@@ -157,19 +147,13 @@ const CreateSession = props => {
                                     {state.locations.map((item) => (
                                         <option key={item.id} value={item.id}> {item.building}-{item.room} - Max. Occupants: {item.maxOccupancy}</option>
                                     ))}
-
                                 </select>
-                            </div>
-
+                           
                         </div>
-
                     </form>
-
-                </Modal.Body>
-                <Modal.Footer>
                     <button className="btn btn-light btnShadow mx-auto mb-3 border-dark hover" onClick={submitSessionForm}>Save</button>
                     <button className="btn btn-danger btnShadow mx-auto mb-3 border-dark" onClick={props.onHide}>Close</button>
-                </Modal.Footer>
+             
             </Modal>
         </div>
 

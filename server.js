@@ -61,18 +61,15 @@ db.sequelize.sync().then(function () {
   })
   // // // ===============
   // let sessiondata = [
-  //   { subject: 'Midterm1', sessionDate: '2020-08-04 15:30:34', maxParticipants:10, LocationId:4, ClassId:9, hostId:5},
-  //   { subject: 'Midterm2', sessionDate: '2020-08-21 13:30:34', maxParticipants:10, LocationId:6,ClassId:80, hostId:5},
-  //   { subject: 'Midterm2', sessionDate: '2020-08-21 17:00:34', maxParticipants:8, LocationId:1, ClassId:2, hostId:5},
-  //   { subject: 'Midterm3', sessionDate: '2020-08-28 18:00:34', maxParticipants:10, LocationId:2, ClassId:28, hostId:5},
-  //   { subject: 'Midterm1', sessionDate: '2020-06-03 19:00:34', maxParticipants:8, LocationId:6, ClassId:13, hostId:17},
-  //   { subject: 'Midterm1', sessionDate: '2020-06-06 20:00:34', maxParticipants:6, LocationId:7, ClassId:9, hostId:8},
-  //   { subject: 'Midterm2', sessionDate: '2020-06-28 17:30:34', maxParticipants:10, LocationId:8, ClassId:16, hostId:2},
-  //   { subject: 'Midterm1', sessionDate: '2020-06-05 14:00:34', maxParticipants:10, LocationId:10, ClassId:27, hostId:9},
-  //   { subject: 'Midterm2', sessionDate: '2020-06-27 15:30:34', maxParticipants:8, LocationId:3, ClassId:33, hostId:22},
-  //   { subject: 'Midterm3', sessionDate: '2020-07-29 17:30:34', maxParticipants:6, LocationId:3, ClassId:34, hostId:18},
-  //   { subject: 'Midterm1', sessionDate: '2020-06-06 22:30:34', maxParticipants:8, LocationId:1, ClassId:29, hostId:8},
-  //   { subject: 'Supply/Demand', sessionDate: '2020-07-04 22:30:34', maxParticipants:10, LocationId:2, ClassId:33, hostId:20}
+  //   { subject: 'Midterm1', sessionDate: '2020-09-04 15:30:34', maxParticipants:10, LocationId:4, ClassId:9, hostId:3},
+  //   { subject: 'Midterm2', sessionDate: '2020-09-21 13:30:34', maxParticipants:10, LocationId:6,ClassId:14, hostId:3},
+  //   { subject: 'Midterm2', sessionDate: '2020-10-21 17:00:34', maxParticipants:8, LocationId:1, ClassId:29, hostId:3},
+  //   { subject: 'Midterm3', sessionDate: '2020-11-28 18:00:34', maxParticipants:10, LocationId:2, ClassId:29, hostId:3},
+  //   { subject: 'Midterm1', sessionDate: '2020-09-03 19:00:34', maxParticipants:8, LocationId:6, ClassId:9, hostId:4},
+  //   { subject: 'Midterm1', sessionDate: '2020-09-06 20:00:34', maxParticipants:6, LocationId:7, ClassId:9, hostId:4},
+  //   { subject: 'Midterm2', sessionDate: '2020-10-28 17:30:34', maxParticipants:10, LocationId:8, ClassId:14, hostId:4},
+  //   { subject: 'Midterm1', sessionDate: '2020-09-05 14:00:34', maxParticipants:10, LocationId:10, ClassId:28, hostId:5},
+  //   { subject: 'Midterm2', sessionDate: '2020-09-27 15:30:34', maxParticipants:8, LocationId:3, ClassId:80, hostId:5},
   //   ]
   // sessiondata.forEach(item => {
   //   db.Session.create(item)
@@ -81,8 +78,6 @@ db.sequelize.sync().then(function () {
   //     .catch(error => console.log(error));
   // });
 
-
-
   //  let userclass = [
 
   //   {role:"student", ClassId:1, UserId:3},
@@ -90,10 +85,10 @@ db.sequelize.sync().then(function () {
   //   {role:"student", ClassId:14, UserId:3},
   //   {role:"student", ClassId:29, UserId:3},
   //   {role:"student", ClassId:1, UserId:3},
-    // {role:"student", ClassId:9, UserId:4},
-    // {role:"student", ClassId:14, UserId:4},
-    // {role:"student", ClassId:29, UserId:4},
-  //   // {role:"student", ClassId:1, UserId:4},
+  //   {role:"student", ClassId:9, UserId:4},
+  //   {role:"student", ClassId:14, UserId:4},
+  //   {role:"student", ClassId:29, UserId:4},
+  //   {role:"student", ClassId:1, UserId:4},
   //   {role:"student", ClassId:9, UserId:5},
   //   {role:"student", ClassId:14, UserId:5},
   //   {role:"student", ClassId:28, UserId:5},
