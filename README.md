@@ -6,6 +6,10 @@
 
 The idea behind this application is to allow students to interact within their own class/cohort to better schedule and host group study sessions.  This application is meant to be used for a specific college or instution therfor the user's login information most be created by the administrator.
 
+## Deployed Link
+
+[https://ct-study-buddy.herokuapp.com/](https://ct-study-buddy.herokuapp.com/)
+
 ## ScreenShot
 
 ### Login
@@ -232,7 +236,7 @@ The challenge of this application pushed our team to consider a real work use ca
 
 ## Contributing
 
-Jerome Chenette, Kerwin Hy, Mahi Gunasekaran, Cristina Terry, Brad Davis
+Cristina Terry, Brad Davis
 
 ## Installation
 
